@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register - Earning Website</title>
+
+<title>Dashboard - Earning Website</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -16,104 +18,217 @@
 body{
   min-height:100vh;
   background:linear-gradient(135deg,#eef2ff,#f7f8ff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
   padding:20px;
+  color:#222;
 }
 
-.box{
+.container{
   width:100%;
-  max-width:430px;
-  background:white;
-  padding:30px 24px;
-  border-radius:25px;
-  box-shadow:0 10px 35px #d4d7e5;
+  max-width:500px;
+  margin:auto;
 }
 
-.logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
-  border-radius:50%;
+/* HEADER */
+
+.header{
   background:linear-gradient(135deg,#3936d8,#164b9b);
-  display:flex;
-  align-items:center;
-  justify-content:center;
   color:white;
-  font-size:32px;
+  padding:22px;
+  border-radius:22px;
+  margin-bottom:18px;
+  box-shadow:0 8px 25px #d4d7e5;
 }
 
-h1{
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.header h2{
+  font-size:22px;
+}
+
+.logout{
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:white;
+  padding:8px 12px;
+  border-radius:9px;
+  cursor:pointer;
+}
+
+/* BALANCE */
+
+.balance-card{
+  background:white;
+  border-radius:22px;
+  padding:25px;
   text-align:center;
-  font-size:27px;
+  box-shadow:0 8px 25px #dfe1eb;
+  margin-bottom:18px;
+}
+
+.balance-title{
+  color:#777;
+  font-size:14px;
   margin-bottom:8px;
 }
 
-.sub{
-  text-align:center;
-  color:#777;
-  font-size:14px;
-  margin-bottom:25px;
-}
-
-label{
-  display:block;
-  margin:15px 0 7px;
+.balance{
+  font-size:38px;
   font-weight:bold;
+  color:#3936d8;
+}
+
+.bonus{
+  margin-top:8px;
+  color:#08784f;
+  font-size:13px;
+}
+
+/* CARDS */
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 8px 25px #dfe1eb;
+  margin-bottom:18px;
+}
+
+.card h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+/* USER */
+
+.user-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
   font-size:14px;
 }
 
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-  font-size:15px;
-  background:#fafbff;
+.user-row:last-child{
+  border-bottom:0;
 }
 
-input:focus{
-  border-color:#3936d8;
+.value{
+  font-weight:bold;
 }
 
-.invite{
+/* REFERRAL */
+
+.ref-code{
   background:#f0f1ff;
-  border-color:#3936d8;
+  border:1px dashed #3936d8;
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  color:#3936d8;
+  letter-spacing:2px;
 }
 
-.note{
-  margin-top:7px;
-  color:#777;
-  font-size:12px;
-}
-
-button{
+.ref-link{
   width:100%;
-  margin-top:25px;
-  padding:15px;
+  padding:12px;
+  margin-top:10px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:12px;
+  background:#fafafa;
+}
+
+.copy-btn{
+  width:100%;
+  margin-top:10px;
+  padding:12px;
   border:0;
-  border-radius:13px;
-  background:linear-gradient(135deg,#3936d8,#164b9b);
+  border-radius:10px;
+  background:#3936d8;
   color:white;
-  font-size:17px;
   font-weight:bold;
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
+.ref-info{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
 }
+
+.stat{
+  flex:1;
+  background:#f7f8ff;
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:20px;
+  color:#3936d8;
+}
+
+.stat span{
+  color:#777;
+  font-size:12px;
+}
+
+/* WITHDRAW */
+
+.withdraw-note{
+  background:#fff8e8;
+  color:#8a6200;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+select,
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:11px;
+  outline:none;
+  font-size:15px;
+  background:#fafbff;
+  margin-bottom:12px;
+}
+
+.withdraw-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#3936d8,#164b9b);
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.withdraw-btn:disabled{
+  opacity:.6;
+}
+
+/* MESSAGE */
 
 .message{
   display:none;
-  margin-top:15px;
   padding:12px;
   border-radius:10px;
   text-align:center;
   font-size:14px;
+  margin-top:12px;
 }
 
 .success{
@@ -128,157 +243,309 @@ button:disabled{
   color:#c62828;
 }
 
-.links{
-  text-align:center;
-  margin-top:20px;
+/* HISTORY */
+
+.history-item{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+  font-size:13px;
 }
 
-.links a{
-  display:block;
-  margin-top:12px;
-  text-decoration:none;
+.history-item:last-child{
+  border-bottom:0;
+}
+
+.pending{
+  color:#c47a00;
   font-weight:bold;
-  color:#3936d8;
 }
 
-.home{
-  color:#777 !important;
-  font-weight:normal !important;
+.empty{
+  color:#888;
+  text-align:center;
+  padding:10px;
+  font-size:14px;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="container">
 
-  <div class="logo">💰</div>
+  <!-- HEADER -->
 
-  <h1>অ্যাকাউন্ট তৈরি করুন</h1>
+  <div class="header">
 
-  <p class="sub">
-    Earning Website-এ আপনার নতুন অ্যাকাউন্ট খুলুন
-  </p>
+    <div class="header-top">
 
-  <form id="registerForm">
+      <h2>💰 Earning Dashboard</h2>
 
-    <label>👤 আপনার নাম</label>
+      <button
+        class="logout"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+    <p style="margin-top:10px;font-size:14px;">
+      স্বাগতম, <span id="userName">User</span> 👋
+    </p>
+
+  </div>
+
+
+  <!-- BALANCE -->
+
+  <div class="balance-card">
+
+    <div class="balance-title">
+      আপনার বর্তমান Balance
+    </div>
+
+    <div class="balance">
+      ৳<span id="balance">0</span>
+    </div>
+
+    <div class="bonus">
+      🎁 Signup Bonus: ৳50
+    </div>
+
+  </div>
+
+
+  <!-- USER INFO -->
+
+  <div class="card">
+
+    <h3>👤 Account Information</h3>
+
+    <div class="user-row">
+      <span>নাম</span>
+      <span class="value" id="name">-</span>
+    </div>
+
+    <div class="user-row">
+      <span>মোবাইল</span>
+      <span class="value" id="mobile">-</span>
+    </div>
+
+    <div class="user-row">
+      <span>My Referral Code</span>
+      <span class="value" id="myCode">-</span>
+    </div>
+
+  </div>
+
+
+  <!-- REFERRAL -->
+
+  <div class="card">
+
+    <h3>🎟️ Refer & Earn</h3>
+
+    <p style="font-size:13px;color:#777;margin-bottom:12px;">
+      আপনার referral link দিয়ে নতুন user যোগ হলে
+      referral bonus পাওয়ার ব্যবস্থা করা যাবে।
+    </p>
+
+    <div
+      class="ref-code"
+      id="refCode"
+    >
+      --------
+    </div>
+
     <input
       type="text"
-      id="name"
-      placeholder="আপনার পূর্ণ নাম"
-      autocomplete="name"
-      required
+      id="refLink"
+      class="ref-link"
+      readonly
     >
 
-    <label>📱 মোবাইল নম্বর</label>
+    <button
+      class="copy-btn"
+      onclick="copyReferral()"
+    >
+      🔗 Referral Link Copy করুন
+    </button>
+
+    <div class="ref-info">
+
+      <div class="stat">
+        <strong id="refCount">0</strong>
+        <span>Referrals</span>
+      </div>
+
+      <div class="stat">
+        <strong>৳<span id="refBonus">0</span></strong>
+        <span>Referral Bonus</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- WITHDRAW -->
+
+  <div class="card">
+
+    <h3>💸 Withdraw</h3>
+
+    <div class="withdraw-note">
+      Minimum withdrawal amount: <b>৳100</b>
+    </div>
+
+    <label>Payment Method</label>
+
+    <select id="method">
+
+      <option value="bKash">
+        bKash
+      </option>
+
+      <option value="Nagad">
+        Nagad
+      </option>
+
+    </select>
+
+
+    <label>Account Number</label>
+
     <input
       type="tel"
-      id="mobile"
+      id="withdrawNumber"
       placeholder="01XXXXXXXXX"
       maxlength="11"
       inputmode="numeric"
-      required
     >
 
-    <label>🔑 পাসওয়ার্ড</label>
-    <input
-      type="password"
-      id="password"
-      placeholder="কমপক্ষে ৬ অক্ষর"
-      minlength="6"
-      required
-    >
 
-    <label>🔐 পাসওয়ার্ড নিশ্চিত করুন</label>
-    <input
-      type="password"
-      id="confirmPassword"
-      placeholder="আবার পাসওয়ার্ড লিখুন"
-      minlength="6"
-      required
-    >
-
-    <label>🎟️ Invite Code</label>
+    <label>Amount</label>
 
     <input
-      type="text"
-      id="inviteCode"
-      class="invite"
-      placeholder="Invite Code"
-      autocomplete="off"
+      type="number"
+      id="withdrawAmount"
+      placeholder="Minimum ৳100"
+      min="100"
     >
 
-    <p class="note">
-      Referral link দিয়ে এলে Invite Code অটোমেটিক বসবে।
-    </p>
 
-    <button type="submit" id="registerBtn">
-      📝 Register করুন
+    <button
+      class="withdraw-btn"
+      id="withdrawBtn"
+      onclick="requestWithdraw()"
+    >
+      💸 Withdraw Request
     </button>
 
-    <div id="message" class="message"></div>
+    <div
+      id="withdrawMessage"
+      class="message"
+    ></div>
 
-  </form>
+  </div>
 
-  <div class="links">
 
-    <a href="login.html">
-      🔐 আগে থেকেই অ্যাকাউন্ট আছে? Login করুন
-    </a>
+  <!-- WITHDRAW HISTORY -->
 
-    <a href="index.html" class="home">
-      🏠 Dashboard
-    </a>
+  <div class="card">
+
+    <h3>📋 Withdrawal History</h3>
+
+    <div id="history"></div>
 
   </div>
 
 </div>
 
+
 <script>
 
-/* =====================================
-   REFERRAL CODE AUTO FILL
-===================================== */
+/* ==================================
+   GET USER
+================================== */
 
-const params = new URLSearchParams(window.location.search);
+let user = null;
 
-const refCode = (params.get("ref") || "").trim();
+try{
 
-const inviteInput =
-  document.getElementById("inviteCode");
+  user =
+    JSON.parse(
+      localStorage.getItem("earningUser")
+    );
 
-if(refCode){
+}catch(error){
 
-  inviteInput.value = refCode;
-
-  /*
-    Referral link থেকে আসা code
-    user পরিবর্তন করতে পারবে না
-  */
-
-  inviteInput.readOnly = true;
+  user = null;
 
 }
 
 
-/* =====================================
-   ELEMENTS
-===================================== */
+/* ==================================
+   LOGIN CHECK
+================================== */
 
-const form =
-  document.getElementById("registerForm");
+if(!user || user.loggedIn !== true){
 
-const message =
-  document.getElementById("message");
+  window.location.href =
+    "login.html";
 
-const registerBtn =
-  document.getElementById("registerBtn");
+}
 
 
-/* =====================================
-   GENERATE UNIQUE REFERRAL CODE
-===================================== */
+/* ==================================
+   ENSURE DEFAULT DATA
+================================== */
+
+if(user){
+
+  if(typeof user.balance !== "number"){
+    user.balance = 50;
+  }
+
+  if(typeof user.referralBonus !== "number"){
+    user.referralBonus = 0;
+  }
+
+  if(typeof user.totalWithdraw !== "number"){
+    user.totalWithdraw = 0;
+  }
+
+  if(!user.referralCode){
+
+    user.referralCode =
+      generateReferralCode();
+
+  }
+
+  saveUser();
+
+}
+
+
+/* ==================================
+   SAVE USER
+================================== */
+
+function saveUser(){
+
+  localStorage.setItem(
+    "earningUser",
+    JSON.stringify(user)
+  );
+
+}
+
+
+/* ==================================
+   REFERRAL CODE
+================================== */
 
 function generateReferralCode(){
 
@@ -287,11 +554,13 @@ function generateReferralCode(){
 
   let code = "";
 
-  for(let i = 0; i < 8; i++){
+  for(let i=0;i<8;i++){
 
     code +=
       chars.charAt(
-        Math.floor(Math.random() * chars.length)
+        Math.floor(
+          Math.random()*chars.length
+        )
       );
 
   }
@@ -301,273 +570,379 @@ function generateReferralCode(){
 }
 
 
-/* =====================================
-   SHOW MESSAGE
-===================================== */
+/* ==================================
+   SHOW DATA
+================================== */
 
-function showMessage(text,type){
+function loadDashboard(){
 
-  message.textContent = text;
+  if(!user) return;
 
-  message.className =
-    "message " + type;
+
+  document.getElementById("userName")
+    .textContent =
+      user.name || "User";
+
+
+  document.getElementById("name")
+    .textContent =
+      user.name || "-";
+
+
+  document.getElementById("mobile")
+    .textContent =
+      user.mobile || "-";
+
+
+  document.getElementById("myCode")
+    .textContent =
+      user.referralCode || "-";
+
+
+  document.getElementById("refCode")
+    .textContent =
+      user.referralCode || "--------";
+
+
+  document.getElementById("balance")
+    .textContent =
+      Number(user.balance || 0)
+      .toFixed(2);
+
+
+  document.getElementById("refBonus")
+    .textContent =
+      Number(user.referralBonus || 0)
+      .toFixed(2);
+
+
+  const baseURL =
+    window.location.href
+    .split("index.html")[0];
+
+
+  const referralLink =
+    baseURL +
+    "register.html?ref=" +
+    encodeURIComponent(
+      user.referralCode
+    );
+
+
+  document.getElementById("refLink")
+    .value =
+      referralLink;
+
+
+  loadHistory();
 
 }
 
 
-/* =====================================
-   GET SAVED USER
-===================================== */
+/* ==================================
+   COPY REFERRAL
+================================== */
 
-function getSavedUser(){
+function copyReferral(){
 
-  try{
+  const input =
+    document.getElementById("refLink");
 
-    return JSON.parse(
-      localStorage.getItem("earningUser")
-    );
+  input.select();
+  input.setSelectionRange(0,99999);
 
-  }catch(error){
 
-    return null;
+  navigator.clipboard
+    .writeText(input.value)
+    .then(function(){
 
-  }
+      alert(
+        "✅ Referral link copy হয়েছে!"
+      );
+
+    })
+    .catch(function(){
+
+      document.execCommand("copy");
+
+      alert(
+        "✅ Referral link copy হয়েছে!"
+      );
+
+    });
 
 }
 
 
-/* =====================================
-   REGISTER
-===================================== */
+/* ==================================
+   WITHDRAW REQUEST
+================================== */
 
-form.addEventListener("submit",function(e){
+function requestWithdraw(){
 
-  e.preventDefault();
+  const method =
+    document.getElementById("method")
+    .value;
 
 
-  const name =
-    document.getElementById("name")
+  const number =
+    document.getElementById("withdrawNumber")
     .value
     .trim();
 
 
-  const mobile =
-    document.getElementById("mobile")
-    .value
-    .trim();
-
-
-  const password =
-    document.getElementById("password")
-    .value;
-
-
-  const confirmPassword =
-    document.getElementById("confirmPassword")
-    .value;
-
-
-  const inviteCode =
-    inviteInput
-    .value
-    .trim()
-    .toUpperCase();
-
-
-  /* =================================
-     CHECK DEVICE
-  ================================= */
-
-  if(
-    localStorage.getItem(
-      "earning_device_registered"
-    ) === "yes"
-  ){
-
-    showMessage(
-      "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি হয়েছে।",
-      "error"
+  const amount =
+    Number(
+      document.getElementById("withdrawAmount")
+      .value
     );
+
+
+  const msg =
+    document.getElementById(
+      "withdrawMessage"
+    );
+
+
+  /* MOBILE CHECK */
+
+  if(!/^01[0-9]{9}$/.test(number)){
+
+    msg.textContent =
+      "❌ সঠিক ১১ সংখ্যার bKash/Nagad নম্বর দিন।";
+
+    msg.className =
+      "message error";
 
     return;
 
   }
 
 
-  /* =================================
-     NAME CHECK
-  ================================= */
+  /* MINIMUM */
 
-  if(name.length < 2){
+  if(amount < 100){
 
-    showMessage(
-      "সঠিক নাম লিখুন।",
-      "error"
-    );
+    msg.textContent =
+      "❌ Minimum withdrawal ৳100।";
 
-    return;
-
-  }
-
-
-  /* =================================
-     MOBILE CHECK
-  ================================= */
-
-  if(!/^01[0-9]{9}$/.test(mobile)){
-
-    showMessage(
-      "সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।",
-      "error"
-    );
+    msg.className =
+      "message error";
 
     return;
 
   }
 
 
-  /* =================================
-     PASSWORD CHECK
-  ================================= */
+  /* BALANCE */
 
-  if(password.length < 6){
+  if(amount > Number(user.balance || 0)){
 
-    showMessage(
-      "পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",
-      "error"
-    );
+    msg.textContent =
+      "❌ আপনার পর্যাপ্ত balance নেই।";
 
-    return;
-
-  }
-
-
-  if(password !== confirmPassword){
-
-    showMessage(
-      "পাসওয়ার্ড দুটি একই নয়।",
-      "error"
-    );
+    msg.className =
+      "message error";
 
     return;
 
   }
 
 
-  /* =================================
-     CHECK EXISTING MOBILE
-  ================================= */
+  /* ==================================
+     CREATE REQUEST
+  ================================== */
 
-  const existingUser = getSavedUser();
-
-  if(
-    existingUser &&
-    existingUser.mobile === mobile
-  ){
-
-    showMessage(
-      "❌ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে অ্যাকাউন্ট আছে।",
-      "error"
-    );
-
-    return;
-
-  }
-
-
-  /* =================================
-     CREATE REFERRAL CODE
-  ================================= */
-
-  const myReferralCode =
-    generateReferralCode();
-
-
-  /* =================================
-     CREATE USER
-
-     SIGNUP BONUS = ৳50
-  ================================= */
-
-  const user = {
+  const request = {
 
     id:
-      Date.now().toString(),
+      Date.now(),
 
-    name:name,
+    method:
+      method,
 
-    mobile:mobile,
+    number:
+      number,
 
-    password:password,
+    amount:
+      amount,
 
-    inviteCode:inviteCode,
-
-    referralCode:myReferralCode,
-
-    balance:50,
-
-    signupBonus:50,
-
-    referralBonus:0,
-
-    totalWithdraw:0,
-
-    loggedIn:true,
+    status:
+      "Pending",
 
     createdAt:
-      new Date().toISOString()
+      new Date().toLocaleString("bn-BD")
 
   };
 
 
-  /* =================================
-     SAVE ACCOUNT
-  ================================= */
+  let history = [];
+
+  try{
+
+    history =
+      JSON.parse(
+        localStorage.getItem(
+          "withdrawHistory"
+        )
+      ) || [];
+
+  }catch(error){
+
+    history = [];
+
+  }
+
+
+  history.unshift(request);
+
 
   localStorage.setItem(
-    "earningUser",
-    JSON.stringify(user)
+    "withdrawHistory",
+    JSON.stringify(history)
   );
 
 
-  /* =================================
-     DEVICE REGISTRATION
-  ================================= */
+  /* Deduct balance */
 
-  localStorage.setItem(
-    "earning_device_registered",
-    "yes"
-  );
+  user.balance =
+    Number(user.balance) - amount;
 
 
-  /* =================================
-     SUCCESS
-  ================================= */
-
-  showMessage(
-    "✅ Account তৈরি হয়েছে! ৳50 Bonus যোগ হয়েছে।",
-    "success"
-  );
+  user.totalWithdraw =
+    Number(user.totalWithdraw || 0)
+    + amount;
 
 
-  registerBtn.disabled = true;
-
-  registerBtn.textContent =
-    "অ্যাকাউন্ট তৈরি হয়েছে...";
+  saveUser();
 
 
-  /* =================================
-     AUTO LOGIN → DASHBOARD
-  ================================= */
+  msg.textContent =
+    "✅ Withdrawal request গ্রহণ করা হয়েছে। Status: Pending";
 
-  setTimeout(function(){
+  msg.className =
+    "message success";
 
-    window.location.href =
-      "index.html";
 
-  },1500);
+  document.getElementById(
+    "withdrawAmount"
+  ).value = "";
 
-});
+
+  loadDashboard();
+
+}
+
+
+/* ==================================
+   HISTORY
+================================== */
+
+function loadHistory(){
+
+  const box =
+    document.getElementById("history");
+
+  let history = [];
+
+  try{
+
+    history =
+      JSON.parse(
+        localStorage.getItem(
+          "withdrawHistory"
+        )
+      ) || [];
+
+  }catch(error){
+
+    history = [];
+
+  }
+
+
+  /* Only this user's local history
+     in this demo version */
+
+  if(history.length === 0){
+
+    box.innerHTML =
+      '<div class="empty">কোনো withdrawal request নেই।</div>';
+
+    return;
+
+  }
+
+
+  box.innerHTML = "";
+
+
+  history.forEach(function(item){
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "history-item";
+
+
+    div.innerHTML =
+
+      "💳 " +
+      item.method +
+      "<br>" +
+
+      "📱 " +
+      item.number +
+      "<br>" +
+
+      "💰 ৳" +
+      Number(item.amount).toFixed(2) +
+      "<br>" +
+
+      "⏳ Status: " +
+      '<span class="pending">' +
+      item.status +
+      "</span>" +
+
+      "<br>" +
+
+      "🕐 " +
+      item.createdAt;
+
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* ==================================
+   LOGOUT
+================================== */
+
+function logout(){
+
+  if(!user) return;
+
+
+  user.loggedIn = false;
+
+  saveUser();
+
+
+  window.location.href =
+    "login.html";
+
+}
+
+
+/* ==================================
+   START
+================================== */
+
+loadDashboard();
 
 </script>
 
