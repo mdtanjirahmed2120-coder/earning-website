@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register</title>
+<title>Register - Earning Website</title>
 
 <style>
 *{
@@ -15,42 +15,53 @@
 
 body{
   min-height:100vh;
+  background:linear-gradient(135deg,#eef2ff,#f7f8ff);
   display:flex;
-  align-items:center;
   justify-content:center;
-  background:#f3f5fa;
+  align-items:center;
+  padding:20px;
 }
 
-.register-box{
-  width:90%;
-  max-width:400px;
+.box{
+  width:100%;
+  max-width:430px;
   background:white;
-  padding:30px 25px;
+  padding:30px 24px;
   border-radius:25px;
-  box-shadow:0 8px 30px #ddd;
+  box-shadow:0 10px 35px #d4d7e5;
 }
 
 .logo{
-  text-align:center;
-  font-size:45px;
-  margin-bottom:10px;
+  width:70px;
+  height:70px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#3936d8,#164b9b);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:32px;
 }
 
-h2{
+h1{
   text-align:center;
+  font-size:27px;
   margin-bottom:8px;
 }
 
-.subtitle{
+.sub{
   text-align:center;
   color:#777;
-  margin-bottom:20px;
+  font-size:14px;
+  margin-bottom:25px;
 }
 
 label{
   display:block;
-  margin:13px 0 7px;
+  margin:15px 0 7px;
   font-weight:bold;
+  font-size:14px;
 }
 
 input{
@@ -60,62 +71,371 @@ input{
   border-radius:12px;
   outline:none;
   font-size:15px;
+  background:#fafbff;
+}
+
+input:focus{
+  border-color:#3936d8;
+}
+
+.invite{
+  background:#f0f1ff;
+  border-color:#3936d8;
+}
+
+.note{
+  margin-top:7px;
+  color:#777;
+  font-size:12px;
 }
 
 button{
   width:100%;
+  margin-top:25px;
   padding:15px;
-  margin-top:23px;
   border:0;
   border-radius:13px;
-  background:#3936d8;
+  background:linear-gradient(135deg,#3936d8,#164b9b);
   color:white;
   font-size:17px;
   font-weight:bold;
+  cursor:pointer;
 }
 
-.login{
+button:disabled{
+  opacity:.6;
+}
+
+.message{
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  font-size:14px;
+}
+
+.success{
+  display:block;
+  background:#e7fff5;
+  color:#08784f;
+}
+
+.error{
+  display:block;
+  background:#fff0f0;
+  color:#c62828;
+}
+
+.links{
   text-align:center;
   margin-top:20px;
-  color:#666;
 }
 
-.login a{
-  color:#3936d8;
+.links a{
+  display:block;
+  margin-top:12px;
+  text-decoration:none;
   font-weight:bold;
+  color:#3936d8;
+}
+
+.home{
+  color:#777 !important;
+  font-weight:normal !important;
 }
 </style>
 </head>
 
 <body>
 
-<div class="register-box">
+<div class="box">
 
   <div class="logo">💰</div>
 
-  <h2>Create Account</h2>
-  <p class="subtitle">নতুন অ্যাকাউন্ট তৈরি করুন</p>
+  <h1>অ্যাকাউন্ট তৈরি করুন</h1>
 
-  <label>আপনার নাম</label>
-  <input type="text" placeholder="নাম লিখুন">
+  <p class="sub">
+    Earning Website-এ আপনার নতুন অ্যাকাউন্ট খুলুন
+  </p>
 
-  <label>মোবাইল / ইমেইল</label>
-  <input type="text" placeholder="মোবাইল বা ইমেইল লিখুন">
+  <form id="registerForm">
 
-  <label>পাসওয়ার্ড</label>
-  <input type="password" placeholder="পাসওয়ার্ড দিন">
+    <label>👤 আপনার নাম</label>
 
-  <label>Referral Code</label>
-  <input type="text" placeholder="Referral Code (যদি থাকে)">
+    <input
+      type="text"
+      id="name"
+      placeholder="আপনার পূর্ণ নাম"
+      required
+    >
 
-  <button>🚀 Register</button>
 
-  <div class="login">
-    আগে থেকেই অ্যাকাউন্ট আছে?
-    <a href="login.html">Login করুন</a>
+    <label>📱 মোবাইল নম্বর</label>
+
+    <input
+      type="tel"
+      id="mobile"
+      placeholder="01XXXXXXXXX"
+      maxlength="11"
+      inputmode="numeric"
+      required
+    >
+
+
+    <label>🔑 পাসওয়ার্ড</label>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="কমপক্ষে ৬ অক্ষর"
+      minlength="6"
+      required
+    >
+
+
+    <label>🔐 পাসওয়ার্ড নিশ্চিত করুন</label>
+
+    <input
+      type="password"
+      id="confirmPassword"
+      placeholder="আবার পাসওয়ার্ড লিখুন"
+      minlength="6"
+      required
+    >
+
+
+    <label>🎟️ Invite Code</label>
+
+    <input
+      type="text"
+      id="inviteCode"
+      class="invite"
+      placeholder="Invite Code"
+      autocomplete="off"
+    >
+
+    <p class="note">
+      Referral link দিয়ে এলে Invite Code অটোমেটিক বসবে।
+    </p>
+
+
+    <button type="submit" id="registerBtn">
+      📝 Register করুন
+    </button>
+
+    <div id="message" class="message"></div>
+
+  </form>
+
+
+  <div class="links">
+
+    <a href="login.html">
+      🔐 আগে থেকেই অ্যাকাউন্ট আছে? Login করুন
+    </a>
+
+    <a href="index.html" class="home">
+      🏠 Dashboard
+    </a>
+
   </div>
 
 </div>
 
-</body>
-</html>
+
+<script>
+
+/* ==============================
+   REFERRAL CODE
+============================== */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const refCode =
+  (params.get("ref") || "").trim().toUpperCase();
+
+const inviteInput =
+  document.getElementById("inviteCode");
+
+
+if(refCode){
+
+  inviteInput.value = refCode;
+
+  inviteInput.readOnly = true;
+
+}
+
+
+/* ==============================
+   ELEMENTS
+============================== */
+
+const form =
+  document.getElementById("registerForm");
+
+const message =
+  document.getElementById("message");
+
+const registerBtn =
+  document.getElementById("registerBtn");
+
+
+/* ==============================
+   MESSAGE
+============================== */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+/* ==============================
+   REFERRAL CODE GENERATOR
+============================== */
+
+function generateReferralCode(){
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "";
+
+  for(let i=0;i<8;i++){
+
+    code +=
+      chars[
+        Math.floor(
+          Math.random()*chars.length
+        )
+      ];
+
+  }
+
+  return code;
+
+}
+
+
+/* ==============================
+   REGISTER
+============================== */
+
+form.addEventListener(
+  "submit",
+  function(e){
+
+    e.preventDefault();
+
+
+    const name =
+      document.getElementById("name")
+      .value.trim();
+
+
+    const mobile =
+      document.getElementById("mobile")
+      .value.trim();
+
+
+    const password =
+      document.getElementById("password")
+      .value;
+
+
+    const confirmPassword =
+      document.getElementById("confirmPassword")
+      .value;
+
+
+    const inviteCode =
+      inviteInput.value
+      .trim()
+      .toUpperCase();
+
+
+    /* DEVICE CHECK */
+
+    if(
+      localStorage.getItem(
+        "earning_device_registered"
+      ) === "yes"
+    ){
+
+      showMessage(
+        "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট আছে।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* NAME CHECK */
+
+    if(name.length < 2){
+
+      showMessage(
+        "❌ সঠিক নাম লিখুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* MOBILE CHECK */
+
+    if(
+      !/^01[0-9]{9}$/.test(mobile)
+    ){
+
+      showMessage(
+        "❌ সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* PASSWORD CHECK */
+
+    if(password.length < 6){
+
+      showMessage(
+        "❌ পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    if(password !== confirmPassword){
+
+      showMessage(
+        "❌ পাসওয়ার্ড দুটি একই নয়।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* ==============================
+       CREATE USER
+       
+      
