@@ -7,47 +7,51 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
-        <div class="text-center mb-6">
-            <h1 class="text-2xl font-bold text-emerald-700 flex justify-center items-center gap-2">
-                <i class="fa-solid fa-mosque"></i> Halal Income
-            </h1>
-            <p class="text-xs text-gray-500 mt-1">সৎ কাজ • হালাল আয়</p>
-        </div>
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-6 rounded-3xl shadow-2xl w-full max-w-md border border-purple-100">
         
-        <h2 class="text-xl font-bold text-gray-800 mb-1">Create Account</h2>
-        <p class="text-xs text-emerald-600 mb-4 font-semibold">আজই রেজিস্ট্রেশন করুন</p>
+        <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-tr from-purple-700 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
+                <i class="fa-solid fa-mosque text-white text-2xl"></i>
+            </div>
+            <h1 class="text-2xl font-black text-gray-800 tracking-tight">Halal Income</h1>
+            <p class="text-xs text-gray-500 mt-1 font-medium">Join Halal Income এ আপনাকে স্বাগতম</p>
+        </div>
 
         <form action="login.html" class="space-y-3">
-            <div>
-                <label class="text-xs text-gray-600 font-medium">Full Name</label>
-                <div class="relative mt-1">
-                    <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400 text-sm"></i>
-                    <input type="text" placeholder="আপনার নাম লিখুন" required class="w-full pl-9 pr-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-emerald-600">
-                </div>
+            <div class="relative">
+                <i class="fa-solid fa-gift absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="text" value="800" readonly class="w-full pl-11 pr-4 py-3 bg-gray-100 border border-gray-200 rounded-2xl text-sm font-bold text-gray-600 focus:outline-none">
             </div>
-            <div>
-                <label class="text-xs text-gray-600 font-medium">Email Address</label>
-                <div class="relative mt-1">
-                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400 text-sm"></i>
-                    <input type="email" placeholder="ইমেইল এড্রেস" required class="w-full pl-9 pr-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-emerald-600">
-                </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-user absolute left-4 top-3.5 text-purple-600"></i>
+                <input type="text" placeholder="Full Name" required class="w-full pl-11 pr-4 py-3 border border-purple-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100">
             </div>
-            <div>
-                <label class="text-xs text-gray-600 font-medium">Password</label>
-                <div class="relative mt-1">
-                    <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400 text-sm"></i>
-                    <input type="password" placeholder="পাসওয়ার্ড (최소 6 অক্ষর)" required class="w-full pl-9 pr-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-emerald-600">
-                </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="email" placeholder="Email Address" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600">
             </div>
-            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-sm mt-2 transition">
-                Register
+
+            <div class="relative">
+                <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="password" placeholder="Password (min 6 characters)" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600">
+            </div>
+
+            <div class="relative">
+                <i class="fa-solid fa-circle-check absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="password" placeholder="Confirm Password" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600">
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl text-sm shadow-lg shadow-purple-200 transition-all flex items-center justify-center gap-2 mt-4">
+                <span>Create Account</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
             </button>
         </form>
 
-        <p class="text-xs text-center text-gray-600 mt-4">
-            Already have an account? <a href="login.html" class="text-emerald-700 font-bold underline">Login</a>
+        <p class="text-xs text-center text-gray-500 mt-5 font-medium">
+            Already have an account? <a href="login.html" class="text-purple-700 font-bold hover:underline">Login</a>
         </p>
     </div>
 </body>
