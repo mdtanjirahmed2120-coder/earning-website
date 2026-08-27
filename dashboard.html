@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Income - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 pb-20 font-sans">
+
+    <!-- Top Navbar -->
+    <div class="bg-gradient-to-r from-teal-600 via-purple-600 to-purple-800 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-40">
+        <div class="flex items-center space-x-3">
+            <button class="text-white text-xl"><i class="fa-solid fa-bars"></i></button>
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-mosque text-amber-300 text-lg"></i>
+                <span class="font-bold tracking-wide">Halal Income</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <a href="index.html" class="text-xs bg-red-500/80 px-2 py-1 rounded font-semibold">Logout</a>
+        </div>
+    </div>
+
+    <div class="max-w-md mx-auto p-4 space-y-4">
+
+        <!-- Inactive Account Alert -->
+        <div class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="text-amber-500 text-2xl">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-red-600 text-sm">আপনার একাউন্ট ইনএক্টিভ!</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
+                </div>
+            </div>
+            <button onclick="alert('bKash/Nagad Send Money: 017XXXXXXXX\nটাকা পাঠাইয়া TrxID ব্যাকএন্ডে পাঠান।')" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1">
+                <i class="fa-solid fa-bolt text-amber-300"></i> একটিভ করুন
+            </button>
+        </div>
+
+        <!-- User Balance Card -->
+        <div class="bg-gradient-to-r from-teal-500 via-indigo-600 to-purple-700 text-white p-5 rounded-3xl shadow-xl flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
+                    <i class="fa-solid fa-user-tie text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] tracking-wider uppercase opacity-80 font-bold">WELCOME BACK ✋</p>
+                    <h2 class="text-lg font-black tracking-wide">MD JAHOID</h2>
+                    <span class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
+                        <i class="fa-solid fa-circle text-[6px]"></i> Inactive
+                    </span>
+                </div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 text-right">
+                <p class="text-[10px] opacity-80 uppercase font-bold">MAIN BALANCE</p>
+                <h1 class="text-2xl font-black mt-0.5">৳0.00</h1>
+            </div>
+        </div>
+
+        <!-- Available Tasks / Job Section -->
+        <div class="flex justify-between items-center pt-2">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-rocket text-purple-600"></i> উপলব্ধ কাজসমূহ (Click to Earn)
+            </h3>
+        </div>
+
+        <!-- Task Grid -->
+        <div class="grid grid-cols-2 gap-3">
+            
+            <!-- Job 1 -->
+            <a href="https://facebook.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-brands fa-facebook text-blue-600 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">ফেসবুক পেজ লাইক</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳২.০০</span>
+            </a>
+
+            <!-- Job 2 -->
+            <a href="https://youtube.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-brands fa-youtube text-red-600 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">ইউটিউব ৩ মিনিট ভিউ</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৩.০০</span>
+            </a>
+
+            <!-- Job 3 -->
+            <a href="https://instagram.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-brands fa-instagram text-pink-600 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">ইনস্টাগ্রাম ফলো</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳২.৫০</span>
+            </a>
+
+            <!-- Job 4 -->
+            <a href="#" onclick="alert('দৈনিক বোনাস দাবি করা হয়েছে! (+৳১.০০)')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-solid fa-gift text-amber-500 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">ডেইলি ক্লাইম বোনাস</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳১.০০</span>
+            </a>
+
+            <!-- Job 5 -->
+            <a href="#" onclick="alert('আপনার রেফারেল লিঙ্ক কপি হয়েছে!')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-solid fa-user-plus text-sky-600 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">বন্ধু রেফার করুন</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৫.০০</span>
+            </a>
+
+            <!-- Job 6 -->
+            <a href="#" onclick="alert('টাইপিং জব শীঘ্রই আসছে!')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
+                <i class="fa-solid fa-keyboard text-indigo-600 text-3xl mb-1"></i>
+                <span class="text-xs font-bold text-gray-800">ক্যাপচা টাইপিং জব</span>
+                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৪.০০</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-6 flex justify-between items-center z-50 max-w-md mx-auto">
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-headset text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Help</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-wallet text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Wallet</span>
+        </div>
+        <div class="flex flex-col items-center -mt-5">
+            <div class="w-12 h-12 bg-gradient-to-tr from-teal-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+                <i class="fa-solid fa-house text-lg"></i>
+            </div>
+            <span class="text-[10px] font-bold text-indigo-700 mt-0.5">HOME</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-users text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Team</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-user text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Profile</span>
+        </div>
+    </div>
+
+</body>
+</html>
