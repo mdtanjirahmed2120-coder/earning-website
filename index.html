@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earning Dashboard</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f5f7fb;
+  color:#222;
+}
+
+.header{
+  background:white;
+  padding:22px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #ddd;
+}
+
+.welcome{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.avatar{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#ddd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.header h2{
+  font-size:18px;
+}
+
+.header p{
+  color:#777;
+  margin-bottom:4px;
+}
+
+.profile{
+  background:#eef0ff;
+  color:#5147d9;
+  padding:12px 18px;
+  border-radius:25px;
+  font-weight:bold;
+}
+
+.container{
+  padding:20px;
+}
+
+.balance{
+  background:linear-gradient(135deg,#24245f,#164b9b);
+  color:white;
+  border-radius:28px;
+  padding:25px;
+  margin-bottom:28px;
+  box-shadow:0 10px 25px #ccc;
+}
+
+.balance-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.wallet{
+  background:#ffffff22;
+  padding:10px 15px;
+  border-radius:20px;
+}
+
+.id{
+  background:#11194d;
+  padding:10px 15px;
+  border-radius:10px;
+}
+
+.balance h1{
+  font-size:45px;
+  margin:25px 0;
+}
+
+.user{
+  border-top:1px solid #ffffff44;
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.withdraw{
+  background:#18c58b;
+  color:white;
+  border:0;
+  padding:15px 25px;
+  border-radius:15px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.title{
+  font-size:22px;
+  margin:20px 0;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:18px 8px;
+  text-align:center;
+  box-shadow:0 3px 12px #ddd;
+}
+
+.icon{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.card p{
+  font-weight:bold;
+  font-size:14px;
+}
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:white;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 5px;
+  border-top:1px solid #ddd;
+}
+
+.bottom div{
+  text-align:center;
+  font-size:13px;
+  color:#666;
+}
+
+.bottom .home{
+  color:#4d43df;
+  font-weight:bold;
+}
+
+@media(max-width:500px){
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+  <div class="welcome">
+    <div class="avatar">👤</div>
+    <div>
+      <p>Welcome 👋</p>
+      <h2>MD TANJIR AHMED</h2>
+    </div>
+  </div>
+
+  <div class="profile">👤 My Profile</div>
+
+</div>
+
+<div class="container">
+
+  <div class="balance">
+
+    <div class="balance-top">
+      <div class="wallet">💳 মেইন ওয়ালেট ব্যালেন্স</div>
+      <div class="id">ID: 63141</div>
+    </div>
+
+    <p style="margin-top:25px;">🪙 মোট ইনকাম ব্যালেন্স</p>
+
+    <h1>৳ 2.00</h1>
+
+    <div class="user">
+      <div>
+        <small>ইউজার নেম:</small><br>
+        <b>MD TANJIR AHMED</b>
+      </div>
+
+      <button class="withdraw">💵 উইথড্র করুন</button>
+    </div>
+
+  </div>
+
+  <h2 class="title">🧩 প্রয়োজনীয় মেনু</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="icon">🎬</div>
+      <p>ভিডিও দেখে আয়</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">👥</div>
+      <p>বন্ধু রেফার</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎵</div>
+      <p>TikTok টাস্ক</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📸</div>
+      <p>Instagram টাস্ক</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📘</div>
+      <p>Facebook টাস্ক</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎁</div>
+      <p>Daily Bonus</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <p>আমার টিম</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💳</div>
+      <p>উইথড্র</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🎧</div>
+      <p>হেল্পলাইন</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏆</div>
+      <p>লিডারবোর্ড</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">📋</div>
+      <p>Daily Task</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💰</div>
+      <p>Wallet</p>
+    </div>
+
+  </div>
+
+  <div style="height:100px;"></div>
+
+</div>
+
+<div class="bottom">
+
+  <div>☷<br>জব</div>
+  <div>🎧<br>Helpline</div>
+  <div class="home">🏠<br>Home</div>
+  <div>🏆<br>লিডারবোর্ড</div>
+  <div>✈️<br>Telegram</div>
+
+</div>
+
+</body>
+        </html>
