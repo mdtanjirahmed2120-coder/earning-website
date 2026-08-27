@@ -1,356 +1,74 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register - Earning Website</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  min-height:100vh;
-  background:linear-gradient(135deg,#eef2ff,#f7f8ff);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-
-.box{
-  width:100%;
-  max-width:430px;
-  background:white;
-  padding:30px 24px;
-  border-radius:25px;
-  box-shadow:0 10px 35px #d4d7e5;
-}
-
-.logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#3936d8,#164b9b);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:32px;
-}
-
-h1{
-  text-align:center;
-  font-size:27px;
-  margin-bottom:8px;
-}
-
-.sub{
-  text-align:center;
-  color:#777;
-  font-size:14px;
-  margin-bottom:25px;
-}
-
-.ref-box{
-  background:#f0f1ff;
-  border:1px solid #3936d8;
-  padding:12px;
-  border-radius:12px;
-  margin-bottom:18px;
-  text-align:center;
-  display:none;
-}
-
-.ref-box b{
-  color:#3936d8;
-}
-
-label{
-  display:block;
-  margin:15px 0 7px;
-  font-weight:bold;
-  font-size:14px;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-  font-size:15px;
-  background:#fafbff;
-}
-
-input:focus{
-  border-color:#3936d8;
-}
-
-button{
-  width:100%;
-  margin-top:25px;
-  padding:15px;
-  border:0;
-  border-radius:13px;
-  background:linear-gradient(135deg,#3936d8,#164b9b);
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:disabled{
-  opacity:.6;
-}
-
-.message{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  text-align:center;
-  font-size:14px;
-}
-
-.success{
-  display:block;
-  background:#e7fff5;
-  color:#08784f;
-}
-
-.error{
-  display:block;
-  background:#fff0f0;
-  color:#c62828;
-}
-
-.login{
-  text-align:center;
-  margin-top:20px;
-  color:#666;
-}
-
-.login a{
-  color:#3936d8;
-  font-weight:bold;
-  text-decoration:none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Income - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-
-<body>
-
-<div class="box">
-
-  <div class="logo">💰</div>
-
-  <h1>অ্যাকাউন্ট তৈরি করুন</h1>
-
-  <p class="sub">
-    Earning Website-এ নতুন অ্যাকাউন্ট খুলুন
-  </p>
-
-  <!-- REFERRAL INFO -->
-
-  <div id="refBox" class="ref-box">
-    👥 আপনি Referral Link দিয়ে এসেছেন<br>
-    Referral Code:
-    <b id="refCodeText"></b>
-  </div>
-
-
-  <form id="registerForm">
-
-    <label>👤 আপনার নাম</label>
-
-    <input
-      type="text"
-      id="name"
-      placeholder="আপনার পূর্ণ নাম"
-      required
-    >
-
-
-    <label>📱 মোবাইল নম্বর</label>
-
-    <input
-      type="tel"
-      id="mobile"
-      placeholder="01XXXXXXXXX"
-      maxlength="11"
-      inputmode="numeric"
-      required
-    >
-
-
-    <label>🔑 পাসওয়ার্ড</label>
-
-    <input
-      type="password"
-      id="password"
-      placeholder="কমপক্ষে ৬ অক্ষর"
-      minlength="6"
-      required
-    >
-
-
-    <label>🔐 পাসওয়ার্ড নিশ্চিত করুন</label>
-
-    <input
-      type="password"
-      id="confirmPassword"
-      placeholder="আবার পাসওয়ার্ড লিখুন"
-      minlength="6"
-      required
-    >
-
-
-    <button
-      type="submit"
-      id="registerBtn"
-    >
-      🚀 Register করুন
-    </button>
-
-
-    <div
-      id="message"
-      class="message"
-    ></div>
-
-  </form>
-
-
-  <div class="login">
-
-    আগে থেকেই অ্যাকাউন্ট আছে?
-
-    <a href="login.html">
-      Login করুন
-    </a>
-
-  </div>
-
-</div>
-
-
-<script>
-
-/* =================================
-   REFERRAL CODE
-================================= */
-
-const params =
-  new URLSearchParams(
-    window.location.search
-  );
-
-const referralCode =
-  (params.get("ref") || "")
-  .trim()
-  .toUpperCase();
-
-
-if(referralCode){
-
-  document.getElementById("refBox")
-    .style.display = "block";
-
-  document.getElementById("refCodeText")
-    .textContent = referralCode;
-
-}
-
-
-/* =================================
-   ELEMENTS
-================================= */
-
-const form =
-  document.getElementById("registerForm");
-
-const message =
-  document.getElementById("message");
-
-const registerBtn =
-  document.getElementById("registerBtn");
-
-
-/* =================================
-   REFERRAL CODE GENERATOR
-================================= */
-
-function generateReferralCode(){
-
-  const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  let code = "";
-
-  for(let i=0;i<8;i++){
-
-    code += chars[
-      Math.floor(
-        Math.random()*chars.length
-      )
-    ];
-
-  }
-
-  return code;
-
-}
-
-
-/* =================================
-   MESSAGE
-================================= */
-
-function showMessage(text,type){
-
-  message.textContent = text;
-
-  message.className =
-    "message " + type;
-
-}
-
-
-/* =================================
-   REGISTER
-================================= */
-
-form.addEventListener(
-  "submit",
-  function(e){
-
-    e.preventDefault();
-
-
-    const name =
-      document.getElementById("name")
-      .value.trim();
-
-
-    const mobile =
-      document.getElementById("mobile")
-      .value.trim();
-
-
-    const password =
-      document.getElementById("password")
-      .value;
-
-
-    const confirmPassword =
-      document.getElementById("confirmPassword")
-      .value;
-
-
-    /* DEVICE
+<body class="bg-gray-100 font-sans pb-10">
+
+    <!-- Header Navbar -->
+    <nav class="bg-emerald-700 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-mosque text-xl"></i>
+            <span class="text-lg font-bold">Halal Income</span>
+        </div>
+        <div class="flex items-center space-x-3">
+            <span class="bg-emerald-800 text-xs px-2.5 py-1 rounded-full border border-emerald-500">ID: HI12345</span>
+            <a href="login.html" class="text-xs bg-red-500 px-2 py-1 rounded hover:bg-red-600">Logout</a>
+        </div>
+    </nav>
+
+    <div class="max-w-md mx-auto p-4 space-y-4">
+
+        <!-- Account Activate Alert Banner -->
+        <div class="bg-red-500 text-white p-4 rounded-2xl shadow-lg flex justify-between items-center">
+            <div>
+                <p class="text-xs opacity-90">অ্যাকাউন্ট স্ট্যাটাস: নিষ্ক্রিয়</p>
+                <h3 class="font-bold text-sm">অ্যাক্টিভেট করতে ১০ টাকা লাগবে</h3>
+            </div>
+            <button onclick="alert('bKash/Nagad: 017XXXXXXXX নম্বরে ১০ টাকা Send Money করে TrxID দিন।')" class="bg-white text-red-600 font-bold px-3 py-1.5 rounded-xl text-xs shadow hover:bg-gray-100">
+                অ্যাক্টিভ করুন
+            </button>
+        </div>
+
+        <!-- Wallet Card -->
+        <div class="bg-emerald-800 text-white p-5 rounded-2xl shadow-xl flex justify-between items-center">
+            <div>
+                <p class="text-xs opacity-80">Available Balance</p>
+                <h1 class="text-3xl font-extrabold mt-1">৳ <span id="balance">0.00</span></h1>
+            </div>
+            <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs border border-emerald-400 shadow">
+                Withdraw
+            </button>
+        </div>
+
+        <!-- Jobs Grid -->
+        <h2 class="font-bold text-gray-800 text-sm">Premium Projects</h2>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
+                <i class="fa-brands fa-facebook text-blue-600 text-3xl mb-1"></i>
+                <span class="font-semibold text-xs text-gray-700">Facebook Job</span>
+                <span class="text-xs text-emerald-600 font-bold mt-1">+৳২.০০</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
+                <i class="fa-brands fa-youtube text-red-600 text-3xl mb-1"></i>
+                <span class="font-semibold text-xs text-gray-700">Video Job</span>
+                <span class="text-xs text-emerald-600 font-bold mt-1">+৳৩.০০</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
+                <i class="fa-solid fa-gift text-amber-500 text-3xl mb-1"></i>
+                <span class="font-semibold text-xs text-gray-700">Daily Bonus</span>
+                <span class="text-xs text-emerald-600 font-bold mt-1">+৳১.০০</span>
+            </div>
+            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
+                <i class="fa-solid fa-users text-purple-600 text-3xl mb-1"></i>
+                <span class="font-semibold text-xs text-gray-700">Refer & Earn</span>
+                <span class="text-xs text-emerald-600 font-bold mt-1">+৳৫.০০</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
