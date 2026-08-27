@@ -36,7 +36,7 @@
                     <p class="text-xs text-gray-500 mt-0.5">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
                 </div>
             </div>
-            <button onclick="openModal()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1 hover:scale-105 transition">
+            <button onclick="openActivationModal()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1 hover:scale-105 transition">
                 <i class="fa-solid fa-bolt text-amber-300"></i> একটিভ করুন
             </button>
         </div>
@@ -156,21 +156,21 @@
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">জব হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="copyReferLink()" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal()" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">রেফার হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="alert('উইথড্র হিস্ট্রি ফাঁকা আছে।')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openWalletModal()" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-receipt"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">উইথড্র হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="alert('মাই টিম সম্পূর্ণ দেখতে প্রফাইল অন করুন।')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal()" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-users"></i>
                 </div>
@@ -178,7 +178,7 @@
             </a>
 
             <!-- Row 4 -->
-            <a href="#" onclick="alert('উইথড্র চালু করতে একাউন্ট একটিভ করুন।')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openWalletModal()" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-amber-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
@@ -199,7 +199,7 @@
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">লিডারবোর্ড</span>
             </a>
 
-            <!-- Customer Support Grid Link -->
+            <!-- Support Link -->
             <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-headset"></i>
@@ -214,46 +214,157 @@
     <!-- Account Activation Modal -->
     <div id="activationModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
-            
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+            <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-
             <div class="text-center mb-4">
                 <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-2">
                     <i class="fa-solid fa-bolt text-xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800">একাউন্ট একটিভ করুন</h3>
-                <p class="text-xs text-red-500 font-semibold mt-1">⚠️ অবশ্যই Send Money (সেন্ড মানি) করতে হবে, Cash Out করলে হবে না!</p>
+                <p class="text-xs text-red-500 font-semibold mt-1">⚠️ অবশ্যই Send Money (সেন্ড মানি) করতে হবে!</p>
             </div>
-
-            <!-- Notice & Number Box -->
             <div class="bg-purple-50 border border-purple-200 p-3 rounded-2xl mb-4 text-xs text-gray-700 space-y-1">
-                <p><span class="font-bold text-pink-600">Nagad Personal (সেন্ড মানি):</span> <span class="font-mono bg-white px-2 py-0.5 rounded border font-bold text-gray-800">01784087562</span></p>
-                <p class="text-[11px] text-gray-500 pt-1">উপরের নগদ নম্বরে ১০ টাকা Send Money করার পর নিচের তথ্যগুলো দিয়ে জমা দিন।</p>
+                <p><span class="font-bold text-pink-600">Nagad Personal:</span> <span class="font-mono bg-white px-2 py-0.5 rounded border font-bold text-gray-800">01784087562</span></p>
+                <p class="text-[11px] text-gray-500 pt-1">উপরের নম্বরে ১০ টাকা Send Money করার পর তথ্য নিচে দিন।</p>
             </div>
-
-            <!-- Input Form -->
             <form onsubmit="handleActivationSubmit(event)" class="space-y-3">
                 <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">আপনার নাম (Your Name)</label>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">আপনার নাম</label>
                     <input type="text" id="senderName" placeholder="আপনার নাম লিখুন" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">সেন্ড মানি করার নগদ নম্বর</label>
                     <input type="text" id="senderPhone" placeholder="017XXXXXXXX" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
-
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">TrxID (Transaction ID)</label>
                     <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
-
                 <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-purple-200 mt-2">
                     তথ্য জমা দিন
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Wallet Modal -->
+    <div id="walletModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
+            <button onclick="closeModal('walletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fa-solid fa-wallet text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">মাই ওয়ালেট (Withdraw)</h3>
+                <p class="text-xs text-gray-500 mt-0.5">সর্বনিম্ন উইথড্র ১০০ টাকা</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-teal-500 to-emerald-600 p-4 rounded-2xl text-white text-center mb-4 shadow-md">
+                <p class="text-[10px] uppercase font-bold tracking-wider opacity-80">বর্তমান ব্যালেন্স</p>
+                <h2 class="text-2xl font-black mt-0.5">৳0.00</h2>
+            </div>
+
+            <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">পেমেন্ট মেথড</label>
+                    <select id="withdrawMethod" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600 font-semibold">
+                        <option value="bKash">bKash (বিকাশ)</option>
+                        <option value="Nagad">Nagad (নগদ)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">একাউন্ট নম্বর</label>
+                    <input type="text" id="withdrawPhone" placeholder="017XXXXXXXX" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">টাকার পরিমাণ (টাকা)</label>
+                    <input type="number" id="withdrawAmount" placeholder="সর্বনিম্ন ১০০ টাকা" min="100" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
+                </div>
+                <button type="submit" id="withdrawBtn" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-teal-100 mt-2">
+                    উইথড্র রিকোয়েস্ট পাঠান
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Team Modal -->
+    <div id="teamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
+            <button onclick="closeModal('teamModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">মাই টিম (My Team)</h3>
+                <p class="text-xs text-gray-500">আপনার রেফারেল নেটওয়ার্ক</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-blue-50 border border-blue-100 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">মোট রেফার</p>
+                    <h4 class="text-xl font-black text-blue-600 mt-0.5">0 জন</h4>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">রেফার বোনাস</p>
+                    <h4 class="text-xl font-black text-emerald-600 mt-0.5">৳0.00</h4>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center">
+                <i class="fa-solid fa-user-plus text-3xl text-gray-300 mb-2"></i>
+                <p class="text-xs text-gray-500 font-semibold">আপনার টিমে এখনও কেউ যুক্ত হয়নি।</p>
+                <button onclick="closeModal('teamModal'); copyReferLink();" class="mt-3 bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md hover:bg-blue-700 transition">
+                    রেফার লিঙ্ক কপি করুন
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-16 h-16 bg-gradient-to-tr from-purple-500 to-indigo-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 shadow-md">
+                    <i class="fa-solid fa-user text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800" id="profileNameDisplay">MD JAHID</h3>
+                <span class="bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
+            </div>
+
+            <div class="space-y-2 text-xs text-gray-700 border-t border-b border-gray-100 py-3 mb-4">
+                <div class="flex justify-between py-1">
+                    <span class="text-gray-400">ইউজার আইডি:</span>
+                    <span class="font-bold text-gray-800">#HI-98402</span>
+                </div>
+                <div class="flex justify-between py-1">
+                    <span class="text-gray-400">মোবাইল নম্বর:</span>
+                    <span class="font-bold text-gray-800">017XXXXXXXX</span>
+                </div>
+                <div class="flex justify-between py-1">
+                    <span class="text-gray-400">রেফার কোড:</span>
+                    <span class="font-bold text-purple-600 font-mono">USER123</span>
+                </div>
+                <div class="flex justify-between py-1">
+                    <span class="text-gray-400">যোগদানের তারিখ:</span>
+                    <span class="font-bold text-gray-800">২৮ আগস্ট, ২০২৬</span>
+                </div>
+            </div>
+
+            <button onclick="alert('পাসওয়ার্ড পরিবর্তনের সুবিধা শীঘ্রই চালু হবে।')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-xl text-xs border border-gray-200 transition mb-2">
+                <i class="fa-solid fa-key text-gray-400 mr-1"></i> পাসওয়ার্ড পরিবর্তন
+            </button>
+
+            <a href="index.html" class="block text-center w-full bg-red-50 hover:bg-red-100 text-red-600 font-bold py-2.5 rounded-xl text-xs border border-red-200 transition">
+                <i class="fa-solid fa-right-from-bracket mr-1"></i> লগ আউট করুন
+            </a>
         </div>
     </div>
 
@@ -263,24 +374,24 @@
             <i class="fa-solid fa-headset text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Help</span>
         </a>
-        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+        <button onclick="openWalletModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
             <i class="fa-solid fa-wallet text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Wallet</span>
-        </div>
+        </button>
         <div class="flex flex-col items-center -mt-5">
-            <div class="w-12 h-12 bg-gradient-to-tr from-teal-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+            <div onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-12 h-12 bg-gradient-to-tr from-teal-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200 cursor-pointer">
                 <i class="fa-solid fa-house text-lg"></i>
             </div>
             <span class="text-[10px] font-bold text-indigo-700 mt-0.5">HOME</span>
         </div>
-        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+        <button onclick="openTeamModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
             <i class="fa-solid fa-users text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Team</span>
-        </div>
-        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+        </button>
+        <button onclick="openProfileModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
             <i class="fa-solid fa-user text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Profile</span>
-        </div>
+        </button>
     </div>
 
     <!-- Scripts -->
@@ -288,12 +399,24 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        function openModal() {
+        function openActivationModal() {
             document.getElementById('activationModal').classList.remove('hidden');
         }
 
-        function closeModal() {
-            document.getElementById('activationModal').classList.add('hidden');
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.remove('hidden');
+        }
+
+        function openTeamModal() {
+            document.getElementById('teamModal').classList.remove('hidden');
+        }
+
+        function openProfileModal() {
+            document.getElementById('profileModal').classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
         }
 
         function copyReferLink() {
@@ -325,9 +448,10 @@
                     if (data.ok) {
                         if(name) {
                             document.getElementById('userNameDisplay').innerText = name.toUpperCase();
+                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
                         }
                         alert('আপনার তথ্য সফলভাবে জমা হয়েছে! ১০-১৫ মিনিটের মধ্যে একাউন্ট একটিভ করা হবে।');
-                        closeModal();
+                        closeModal('activationModal');
                     } else {
                         alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
@@ -338,6 +462,39 @@
                 .finally(() => {
                     submitBtn.innerText = 'তথ্য জমা দিন';
                     submitBtn.disabled = false;
+                });
+        }
+
+        function handleWithdrawSubmit(event) {
+            event.preventDefault();
+            const method = document.getElementById('withdrawMethod').value;
+            const phone = document.getElementById('withdrawPhone').value;
+            const amount = document.getElementById('withdrawAmount').value;
+            const withdrawBtn = document.getElementById('withdrawBtn');
+
+            withdrawBtn.innerText = 'পাঠানো হচ্ছে...';
+            withdrawBtn.disabled = true;
+
+            const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('আপনার উইথড্র রিকোয়েস্ট জমা হয়েছে! শীঘ্রই পেমেন্ট করা হবে।');
+                        closeModal('walletModal');
+                    } else {
+                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
+                    }
+                })
+                .catch(error => {
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                })
+                .finally(() => {
+                    withdrawBtn.innerText = 'উইথড্র রিকোয়েস্ট পাঠান';
+                    withdrawBtn.disabled = false;
                 });
         }
     </script>
