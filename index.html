@@ -7,68 +7,197 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans pb-10">
+<body class="bg-gray-50 pb-20 font-sans">
 
-    <!-- Header Navbar -->
-    <nav class="bg-emerald-700 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-mosque text-xl"></i>
-            <span class="text-lg font-bold">Halal Income</span>
+    <div class="bg-gradient-to-r from-teal-600 via-purple-600 to-purple-800 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-40">
+        <div class="flex items-center space-x-3">
+            <button class="text-white text-xl"><i class="fa-solid fa-bars"></i></button>
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-mosque text-amber-300 text-lg"></i>
+                <span class="font-bold tracking-wide">Halal Income</span>
+            </div>
         </div>
         <div class="flex items-center space-x-3">
-            <span class="bg-emerald-800 text-xs px-2.5 py-1 rounded-full border border-emerald-500">ID: HI12345</span>
-            <a href="login.html" class="text-xs bg-red-500 px-2 py-1 rounded hover:bg-red-600">Logout</a>
-        </div>
-    </nav>
-
-    <div class="max-w-md mx-auto p-4 space-y-4">
-
-        <!-- Account Activate Alert Banner -->
-        <div class="bg-red-500 text-white p-4 rounded-2xl shadow-lg flex justify-between items-center">
-            <div>
-                <p class="text-xs opacity-90">অ্যাকাউন্ট স্ট্যাটাস: নিষ্ক্রিয়</p>
-                <h3 class="font-bold text-sm">অ্যাক্টিভেট করতে ১০ টাকা লাগবে</h3>
-            </div>
-            <button onclick="alert('bKash/Nagad: 017XXXXXXXX নম্বরে ১০ টাকা Send Money করে TrxID দিন।')" class="bg-white text-red-600 font-bold px-3 py-1.5 rounded-xl text-xs shadow hover:bg-gray-100">
-                অ্যাক্টিভ করুন
-            </button>
-        </div>
-
-        <!-- Wallet Card -->
-        <div class="bg-emerald-800 text-white p-5 rounded-2xl shadow-xl flex justify-between items-center">
-            <div>
-                <p class="text-xs opacity-80">Available Balance</p>
-                <h1 class="text-3xl font-extrabold mt-1">৳ <span id="balance">0.00</span></h1>
-            </div>
-            <button class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-xs border border-emerald-400 shadow">
-                Withdraw
-            </button>
-        </div>
-
-        <!-- Jobs Grid -->
-        <h2 class="font-bold text-gray-800 text-sm">Premium Projects</h2>
-        <div class="grid grid-cols-2 gap-3">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
-                <i class="fa-brands fa-facebook text-blue-600 text-3xl mb-1"></i>
-                <span class="font-semibold text-xs text-gray-700">Facebook Job</span>
-                <span class="text-xs text-emerald-600 font-bold mt-1">+৳২.০০</span>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
-                <i class="fa-brands fa-youtube text-red-600 text-3xl mb-1"></i>
-                <span class="font-semibold text-xs text-gray-700">Video Job</span>
-                <span class="text-xs text-emerald-600 font-bold mt-1">+৳৩.০০</span>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
-                <i class="fa-solid fa-gift text-amber-500 text-3xl mb-1"></i>
-                <span class="font-semibold text-xs text-gray-700">Daily Bonus</span>
-                <span class="text-xs text-emerald-600 font-bold mt-1">+৳১.০০</span>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center cursor-pointer hover:shadow-md transition">
-                <i class="fa-solid fa-users text-purple-600 text-3xl mb-1"></i>
-                <span class="font-semibold text-xs text-gray-700">Refer & Earn</span>
-                <span class="text-xs text-emerald-600 font-bold mt-1">+৳৫.০০</span>
+            <i class="fa-solid fa-bell text-gray-200 text-lg"></i>
+            <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center border border-white/40">
+                <i class="fa-solid fa-user text-sm"></i>
             </div>
         </div>
     </div>
+
+    <div class="max-w-md mx-auto p-4 space-y-4">
+
+        <div class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="text-amber-500 text-2xl">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-red-600 text-sm">আপনার একাউন্ট ইনএক্টিভ!</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">সকল সার্ভিস ব্যবহার করতে একাউন্ট একটিভ করুন।</p>
+                </div>
+            </div>
+            <button class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1">
+                <i class="fa-solid fa-bolt text-amber-300"></i> একটিভ করুন
+            </button>
+        </div>
+
+        <div class="bg-gradient-to-r from-teal-500 via-indigo-600 to-purple-700 text-white p-5 rounded-3xl shadow-xl relative overflow-hidden flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
+                    <i class="fa-solid fa-user-tie text-2xl"></i>
+                </div>
+                <div>
+                    <p class="text-[10px] tracking-wider uppercase opacity-80 font-bold">WELCOME BACK ✋</p>
+                    <h2 class="text-lg font-black tracking-wide">MD JAHOID</h2>
+                    <span class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
+                        <i class="fa-solid fa-circle text-[6px]"></i> Inactive
+                    </span>
+                </div>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 text-right">
+                <p class="text-[10px] opacity-80 uppercase font-bold">MAIN BALANCE</p>
+                <h1 class="text-2xl font-black mt-0.5">৳0.00</h1>
+            </div>
+        </div>
+
+        <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100">
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-xs font-bold text-gray-700 flex items-center gap-1.5">
+                    <i class="fa-regular fa-clock text-teal-600"></i> সাইটের বয়স
+                </span>
+                <span class="bg-emerald-100 text-emerald-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
+                    <i class="fa-solid fa-circle text-[6px] animate-pulse"></i> Live
+                </span>
+            </div>
+            <div class="grid grid-cols-4 gap-2 text-center">
+                <div class="bg-sky-50 p-2 rounded-2xl border border-sky-100">
+                    <span class="text-lg font-black text-sky-700">16</span>
+                    <p class="text-[10px] text-gray-500 font-semibold">দিন</p>
+                </div>
+                <div class="bg-sky-50 p-2 rounded-2xl border border-sky-100">
+                    <span class="text-lg font-black text-sky-700">02</span>
+                    <p class="text-[10px] text-gray-500 font-semibold">ঘন্টা</p>
+                </div>
+                <div class="bg-sky-50 p-2 rounded-2xl border border-sky-100">
+                    <span class="text-lg font-black text-sky-700">03</span>
+                    <p class="text-[10px] text-gray-500 font-semibold">মিনিট</p>
+                </div>
+                <div class="bg-sky-50 p-2 rounded-2xl border border-sky-100">
+                    <span class="text-lg font-black text-sky-700">58</span>
+                    <p class="text-[10px] text-gray-500 font-semibold">সেকেন্ড</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 p-3 rounded-2xl flex items-center space-x-3">
+            <div class="w-8 h-8 bg-amber-500 text-white rounded-xl flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-bullhorn text-sm"></i>
+            </div>
+            <p class="text-xs text-amber-900 font-semibold leading-tight">আসসালামু আলাইকুম আমাদের অফারে যুক্ত থাকুন।</p>
+        </div>
+
+        <div class="flex justify-between items-center pt-2">
+            <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-rocket text-purple-600"></i> আমাদের প্রিমিয়াম প্রজেক্ট
+            </h3>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2.5">
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-brands fa-facebook text-blue-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">ফেসবুক সেল</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-envelope text-red-500 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">জিমেেইল সেল</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-brands fa-instagram text-pink-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">ইনস্টা সেল</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-coins text-amber-500 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">কয়েন সেল</span>
+            </div>
+
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-briefcase text-indigo-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">Micro Job</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-crown text-amber-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">প্রিমিয়াম জব</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-circle-play text-red-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">ভিডিওর কাজ</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-gem text-purple-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">VIP প্ল্যান</span>
+            </div>
+
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-clock-rotate-left text-teal-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">জব হিস্ট্রি</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-user-plus text-sky-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">রেফার হিস্ট্রি</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-money-bill-transfer text-emerald-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">উইথড্র হিস্ট্রি</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-users text-blue-500 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">My Team</span>
+            </div>
+
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-wallet text-yellow-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">Withdraw</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-gift text-red-500 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">গিফট কোড</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-trophy text-amber-500 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">লিডারবোর্ড</span>
+            </div>
+            <div class="bg-white p-3 rounded-2xl border border-gray-100 shadow-sm text-center cursor-pointer hover:shadow-md transition flex flex-col items-center">
+                <i class="fa-solid fa-headset text-indigo-600 text-2xl mb-1"></i>
+                <span class="text-[10px] font-bold text-gray-700 leading-tight">সাপোর্ট</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-6 flex justify-between items-center z-50 max-w-md mx-auto">
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-headset text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Help</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-wallet text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Wallet</span>
+        </div>
+        <div class="flex flex-col items-center -mt-5">
+            <div class="w-12 h-12 bg-gradient-to-tr from-teal-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+                <i class="fa-solid fa-house text-lg"></i>
+            </div>
+            <span class="text-[10px] font-bold text-indigo-700 mt-0.5">HOME</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-users text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Team</span>
+        </div>
+        <div class="flex flex-col items-center text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-user text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Profile</span>
+        </div>
+    </div>
+
 </body>
 </html>
