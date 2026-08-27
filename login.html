@@ -1,175 +1,43 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Login - Halal Income</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Income - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-
-<body class="bg-slate-950 min-h-screen text-white">
-
-<div class="max-w-md mx-auto min-h-screen px-5 py-7">
-
-    <a href="index.html"
-    class="text-slate-400 text-sm">
-
-        <i class="fa-solid fa-arrow-left mr-2"></i>
-        ফিরে যান
-
-    </a>
-
-
-    <div class="text-center mt-12">
-
-        <div class="w-16 h-16 mx-auto rounded-2xl
-        bg-gradient-to-br from-violet-600 to-blue-600
-        flex items-center justify-center">
-
-            <i class="fa-solid fa-lock text-2xl text-amber-300"></i>
-
+<body class="bg-slate-50 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-6 rounded-3xl shadow-2xl w-full max-w-md border border-purple-100">
+        
+        <div class="text-center mb-6">
+            <div class="w-16 h-16 bg-gradient-to-tr from-purple-700 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg">
+                <i class="fa-solid fa-mosque text-white text-2xl"></i>
+            </div>
+            <h1 class="text-2xl font-black text-gray-800 tracking-tight">Halal Income</h1>
+            <p class="text-xs text-gray-500 mt-1 font-medium">আপনার অ্যাকাউন্টে লগইন করুন</p>
         </div>
 
-        <h1 class="text-2xl font-black mt-5">
-            Login
-        </h1>
+        <form action="dashboard.html" class="space-y-4">
+            <div class="relative">
+                <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="email" placeholder="Email Address" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600">
+            </div>
 
-        <p class="text-xs text-slate-400 mt-2">
-            আপনার Account-এ প্রবেশ করুন
+            <div class="relative">
+                <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+                <input type="password" placeholder="Password" required class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600">
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3.5 rounded-2xl text-sm shadow-lg shadow-purple-200 transition-all flex items-center justify-center gap-2">
+                <span>Login Account</span>
+                <i class="fa-solid fa-right-to-bracket text-xs"></i>
+            </button>
+        </form>
+
+        <p class="text-xs text-center text-gray-500 mt-5 font-medium">
+            Don't have an account? <a href="index.html" class="text-purple-700 font-bold hover:underline">Register</a>
         </p>
-
     </div>
-
-
-    <form id="loginForm"
-    class="bg-white/10 border border-white/10
-    rounded-3xl p-5 mt-8">
-
-        <label class="text-xs font-bold">
-            মোবাইল নম্বর
-        </label>
-
-        <input id="phone"
-        type="tel"
-        placeholder="017XXXXXXXX"
-        required
-        class="w-full mt-2 px-4 py-3 rounded-xl
-        bg-white/10 border border-white/10 outline-none">
-
-
-        <label class="text-xs font-bold block mt-4">
-            Password
-        </label>
-
-        <input id="password"
-        type="password"
-        placeholder="Password লিখুন"
-        required
-        class="w-full mt-2 px-4 py-3 rounded-xl
-        bg-white/10 border border-white/10 outline-none">
-
-
-        <button type="submit"
-        class="w-full mt-6 py-3.5 rounded-xl
-        bg-gradient-to-r from-violet-600 to-blue-600
-        font-black">
-
-            Login
-
-        </button>
-
-
-        <p id="message"
-        class="text-center text-xs mt-4"></p>
-
-    </form>
-
-
-    <p class="text-center text-xs text-slate-400 mt-5">
-
-        Account নেই?
-
-        <a href="register.html"
-        class="text-violet-400 font-bold">
-
-            Register করুন
-
-        </a>
-
-    </p>
-
-</div>
-
-
-<script>
-
-document.getElementById("loginForm").addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const phone =
-        document.getElementById("phone").value.trim();
-
-    const password =
-        document.getElementById("password").value.trim();
-
-    const message =
-        document.getElementById("message");
-
-
-    if(phone.length < 11){
-
-        message.textContent =
-        "সঠিক মোবাইল নম্বর দিন।";
-
-        message.className =
-        "text-center text-xs mt-4 text-red-400";
-
-        return;
-    }
-
-
-    if(password.length < 4){
-
-        message.textContent =
-        "Password সঠিকভাবে দিন।";
-
-        message.className =
-        "text-center text-xs mt-4 text-red-400";
-
-        return;
-    }
-
-
-    /*
-      Demo Login
-
-      আসল Login-এর জন্য Backend/Database
-      প্রয়োজন হবে।
-    */
-
-    localStorage.setItem("halalUserPhone", phone);
-
-    message.textContent =
-    "Login সফল হয়েছে।";
-
-    message.className =
-    "text-center text-xs mt-4 text-emerald-400";
-
-
-    setTimeout(function(){
-
-        window.location.href = "dashboard.html";
-
-    }, 700);
-
-});
-
-</script>
-
 </body>
 </html>
