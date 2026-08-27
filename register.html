@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f5fa;
+}
+
+.register-box{
+  width:90%;
+  max-width:400px;
+  background:white;
+  padding:30px 25px;
+  border-radius:25px;
+  box-shadow:0 8px 30px #ddd;
+}
+
+.logo{
+  text-align:center;
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+h2{
+  text-align:center;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#777;
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  margin:13px 0 7px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  outline:none;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  margin-top:23px;
+  border:0;
+  border-radius:13px;
+  background:#3936d8;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+}
+
+.login{
+  text-align:center;
+  margin-top:20px;
+  color:#666;
+}
+
+.login a{
+  color:#3936d8;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-box">
+
+  <div class="logo">💰</div>
+
+  <h2>Create Account</h2>
+  <p class="subtitle">নতুন অ্যাকাউন্ট তৈরি করুন</p>
+
+  <label>আপনার নাম</label>
+  <input type="text" placeholder="নাম লিখুন">
+
+  <label>মোবাইল / ইমেইল</label>
+  <input type="text" placeholder="মোবাইল বা ইমেইল লিখুন">
+
+  <label>পাসওয়ার্ড</label>
+  <input type="password" placeholder="পাসওয়ার্ড দিন">
+
+  <label>Referral Code</label>
+  <input type="text" placeholder="Referral Code (যদি থাকে)">
+
+  <button>🚀 Register</button>
+
+  <div class="login">
+    আগে থেকেই অ্যাকাউন্ট আছে?
+    <a href="login.html">Login করুন</a>
+  </div>
+
+</div>
+
+</body>
+</html>
