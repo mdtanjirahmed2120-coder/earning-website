@@ -1,298 +1,47 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f3f5fa;
-  padding:20px;
-}
-
-.box{
-  width:100%;
-  max-width:400px;
-  background:white;
-  padding:30px 24px;
-  border-radius:24px;
-  box-shadow:0 8px 30px #ddd;
-}
-
-.logo{
-  text-align:center;
-  font-size:45px;
-  margin-bottom:10px;
-}
-
-h2{
-  text-align:center;
-  margin-bottom:8px;
-}
-
-.subtitle{
-  text-align:center;
-  color:#777;
-  margin-bottom:25px;
-}
-
-label{
-  display:block;
-  margin:15px 0 7px;
-  font-weight:bold;
-}
-
-input{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-  font-size:15px;
-}
-
-button{
-  width:100%;
-  padding:15px;
-  margin-top:25px;
-  border:0;
-  border-radius:13px;
-  background:#3936d8;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-button:disabled{
-  opacity:.6;
-}
-
-.message{
-  display:none;
-  margin-top:15px;
-  padding:12px;
-  border-radius:10px;
-  text-align:center;
-  font-size:14px;
-}
-
-.error{
-  display:block;
-  background:#fff0f0;
-  color:#c62828;
-}
-
-.success{
-  display:block;
-  background:#e7fff5;
-  color:#08784f;
-}
-
-.register{
-  text-align:center;
-  margin-top:20px;
-  color:#666;
-}
-
-.register a{
-  color:#3936d8;
-  font-weight:bold;
-  text-decoration:none;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Income - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-
-<body>
-
-<div class="box">
-
-  <div class="logo">💰</div>
-
-  <h2>Welcome Back!</h2>
-
-  <p class="subtitle">
-    আপনার অ্যাকাউন্টে লগইন করুন
-  </p>
-
-  <form id="loginForm">
-
-    <label>📱 মোবাইল নম্বর</label>
-
-    <input
-      type="tel"
-      id="mobile"
-      maxlength="11"
-      inputmode="numeric"
-      placeholder="01XXXXXXXXX"
-      required
-    >
-
-    <label>🔑 পাসওয়ার্ড</label>
-
-    <input
-      type="password"
-      id="password"
-      placeholder="আপনার পাসওয়ার্ড"
-      required
-    >
-
-    <button type="submit" id="loginBtn">
-      🔐 Login
-    </button>
-
-    <div id="message" class="message"></div>
-
-  </form>
-
-  <div class="register">
-
-    অ্যাকাউন্ট নেই?
-
-    <a href="register.html">
-      Register করুন
-    </a>
-
-  </div>
-
-</div>
-
-<script>
-
-const form =
-  document.getElementById("loginForm");
-
-const message =
-  document.getElementById("message");
-
-const loginBtn =
-  document.getElementById("loginBtn");
-
-
-form.addEventListener("submit", function(e){
-
-  e.preventDefault();
-
-  const mobile =
-    document.getElementById("mobile")
-    .value
-    .trim();
-
-  const password =
-    document.getElementById("password")
-    .value;
-
-
-  let user = null;
-
-
-  /* Saved account read */
-
-  try{
-
-    const saved =
-      localStorage.getItem("earningUser");
-
-    if(saved){
-
-      user = JSON.parse(saved);
-
-    }
-
-  }catch(error){
-
-    user = null;
-
-  }
-
-
-  /* Account not found */
-
-  if(!user){
-
-    message.textContent =
-      "❌ কোনো account পাওয়া যায়নি। আগে Register করুন।";
-
-    message.className =
-      "message error";
-
-    return;
-
-  }
-
-
-  /* Mobile check */
-
-  if(String(user.mobile) !== String(mobile)){
-
-    message.textContent =
-      "❌ মোবাইল নম্বর সঠিক নয়।";
-
-    message.className =
-      "message error";
-
-    return;
-
-  }
-
-
-  /* Password check */
-
-  if(String(user.password) !== String(password)){
-
-    message.textContent =
-      "❌ পাসওয়ার্ড সঠিক নয়।";
-
-    message.className =
-      "message error";
-
-    return;
-
-  }
-
-
-  /* Login successful */
-
-  user.loggedIn = true;
-
-
-  localStorage.setItem(
-    "earningUser",
-    JSON.stringify(user)
-  );
-
-
-  message.textContent =
-    "✅ Login সফল হয়েছে! Dashboard-এ যাচ্ছেন...";
-
-  message.className =
-    "message success";
-
-
-  loginBtn.disabled = true;
-
-
-  setTimeout(function(){
-
-    window.location.replace("index.html");
-
-  },800);
-
-});
-
-</script>
-
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-emerald-700 flex justify-center items-center gap-2">
+                <i class="fa-solid fa-mosque"></i> Halal Income
+            </h1>
+            <p class="text-xs text-gray-500 mt-1">সৎ কাজ • হালাল আয়</p>
+        </div>
+        
+        <h2 class="text-xl font-bold text-gray-800 mb-1">Welcome Back</h2>
+        <p class="text-xs text-gray-500 mb-4">লগইন করতে আপনার তথ্য দিন</p>
+
+        <form action="index.html" class="space-y-4">
+            <div>
+                <label class="text-xs text-gray-600 font-medium">Email Address</label>
+                <div class="relative mt-1">
+                    <i class="fa-solid fa-envelope absolute left-3 top-3 text-gray-400 text-sm"></i>
+                    <input type="email" placeholder="ইমেইল এড্রেস" required class="w-full pl-9 pr-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-emerald-600">
+                </div>
+            </div>
+            <div>
+                <label class="text-xs text-gray-600 font-medium">Password</label>
+                <div class="relative mt-1">
+                    <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400 text-sm"></i>
+                    <input type="password" placeholder="পাসওয়ার্ড" required class="w-full pl-9 pr-3 py-2 border rounded-xl text-sm focus:outline-none focus:border-emerald-600">
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
+                Login
+            </button>
+        </form>
+
+        <p class="text-xs text-center text-gray-600 mt-4">
+            Don't have an account? <a href="register.html" class="text-emerald-700 font-bold underline">Register</a>
+        </p>
+    </div>
 </body>
 </html>
