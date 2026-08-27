@@ -99,6 +99,12 @@ button{
   color:white;
   font-size:17px;
   font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
 .message{
@@ -161,6 +167,7 @@ button{
       type="text"
       id="name"
       placeholder="আপনার পূর্ণ নাম"
+      autocomplete="name"
       required
     >
 
@@ -170,6 +177,7 @@ button{
       id="mobile"
       placeholder="01XXXXXXXXX"
       maxlength="11"
+      inputmode="numeric"
       required
     >
 
@@ -198,13 +206,14 @@ button{
       id="inviteCode"
       class="invite"
       placeholder="Invite Code"
+      autocomplete="off"
     >
 
     <p class="note">
       Referral link দিয়ে এলে Invite Code অটোমেটিক বসবে।
     </p>
 
-    <button type="submit">
+    <button type="submit" id="registerBtn">
       📝 Register করুন
     </button>
 
@@ -228,13 +237,13 @@ button{
 
 <script>
 
-/* =========================
-   REFERRAL / INVITE CODE
-========================= */
+/* =====================================
+   REFERRAL CODE AUTO FILL
+===================================== */
 
 const params = new URLSearchParams(window.location.search);
 
-const refCode = params.get("ref");
+const refCode = (params.get("ref") || "").trim();
 
 const inviteInput =
   document.getElementById("inviteCode");
@@ -243,14 +252,19 @@ if(refCode){
 
   inviteInput.value = refCode;
 
+  /*
+    Referral link থেকে আসা code
+    user পরিবর্তন করতে পারবে না
+  */
+
   inviteInput.readOnly = true;
 
 }
 
 
-/* =========================
-   REGISTER
-========================= */
+/* =====================================
+   ELEMENTS
+===================================== */
 
 const form =
   document.getElementById("registerForm");
@@ -258,6 +272,73 @@ const form =
 const message =
   document.getElementById("message");
 
+const registerBtn =
+  document.getElementById("registerBtn");
+
+
+/* =====================================
+   GENERATE UNIQUE REFERRAL CODE
+===================================== */
+
+function generateReferralCode(){
+
+  const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+  let code = "";
+
+  for(let i = 0; i < 8; i++){
+
+    code +=
+      chars.charAt(
+        Math.floor(Math.random() * chars.length)
+      );
+
+  }
+
+  return code;
+
+}
+
+
+/* =====================================
+   SHOW MESSAGE
+===================================== */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+/* =====================================
+   GET SAVED USER
+===================================== */
+
+function getSavedUser(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem("earningUser")
+    );
+
+  }catch(error){
+
+    return null;
+
+  }
+
+}
+
+
+/* =====================================
+   REGISTER
+===================================== */
 
 form.addEventListener("submit",function(e){
 
@@ -265,30 +346,46 @@ form.addEventListener("submit",function(e){
 
 
   const name =
-    document.getElementById("name").value.trim();
+    document.getElementById("name")
+    .value
+    .trim();
+
 
   const mobile =
-    document.getElementById("mobile").value.trim();
+    document.getElementById("mobile")
+    .value
+    .trim();
+
 
   const password =
-    document.getElementById("password").value;
+    document.getElementById("password")
+    .value;
+
 
   const confirmPassword =
-    document.getElementById("confirmPassword").value;
+    document.getElementById("confirmPassword")
+    .value;
+
 
   const inviteCode =
-    inviteInput.value.trim();
+    inviteInput
+    .value
+    .trim()
+    .toUpperCase();
 
 
-  /* Check existing device */
+  /* =================================
+     CHECK DEVICE
+  ================================= */
 
   if(
-    localStorage.getItem("earning_device_registered")
-    === "yes"
+    localStorage.getItem(
+      "earning_device_registered"
+    ) === "yes"
   ){
 
     showMessage(
-      "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট আছে।",
+      "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি হয়েছে।",
       "error"
     );
 
@@ -297,7 +394,25 @@ form.addEventListener("submit",function(e){
   }
 
 
-  /* Mobile check */
+  /* =================================
+     NAME CHECK
+  ================================= */
+
+  if(name.length < 2){
+
+    showMessage(
+      "সঠিক নাম লিখুন।",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  /* =================================
+     MOBILE CHECK
+  ================================= */
 
   if(!/^01[0-9]{9}$/.test(mobile)){
 
@@ -311,7 +426,9 @@ form.addEventListener("submit",function(e){
   }
 
 
-  /* Password check */
+  /* =================================
+     PASSWORD CHECK
+  ================================= */
 
   if(password.length < 6){
 
@@ -337,13 +454,45 @@ form.addEventListener("submit",function(e){
   }
 
 
-  /*
-    ACCOUNT CREATED
+  /* =================================
+     CHECK EXISTING MOBILE
+  ================================= */
 
-    Starting balance = 10
-  */
+  const existingUser = getSavedUser();
+
+  if(
+    existingUser &&
+    existingUser.mobile === mobile
+  ){
+
+    showMessage(
+      "❌ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে অ্যাকাউন্ট আছে।",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  /* =================================
+     CREATE REFERRAL CODE
+  ================================= */
+
+  const myReferralCode =
+    generateReferralCode();
+
+
+  /* =================================
+     CREATE USER
+
+     SIGNUP BONUS = ৳50
+  ================================= */
 
   const user = {
+
+    id:
+      Date.now().toString(),
 
     name:name,
 
@@ -353,14 +502,27 @@ form.addEventListener("submit",function(e){
 
     inviteCode:inviteCode,
 
-    balance:10,
+    referralCode:myReferralCode,
 
-    loggedIn:true
+    balance:50,
+
+    signupBonus:50,
+
+    referralBonus:0,
+
+    totalWithdraw:0,
+
+    loggedIn:true,
+
+    createdAt:
+      new Date().toISOString()
 
   };
 
 
-  /* Save account */
+  /* =================================
+     SAVE ACCOUNT
+  ================================= */
 
   localStorage.setItem(
     "earningUser",
@@ -368,7 +530,9 @@ form.addEventListener("submit",function(e){
   );
 
 
-  /* Mark device */
+  /* =================================
+     DEVICE REGISTRATION
+  ================================= */
 
   localStorage.setItem(
     "earning_device_registered",
@@ -376,17 +540,25 @@ form.addEventListener("submit",function(e){
   );
 
 
+  /* =================================
+     SUCCESS
+  ================================= */
+
   showMessage(
-    "✅ Account তৈরি হয়েছে! ৳10 Bonus যোগ হয়েছে।",
+    "✅ Account তৈরি হয়েছে! ৳50 Bonus যোগ হয়েছে।",
     "success"
   );
 
 
-  /*
-    AUTO LOGIN
+  registerBtn.disabled = true;
 
-    1.5 second পরে Dashboard
-  */
+  registerBtn.textContent =
+    "অ্যাকাউন্ট তৈরি হয়েছে...";
+
+
+  /* =================================
+     AUTO LOGIN → DASHBOARD
+  ================================= */
 
   setTimeout(function(){
 
@@ -396,16 +568,6 @@ form.addEventListener("submit",function(e){
   },1500);
 
 });
-
-
-function showMessage(text,type){
-
-  message.textContent = text;
-
-  message.className =
-    "message " + type;
-
-}
 
 </script>
 
