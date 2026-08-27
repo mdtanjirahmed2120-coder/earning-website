@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login - Earning Website</title>
+<title>Login</title>
 
 <style>
 *{
@@ -18,30 +18,23 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#eef2ff,#f7f8ff);
+  background:#f3f5fa;
   padding:20px;
 }
 
-.login-box{
+.box{
   width:100%;
   max-width:400px;
   background:white;
-  padding:30px 25px;
-  border-radius:25px;
+  padding:30px 24px;
+  border-radius:24px;
   box-shadow:0 8px 30px #ddd;
 }
 
 .logo{
-  width:70px;
-  height:70px;
-  margin:0 auto 15px;
-  border-radius:50%;
-  background:linear-gradient(135deg,#3936d8,#164b9b);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:32px;
+  text-align:center;
+  font-size:45px;
+  margin-bottom:10px;
 }
 
 h2{
@@ -53,14 +46,12 @@ h2{
   text-align:center;
   color:#777;
   margin-bottom:25px;
-  font-size:14px;
 }
 
 label{
   display:block;
   margin:15px 0 7px;
   font-weight:bold;
-  font-size:14px;
 }
 
 input{
@@ -70,11 +61,6 @@ input{
   border-radius:12px;
   outline:none;
   font-size:15px;
-  background:#fafbff;
-}
-
-input:focus{
-  border-color:#3936d8;
 }
 
 button{
@@ -83,7 +69,7 @@ button{
   margin-top:25px;
   border:0;
   border-radius:13px;
-  background:linear-gradient(135deg,#3936d8,#164b9b);
+  background:#3936d8;
   color:white;
   font-size:17px;
   font-weight:bold;
@@ -103,23 +89,22 @@ button:disabled{
   font-size:14px;
 }
 
-.success{
-  display:block;
-  background:#e7fff5;
-  color:#08784f;
-}
-
 .error{
   display:block;
   background:#fff0f0;
   color:#c62828;
 }
 
+.success{
+  display:block;
+  background:#e7fff5;
+  color:#08784f;
+}
+
 .register{
   text-align:center;
   margin-top:20px;
   color:#666;
-  font-size:14px;
 }
 
 .register a{
@@ -132,7 +117,7 @@ button:disabled{
 
 <body>
 
-<div class="login-box">
+<div class="box">
 
   <div class="logo">💰</div>
 
@@ -142,7 +127,6 @@ button:disabled{
     আপনার অ্যাকাউন্টে লগইন করুন
   </p>
 
-
   <form id="loginForm">
 
     <label>📱 মোবাইল নম্বর</label>
@@ -150,38 +134,28 @@ button:disabled{
     <input
       type="tel"
       id="mobile"
-      placeholder="01XXXXXXXXX"
       maxlength="11"
       inputmode="numeric"
+      placeholder="01XXXXXXXXX"
       required
     >
 
-
-    <label>🔑 পাসওয়ার্ড</label>
+    <label>🔑 পাসওয়ার্ড</label>
 
     <input
       type="password"
       id="password"
-      placeholder="আপনার পাসওয়ার্ড"
+      placeholder="আপনার পাসওয়ার্ড"
       required
     >
 
-
-    <button
-      type="submit"
-      id="loginBtn"
-    >
+    <button type="submit" id="loginBtn">
       🔐 Login
     </button>
 
-
-    <div
-      id="message"
-      class="message"
-    ></div>
+    <div id="message" class="message"></div>
 
   </form>
-
 
   <div class="register">
 
@@ -195,110 +169,130 @@ button:disabled{
 
 </div>
 
-
 <script>
 
-/* ==============================
-   ELEMENTS
-============================== */
-
-const loginForm =
+const form =
   document.getElementById("loginForm");
-
-const mobileInput =
-  document.getElementById("mobile");
-
-const passwordInput =
-  document.getElementById("password");
-
-const loginBtn =
-  document.getElementById("loginBtn");
 
 const message =
   document.getElementById("message");
 
+const loginBtn =
+  document.getElementById("loginBtn");
 
-/* ==============================
-   MESSAGE
-============================== */
 
-function showMessage(text,type){
+form.addEventListener("submit", function(e){
 
-  message.textContent = text;
+  e.preventDefault();
+
+  const mobile =
+    document.getElementById("mobile")
+    .value
+    .trim();
+
+  const password =
+    document.getElementById("password")
+    .value;
+
+
+  let user = null;
+
+
+  /* Saved account read */
+
+  try{
+
+    const saved =
+      localStorage.getItem("earningUser");
+
+    if(saved){
+
+      user = JSON.parse(saved);
+
+    }
+
+  }catch(error){
+
+    user = null;
+
+  }
+
+
+  /* Account not found */
+
+  if(!user){
+
+    message.textContent =
+      "❌ কোনো account পাওয়া যায়নি। আগে Register করুন।";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  /* Mobile check */
+
+  if(String(user.mobile) !== String(mobile)){
+
+    message.textContent =
+      "❌ মোবাইল নম্বর সঠিক নয়।";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  /* Password check */
+
+  if(String(user.password) !== String(password)){
+
+    message.textContent =
+      "❌ পাসওয়ার্ড সঠিক নয়।";
+
+    message.className =
+      "message error";
+
+    return;
+
+  }
+
+
+  /* Login successful */
+
+  user.loggedIn = true;
+
+
+  localStorage.setItem(
+    "earningUser",
+    JSON.stringify(user)
+  );
+
+
+  message.textContent =
+    "✅ Login সফল হয়েছে! Dashboard-এ যাচ্ছেন...";
 
   message.className =
-    "message " + type;
-
-}
+    "message success";
 
 
-/* ==============================
-   LOGIN
-============================== */
-
-loginForm.addEventListener(
-  "submit",
-  function(e){
-
-    e.preventDefault();
+  loginBtn.disabled = true;
 
 
-    const mobile =
-      mobileInput.value.trim();
+  setTimeout(function(){
 
+    window.location.replace("index.html");
 
-    const password =
-      passwordInput.value;
+  },800);
 
+});
 
-    /* MOBILE CHECK */
+</script>
 
-    if(!/^01[0-9]{9}$/.test(mobile)){
-
-      showMessage(
-        "❌ সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    /* GET USER */
-
-    let user = null;
-
-    try{
-
-      user =
-        JSON.parse(
-          localStorage.getItem(
-            "earningUser"
-          )
-        );
-
-    }catch(error){
-
-      user = null;
-
-    }
-
-
-    /* ACCOUNT NOT FOUND */
-
-    if(!user){
-
-      showMessage(
-        "❌ কোনো account পাওয়া যায়নি। আগে Register করুন।",
-        "error"
-      );
-
-      return;
-
-    }
-
-
-    /* MOBILE CHECK */
-
-    if(user
+</body>
+</html>
