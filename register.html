@@ -2,44 +2,60 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Register — Halal Income</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Register - Halal Income</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
+
 <body class="bg-slate-950 min-h-screen text-white">
+
 
 <div class="max-w-md mx-auto min-h-screen px-5 py-7">
 
+
     <a href="index.html"
     class="text-slate-400 text-sm">
+
         <i class="fa-solid fa-arrow-left mr-2"></i>
         ফিরে যান
+
     </a>
+
 
     <div class="text-center mt-7">
 
         <div class="w-16 h-16 mx-auto rounded-2xl
         bg-gradient-to-br from-amber-500 to-orange-600
         flex items-center justify-center">
+
             <i class="fa-solid fa-user-plus text-2xl"></i>
+
         </div>
+
 
         <h1 class="text-2xl font-black mt-4">
             Create Account
         </h1>
 
+
         <p class="text-xs text-slate-400 mt-2">
-            Halal Income-এ নতুন Account তৈরি করুন
+            নতুন Account তৈরি করুন
         </p>
 
     </div>
 
+
+
     <form id="registerForm"
     class="bg-white/10 border border-white/10
     rounded-3xl p-5 mt-7">
+
 
         <label class="text-xs font-bold">
             আপনার নাম
@@ -52,6 +68,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         class="w-full mt-2 px-4 py-3 rounded-xl
         bg-white/10 border border-white/10 outline-none">
 
+
+
         <label class="text-xs font-bold block mt-4">
             মোবাইল নম্বর
         </label>
@@ -62,6 +80,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         required
         class="w-full mt-2 px-4 py-3 rounded-xl
         bg-white/10 border border-white/10 outline-none">
+
+
 
         <label class="text-xs font-bold block mt-4">
             Password
@@ -75,6 +95,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         class="w-full mt-2 px-4 py-3 rounded-xl
         bg-white/10 border border-white/10 outline-none">
 
+
+
         <label class="text-xs font-bold block mt-4">
             Referral Code
         </label>
@@ -85,118 +107,164 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         class="w-full mt-2 px-4 py-3 rounded-xl
         bg-white/10 border border-white/10 outline-none">
 
+
         <div class="mt-4 bg-amber-500/10
         border border-amber-500/20 rounded-2xl p-4">
 
             <p class="text-xs font-bold text-amber-300">
+
+                <i class="fa-solid fa-gift mr-1"></i>
                 Referral Bonus
+
             </p>
 
             <p class="text-[11px] text-slate-300 mt-1">
-                আপনার Referral-এর মাধ্যমে কেউ Account Active
+
+                Referral-এর মাধ্যমে নতুন সদস্য Account Active
                 করলে Referral Bonus পাওয়ার ব্যবস্থা থাকবে।
+
             </p>
 
         </div>
 
-        <button
+
+        <button type="submit"
         class="w-full mt-5 py-3.5 rounded-xl
         bg-gradient-to-r from-amber-500 to-orange-600
         font-black">
+
             Account তৈরি করুন
+
         </button>
+
 
         <p id="message"
         class="text-center text-xs mt-4"></p>
 
     </form>
 
+
     <p class="text-center text-xs text-slate-400 mt-5">
+
         আগে থেকেই Account আছে?
+
         <a href="login.html"
         class="text-violet-400 font-bold">
+
             Login করুন
+
         </a>
+
     </p>
 
 </div>
 
+
+
 <script>
 
-/* Referral link থেকে code নেওয়া */
-const params = new URLSearchParams(window.location.search);
-const ref = params.get("ref");
+/* URL থেকে Referral Code নেওয়া */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const ref =
+params.get("ref");
+
 
 if(ref){
+
     document.getElementById("referral").value = ref;
+
 }
 
 
+
 /* Registration */
+
 document.getElementById("registerForm")
 .addEventListener("submit", function(e){
 
     e.preventDefault();
 
+
     const name =
-        document.getElementById("name").value.trim();
+    document.getElementById("name").value.trim();
+
 
     const phone =
-        document.getElementById("phone").value.trim();
+    document.getElementById("phone").value.trim();
+
 
     const password =
-        document.getElementById("password").value;
+    document.getElementById("password").value;
+
 
     const referral =
-        document.getElementById("referral").value.trim();
+    document.getElementById("referral").value.trim();
+
 
     const message =
-        document.getElementById("message");
+    document.getElementById("message");
+
+
 
     if(phone.length < 11){
+
         message.textContent =
-            "সঠিক মোবাইল নম্বর দিন।";
+        "সঠিক মোবাইল নম্বর দিন।";
 
         message.className =
-            "text-center text-xs mt-4 text-red-400";
+        "text-center text-xs mt-4 text-red-400";
 
         return;
+
     }
+
+
 
     if(password.length < 6){
+
         message.textContent =
-            "Password কমপক্ষে ৬ অক্ষরের হতে হবে।";
+        "Password কমপক্ষে ৬ অক্ষরের হতে হবে।";
 
         message.className =
-            "text-center text-xs mt-4 text-red-400";
+        "text-center text-xs mt-4 text-red-400";
 
         return;
+
     }
 
-    /*
-      IMPORTANT:
-      এই অংশটি Demo।
 
-      আসল সিস্টেমে:
-      1. User database-এ Save হবে
-      2. Referral Code database-এ Save হবে
-      3. কে কাকে refer করেছে সেটা server-এ Save হবে
-      4. Activation payment যাচাই হবে
-      5. Account Active হবে
-      6. তারপর Referrer-এর balance-এ একবার মাত্র ৳15 যোগ হবে
+
+    /*
+      Demo Registration
+
+      এখানে Referral Code সংরক্ষণ করা হচ্ছে।
+
+      আসল সিস্টেমে Backend/Database লাগবে।
     */
 
+
+    localStorage.setItem("halalUserName", name);
+    localStorage.setItem("halalUserPhone", phone);
+    localStorage.setItem("halalReferral", referral);
+
+
     message.textContent =
-        "Registration Demo সফল হয়েছে। Backend যুক্ত করলে Account database-এ সংরক্ষণ হবে।";
+    "Registration সফল হয়েছে!";
 
     message.className =
-        "text-center text-xs mt-4 text-emerald-400";
+    "text-center text-xs mt-4 text-emerald-400";
 
-    console.log({
-        name:name,
-        phone:phone,
-        referral:referral
-    });
+
+
+    setTimeout(function(){
+
+        window.location.href =
+        "dashboard.html";
+
+    }, 900);
 
 });
 
