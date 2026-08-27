@@ -156,21 +156,21 @@
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">জব হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="openTeamModal()" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">রেফার হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="openWalletModal()" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openWalletModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-receipt"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">উইথড্র হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="openTeamModal()" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-users"></i>
                 </div>
@@ -178,7 +178,7 @@
             </a>
 
             <!-- Row 4 -->
-            <a href="#" onclick="openWalletModal()" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openWalletModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-amber-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-wallet"></i>
                 </div>
@@ -368,13 +368,13 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar (Fixed with proper button triggers) -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-6 flex justify-between items-center z-40 max-w-md mx-auto">
         <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
             <i class="fa-solid fa-headset text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Help</span>
         </a>
-        <button onclick="openWalletModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
+        <button onclick="openWalletModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer bg-transparent border-0 focus:outline-none">
             <i class="fa-solid fa-wallet text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Wallet</span>
         </button>
@@ -384,11 +384,11 @@
             </div>
             <span class="text-[10px] font-bold text-indigo-700 mt-0.5">HOME</span>
         </div>
-        <button onclick="openTeamModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
+        <button onclick="openTeamModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer bg-transparent border-0 focus:outline-none">
             <i class="fa-solid fa-users text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Team</span>
         </button>
-        <button onclick="openProfileModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
+        <button onclick="openProfileModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer bg-transparent border-0 focus:outline-none">
             <i class="fa-solid fa-user text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Profile</span>
         </button>
@@ -468,7 +468,7 @@
         function handleWithdrawSubmit(event) {
             event.preventDefault();
             const method = document.getElementById('withdrawMethod').value;
-            const phone = document.getElementById('withdrawPhone').value;
+            const phone = document.getElementById('withdrawPhone.value') || document.getElementById('withdrawPhone').value;
             const amount = document.getElementById('withdrawAmount').value;
             const withdrawBtn = document.getElementById('withdrawBtn');
 
