@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 pb-20 font-sans">
+<body class="bg-gray-100 pb-24 font-sans">
 
     <!-- Top Navbar -->
     <div class="bg-gradient-to-r from-teal-600 via-purple-600 to-purple-800 text-white p-4 shadow-md flex justify-between items-center sticky top-0 z-40">
@@ -61,50 +61,132 @@
             </div>
         </div>
 
-        <!-- Available Tasks Section -->
+        <!-- Section Title -->
         <div class="flex justify-between items-center pt-2">
             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-rocket text-purple-600"></i> উপলব্ধ কাজসমূহ (Click to Earn)
+                <i class="fa-solid fa-rocket text-purple-600"></i> আমাদের প্রিমিয়াম প্রজেক্ট
             </h3>
         </div>
 
-        <!-- Task Grid -->
-        <div class="grid grid-cols-2 gap-3">
-            <a href="https://facebook.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-brands fa-facebook text-blue-600 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">ফেসবুক পেজ লাইক</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳২.০০</span>
+        <!-- 16 Grid Items Section -->
+        <div class="grid grid-cols-4 gap-3 bg-white p-4 rounded-3xl shadow-sm border border-purple-50">
+            
+            <!-- Row 1 -->
+            <a href="#" onclick="alert('ফেসবুক সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">ফেসবুক সেল</span>
             </a>
 
-            <a href="https://youtube.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-brands fa-youtube text-red-600 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">ইউটিউব ৩ মিনিট ভিউ</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৩.০০</span>
+            <a href="#" onclick="alert('জিমেইল সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">জিমেইল সেল</span>
             </a>
 
-            <a href="https://instagram.com" target="_blank" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-brands fa-instagram text-pink-600 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">ইনস্টাগ্রাম ফলো</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳২.৫০</span>
+            <a href="#" onclick="alert('ইনস্টা সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">ইনস্টা সেল</span>
             </a>
 
-            <a href="#" onclick="alert('দৈনিক বোনাস দাবি করা হয়েছে! (+৳১.০০)')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-solid fa-gift text-amber-500 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">ডেইলি ক্লাইম বোনাস</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳১.০০</span>
+            <a href="#" onclick="alert('কয়েন সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">কয়েন সেল</span>
             </a>
 
-            <a href="#" onclick="alert('আপনার রেফারেল লিঙ্ক কপি হয়েছে!')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-solid fa-user-plus text-sky-600 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">বন্ধু রেফার করুন</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৫.০০</span>
+            <!-- Row 2 -->
+            <a href="#" onclick="alert('Micro Job শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-pink-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">Micro Job</span>
             </a>
 
-            <a href="#" onclick="alert('টাইপিং জব শীঘ্রই আসছে!')" class="bg-white p-4 rounded-2xl border border-purple-100 shadow-sm hover:shadow-md transition flex flex-col items-center text-center">
-                <i class="fa-solid fa-keyboard text-indigo-600 text-3xl mb-1"></i>
-                <span class="text-xs font-bold text-gray-800">ক্যাপচা টাইপিং জব</span>
-                <span class="text-xs text-emerald-600 font-extrabold mt-1">+৳৪.০০</span>
+            <a href="#" onclick="alert('প্রিমিয়াম জব শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">প্রিমিয়াম জব</span>
             </a>
+
+            <a href="#" onclick="alert('ভিডিওর কাজ শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-red-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">ভিডিওর কাজ</span>
+            </a>
+
+            <a href="#" onclick="alert('VIP প্ল্যান শীঘ্রই আসবে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">VIP প্ল্যান</span>
+            </a>
+
+            <!-- Row 3 -->
+            <a href="#" onclick="alert('জব হিস্ট্রি ফাঁকা আছে।')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-sky-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">জব হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="alert('রেফার হিস্ট্রি ফাঁকা আছে।')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">রেফার হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="alert('উইথড্র হিস্ট্রি ফাঁকা আছে।')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-teal-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">উইথড্র হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="alert('মাই টিম সম্পূর্ণ দেখতে প্রফাইল অন করুন।')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">My Team</span>
+            </a>
+
+            <!-- Row 4 -->
+            <a href="#" onclick="alert('উইথড্র চালু করতে একাউন্ট একটিভ করুন।')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-amber-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">Withdraw</span>
+            </a>
+
+            <a href="#" onclick="alert('আপনার কোনো গিফ্ট কোড নেই!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-yellow-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">গিফট কোড</span>
+            </a>
+
+            <a href="#" onclick="alert('লিডারবোর্ড চেক করা হচ্ছে...')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-purple-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">লিডারবোর্ড</span>
+            </a>
+
+            <a href="#" onclick="alert('টার্গেট বোনাস শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
+                <div class="w-12 h-12 bg-cyan-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">টার্গেট বোনাস</span>
+            </a>
+
         </div>
 
     </div>
