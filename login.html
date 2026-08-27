@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
+<title>Login - Earning Website</title>
 
 <style>
 *{
@@ -18,11 +18,12 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:#f3f5fa;
+  background:linear-gradient(135deg,#eef2ff,#f7f8ff);
+  padding:20px;
 }
 
 .login-box{
-  width:90%;
+  width:100%;
   max-width:400px;
   background:white;
   padding:30px 25px;
@@ -31,9 +32,16 @@ body{
 }
 
 .logo{
-  text-align:center;
-  font-size:45px;
-  margin-bottom:10px;
+  width:70px;
+  height:70px;
+  margin:0 auto 15px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#3936d8,#164b9b);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:32px;
 }
 
 h2{
@@ -45,12 +53,14 @@ h2{
   text-align:center;
   color:#777;
   margin-bottom:25px;
+  font-size:14px;
 }
 
 label{
   display:block;
   margin:15px 0 7px;
   font-weight:bold;
+  font-size:14px;
 }
 
 input{
@@ -60,6 +70,11 @@ input{
   border-radius:12px;
   outline:none;
   font-size:15px;
+  background:#fafbff;
+}
+
+input:focus{
+  border-color:#3936d8;
 }
 
 button{
@@ -68,21 +83,49 @@ button{
   margin-top:25px;
   border:0;
   border-radius:13px;
-  background:#3936d8;
+  background:linear-gradient(135deg,#3936d8,#164b9b);
   color:white;
   font-size:17px;
   font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled{
+  opacity:.6;
+}
+
+.message{
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  font-size:14px;
+}
+
+.success{
+  display:block;
+  background:#e7fff5;
+  color:#08784f;
+}
+
+.error{
+  display:block;
+  background:#fff0f0;
+  color:#c62828;
 }
 
 .register{
   text-align:center;
   margin-top:20px;
   color:#666;
+  font-size:14px;
 }
 
 .register a{
   color:#3936d8;
   font-weight:bold;
+  text-decoration:none;
 }
 </style>
 </head>
@@ -94,22 +137,168 @@ button{
   <div class="logo">💰</div>
 
   <h2>Welcome Back!</h2>
-  <p class="subtitle">আপনার অ্যাকাউন্টে লগইন করুন</p>
 
-  <label>মোবাইল / ইমেইল</label>
-  <input type="text" placeholder="আপনার মোবাইল বা ইমেইল">
+  <p class="subtitle">
+    আপনার অ্যাকাউন্টে লগইন করুন
+  </p>
 
-  <label>পাসওয়ার্ড</label>
-  <input type="password" placeholder="আপনার পাসওয়ার্ড">
 
-  <button>🔐 Login</button>
+  <form id="loginForm">
+
+    <label>📱 মোবাইল নম্বর</label>
+
+    <input
+      type="tel"
+      id="mobile"
+      placeholder="01XXXXXXXXX"
+      maxlength="11"
+      inputmode="numeric"
+      required
+    >
+
+
+    <label>🔑 পাসওয়ার্ড</label>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="আপনার পাসওয়ার্ড"
+      required
+    >
+
+
+    <button
+      type="submit"
+      id="loginBtn"
+    >
+      🔐 Login
+    </button>
+
+
+    <div
+      id="message"
+      class="message"
+    ></div>
+
+  </form>
+
 
   <div class="register">
+
     অ্যাকাউন্ট নেই?
-    <a href="#">Register করুন</a>
+
+    <a href="register.html">
+      Register করুন
+    </a>
+
   </div>
 
 </div>
 
-</body>
-</html>
+
+<script>
+
+/* ==============================
+   ELEMENTS
+============================== */
+
+const loginForm =
+  document.getElementById("loginForm");
+
+const mobileInput =
+  document.getElementById("mobile");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const message =
+  document.getElementById("message");
+
+
+/* ==============================
+   MESSAGE
+============================== */
+
+function showMessage(text,type){
+
+  message.textContent = text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+/* ==============================
+   LOGIN
+============================== */
+
+loginForm.addEventListener(
+  "submit",
+  function(e){
+
+    e.preventDefault();
+
+
+    const mobile =
+      mobileInput.value.trim();
+
+
+    const password =
+      passwordInput.value;
+
+
+    /* MOBILE CHECK */
+
+    if(!/^01[0-9]{9}$/.test(mobile)){
+
+      showMessage(
+        "❌ সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* GET USER */
+
+    let user = null;
+
+    try{
+
+      user =
+        JSON.parse(
+          localStorage.getItem(
+            "earningUser"
+          )
+        );
+
+    }catch(error){
+
+      user = null;
+
+    }
+
+
+    /* ACCOUNT NOT FOUND */
+
+    if(!user){
+
+      showMessage(
+        "❌ কোনো account পাওয়া যায়নি। আগে Register করুন।",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /* MOBILE CHECK */
+
+    if(user
