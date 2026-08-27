@@ -76,7 +76,6 @@ input{
 
 input:focus{
   border-color:#3936d8;
-  background:white;
 }
 
 .invite{
@@ -100,7 +99,6 @@ button{
   color:white;
   font-size:17px;
   font-weight:bold;
-  cursor:pointer;
 }
 
 .message{
@@ -153,7 +151,7 @@ button{
   <h1>অ্যাকাউন্ট তৈরি করুন</h1>
 
   <p class="sub">
-    রেজিস্ট্রেশন করে আপনার Earning Account তৈরি করুন
+    Earning Website-এ আপনার নতুন অ্যাকাউন্ট খুলুন
   </p>
 
   <form id="registerForm">
@@ -194,6 +192,7 @@ button{
     >
 
     <label>🎟️ Invite Code</label>
+
     <input
       type="text"
       id="inviteCode"
@@ -202,7 +201,7 @@ button{
     >
 
     <p class="note">
-      Referral link দিয়ে এলে Invite Code স্বয়ংক্রিয়ভাবে যুক্ত হবে।
+      Referral link দিয়ে এলে Invite Code অটোমেটিক বসবে।
     </p>
 
     <button type="submit">
@@ -220,7 +219,7 @@ button{
     </a>
 
     <a href="index.html" class="home">
-      🏠 Dashboard-এ ফিরে যান
+      🏠 Dashboard
     </a>
 
   </div>
@@ -230,19 +229,20 @@ button{
 <script>
 
 /* =========================
-   REFERRAL CODE
+   REFERRAL / INVITE CODE
 ========================= */
 
 const params = new URLSearchParams(window.location.search);
-const ref = params.get("ref");
 
-const inviteInput = document.getElementById("inviteCode");
+const refCode = params.get("ref");
 
-if(ref){
+const inviteInput =
+  document.getElementById("inviteCode");
 
-  inviteInput.value = ref;
+if(refCode){
 
-  /* Referral link থেকে এলে পরিবর্তন করা যাবে না */
+  inviteInput.value = refCode;
+
   inviteInput.readOnly = true;
 
 }
@@ -252,12 +252,17 @@ if(ref){
    REGISTER
 ========================= */
 
-const form = document.getElementById("registerForm");
-const message = document.getElementById("message");
+const form =
+  document.getElementById("registerForm");
 
-form.addEventListener("submit", function(e){
+const message =
+  document.getElementById("message");
+
+
+form.addEventListener("submit",function(e){
 
   e.preventDefault();
+
 
   const name =
     document.getElementById("name").value.trim();
@@ -275,33 +280,24 @@ form.addEventListener("submit", function(e){
     inviteInput.value.trim();
 
 
-  /* Device check */
+  /* Check existing device */
 
-  if(localStorage.getItem("earning_device_registered") === "yes"){
+  if(
+    localStorage.getItem("earning_device_registered")
+    === "yes"
+  ){
 
     showMessage(
-      "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট তৈরি করা হয়েছে।",
+      "❌ এই ডিভাইসে ইতিমধ্যে একটি অ্যাকাউন্ট আছে।",
       "error"
     );
 
     return;
+
   }
 
 
-  /* Name */
-
-  if(name.length < 2){
-
-    showMessage(
-      "দয়া করে আপনার সঠিক নাম লিখুন।",
-      "error"
-    );
-
-    return;
-  }
-
-
-  /* Mobile */
+  /* Mobile check */
 
   if(!/^01[0-9]{9}$/.test(mobile)){
 
@@ -311,10 +307,11 @@ form.addEventListener("submit", function(e){
     );
 
     return;
+
   }
 
 
-  /* Password */
+  /* Password check */
 
   if(password.length < 6){
 
@@ -324,46 +321,46 @@ form.addEventListener("submit", function(e){
     );
 
     return;
+
   }
 
-
-  /* Confirm password */
 
   if(password !== confirmPassword){
 
     showMessage(
-      "দুইটি পাসওয়ার্ড একই নয়।",
+      "পাসওয়ার্ড দুটি একই নয়।",
       "error"
     );
 
     return;
+
   }
 
 
   /*
-    DEMO ACCOUNT
+    ACCOUNT CREATED
 
-    নতুন account-এর starting balance = ৳10
+    Starting balance = 10
   */
 
   const user = {
 
-    name: name,
+    name:name,
 
-    mobile: mobile,
+    mobile:mobile,
 
-    inviteCode: inviteCode,
+    password:password,
 
-    balance: 10,
+    inviteCode:inviteCode,
 
-    loggedIn: true,
+    balance:10,
 
-    registeredAt: new Date().toISOString()
+    loggedIn:true
 
   };
 
 
-  /* Account save */
+  /* Save account */
 
   localStorage.setItem(
     "earningUser",
@@ -371,7 +368,7 @@ form.addEventListener("submit", function(e){
   );
 
 
-  /* Device registration mark */
+  /* Mark device */
 
   localStorage.setItem(
     "earning_device_registered",
@@ -379,28 +376,27 @@ form.addEventListener("submit", function(e){
   );
 
 
-  /* Success message */
-
   showMessage(
-    "✅ Registration সফল! ৳10 Bonus যোগ হয়েছে। Login করা হয়েছে।",
+    "✅ Account তৈরি হয়েছে! ৳10 Bonus যোগ হয়েছে।",
     "success"
   );
 
 
-  /* Auto Login → Dashboard */
+  /*
+    AUTO LOGIN
+
+    1.5 second পরে Dashboard
+  */
 
   setTimeout(function(){
 
-    window.location.href = "index.html";
+    window.location.href =
+      "index.html";
 
   },1500);
 
 });
 
-
-/* =========================
-   MESSAGE
-========================= */
 
 function showMessage(text,type){
 
