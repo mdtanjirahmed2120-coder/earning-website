@@ -236,11 +236,6 @@
                     <label class="block text-xs font-bold text-gray-700 mb-1">TrxID (Transaction ID)</label>
                     <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-purple-600">
                 </div>
-                <!-- যদি রেজিস্ট্রেশন পেজে বা এক্টিভেশনে রেফার কোড ইনপুট রাখতে চান -->
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1">রেফার কোড (যদি থাকে)</label>
-                    <input type="text" id="autoReferInput" placeholder="রেফার কোড" class="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-mono focus:outline-none focus:border-purple-600">
-                </div>
                 <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 hover:from-purple-800 hover:to-indigo-700 text-white font-bold py-3 rounded-xl text-xs shadow-lg shadow-purple-200 mt-2">
                     তথ্য জমা দিন
                 </button>
@@ -349,10 +344,6 @@
                     <span class="font-bold text-gray-800">017XXXXXXXX</span>
                 </div>
                 <div class="flex justify-between py-1">
-                    <span class="text-gray-400">রেফার কোড:</span>
-                    <span class="font-bold text-purple-600 font-mono" id="profileReferCode">USER123</span>
-                </div>
-                <div class="flex justify-between py-1">
                     <span class="text-gray-400">যোগদানের তারিখ:</span>
                     <span class="font-bold text-gray-800">২৮ আগস্ট, ২০২৬</span>
                 </div>
@@ -399,34 +390,16 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        // পেজ লোড হওয়ার সাথে সাথে স্বয়ংক্রিয়ভাবে রেফার লিংক এবং URL প্যারামিটার সেট করা
+        // পেজ লোড হওয়ার সাথে সাথে ড্যাশবোর্ডের রেফার লিংক জেনারেট করা
         window.addEventListener('DOMContentLoaded', () => {
-            // ১. ব্রাউজারের বর্তমান URL থেকে রেফার কোড (যেমন ?ref=USER123) চেক করা
-            const urlParams = new URLSearchParams(window.location.search);
-            const refCode = urlParams.get('ref');
+            const myUniqueId = "HI-" + Math.floor(10000 + Math.random() * 90000); 
             
-            const autoReferInput = document.getElementById('autoReferInput');
-            if (autoReferInput && refCode) {
-                autoReferInput.value = refCode;
-            }
-
-            // ২. ইউজারের নিজস্ব রেফার লিংক ডায়নামিক তৈরি করা (এখানে ইউজার আইডি হিসেবে একটি ইউনিক আইডি জেনারেট বা সেট করা হয়েছে)
-            // আপনি চাইলে এটি লোকালস্টোরেজ বা ডাটাবেজ থেকে আনতে পারেন
-            const myUniqueId = "HI-" + Math.floor(10000 + Math.random() * 90000); // অথবা আপনার নির্দিষ্ট আইডি
-            
-            // বর্তমান পেজের বেস লিংক বের করা (যাতে GitHub Pages বা লাইভে সঠিক লিংক থাকে)
             const currentBaseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
             const generatedReferLink = currentBaseUrl + "dashboard.html?ref=" + myUniqueId;
 
             const referLinkInput = document.getElementById('referLinkInput');
             if (referLinkInput) {
                 referLinkInput.value = generatedReferLink;
-            }
-
-            // প্রোফাইল সেকশনেও আইডি বসিয়ে দেওয়া
-            const profileReferCode = document.getElementById('profileReferCode');
-            if(profileReferCode) {
-                profileReferCode.innerText = myUniqueId;
             }
         });
 
@@ -464,13 +437,12 @@
             const name = document.getElementById('senderName').value;
             const phone = document.getElementById('senderPhone').value;
             const trxid = document.getElementById('senderTrxid').value;
-            const referUsed = document.getElementById('autoReferInput') ? document.getElementById('autoReferInput').value : 'নেই';
             const submitBtn = document.getElementById('submitBtn');
 
             submitBtn.innerText = 'জমা হচ্ছে...';
             submitBtn.disabled = true;
 
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A🤝 *রেফার কোড:* ${referUsed}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
 
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
@@ -508,10 +480,7 @@
             withdrawBtn.disabled = true;
 
             const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
-
-            const url = `https://api.tokenId.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`; // (Note: original endpoint kept intact via fetch logic below)
             
-            // Using standard Telegram API endpoint format:
             const correctUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
             fetch(correctUrl)
