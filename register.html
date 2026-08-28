@@ -1,131 +1,629 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>Halal Income - Register</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-body{font-family:Arial,sans-serif}
-.popup{animation:pop .35s ease-out}
-@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
-.pulse{animation:pulse 1.8s infinite}
-@keyframes pulse{50%{transform:scale(1.03)}}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+}
+
+.popup-animation{
+    animation:popup .35s ease-out;
+}
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:scale(.85) translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+.telegram-pulse{
+    animation:pulse 1.8s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+}
+
 </style>
-</head><body class="bg-gradient-to-br from-purple-50 via-white to-blue-50 min-h-screen flex items-center justify-center p-4"><div class="w-full max-w-md">
-<div class="bg-white rounded-[32px] shadow-2xl overflow-hidden border border-purple-100"><div class="bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 text-white text-center p-7">
-<div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-xl">
-<i class="fa-solid fa-mosque text-purple-700 text-3xl"></i>
+
+</head>
+
+
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+
+
+<!-- ================================================= -->
+<!-- REGISTRATION CARD -->
+<!-- ================================================= -->
+
+<div id="registerPage"
+     class="w-full max-w-md">
+
+    <div class="bg-white rounded-[32px] shadow-2xl border border-purple-100 overflow-hidden">
+
+
+        <!-- HEADER -->
+
+        <div class="bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 px-6 py-8 text-white text-center">
+
+            <div class="w-20 h-20 bg-white/15 rounded-full flex items-center justify-center mx-auto mb-3">
+
+                <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+
+                    <i class="fa-solid fa-mosque text-purple-700 text-2xl"></i>
+
+                </div>
+
+            </div>
+
+
+            <h1 class="text-2xl font-black">
+                Halal Income
+            </h1>
+
+
+            <p class="text-xs text-white/80 mt-1">
+                আপনার অনলাইন আয়ের যাত্রা শুরু করুন 🚀
+            </p>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <div class="p-6">
+
+            <div class="text-center mb-5">
+
+                <h2 class="text-xl font-black text-gray-800">
+                    Create Account
+                </h2>
+
+                <p class="text-xs text-gray-500 mt-1">
+                    নতুন অ্যাকাউন্ট তৈরি করতে নিচের তথ্য দিন
+                </p>
+
+            </div>
+
+
+
+            <form id="registerForm"
+                  class="space-y-3">
+
+
+                <!-- REFERRAL -->
+
+                <div class="relative">
+
+                    <i class="fa-solid fa-gift absolute left-4 top-3.5 text-purple-500"></i>
+
+                    <input
+                        id="referralCode"
+                        type="text"
+                        value="800"
+                        readonly
+                        class="w-full pl-11 pr-4 py-3 bg-purple-50 border border-purple-100 rounded-2xl text-sm font-bold text-purple-700 outline-none"
+                    >
+
+                </div>
+
+
+
+                <!-- NAME -->
+
+                <div class="relative">
+
+                    <i class="fa-solid fa-user absolute left-4 top-3.5 text-purple-600"></i>
+
+                    <input
+                        id="fullName"
+                        type="text"
+                        placeholder="আপনার Full Name"
+                        required
+                        class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600"
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="relative">
+
+                    <i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                        class="w-full pl-11 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600"
+                    >
+
+                </div>
+
+
+
+                <!-- PASSWORD -->
+
+                <div class="relative">
+
+                    <i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+
+                    <input
+                        id="password"
+                        type="password"
+                        minlength="6"
+                        placeholder="Password (কমপক্ষে ৬ অক্ষর)"
+                        required
+                        class="w-full pl-11 pr-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="togglePassword('password','eye1')"
+                        class="absolute right-4 top-3.5 text-gray-400">
+
+                        <i id="eye1"
+                           class="fa-solid fa-eye">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- CONFIRM PASSWORD -->
+
+                <div class="relative">
+
+                    <i class="fa-solid fa-circle-check absolute left-4 top-3.5 text-gray-400"></i>
+
+                    <input
+                        id="confirmPassword"
+                        type="password"
+                        minlength="6"
+                        placeholder="Confirm Password"
+                        required
+                        class="w-full pl-11 pr-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm focus:outline-none focus:border-purple-600"
+                    >
+
+                    <button
+                        type="button"
+                        onclick="togglePassword('confirmPassword','eye2')"
+                        class="absolute right-4 top-3.5 text-gray-400">
+
+                        <i id="eye2"
+                           class="fa-solid fa-eye">
+                        </i>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- TERMS -->
+
+                <label class="flex items-start gap-2 text-[10px] text-gray-500 pt-1">
+
+                    <input
+                        id="terms"
+                        type="checkbox"
+                        required
+                        class="mt-0.5 accent-purple-600"
+                    >
+
+                    <span>
+                        আমি Halal Income-এর নিয়ম ও শর্ত মেনে
+                        অ্যাকাউন্ট তৈরি করতে সম্মত।
+                    </span>
+
+                </label>
+
+
+
+                <!-- REGISTER BUTTON -->
+
+                <button
+                    id="registerBtn"
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 hover:from-purple-800 hover:to-blue-700 text-white font-black py-3.5 rounded-2xl text-sm shadow-lg transition-all flex items-center justify-center gap-2 mt-4">
+
+                    <span>
+                        Create Account
+                    </span>
+
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- LOGIN -->
+
+            <p class="text-xs text-center text-gray-500 mt-5">
+
+                Already have an account?
+
+                <a
+                    href="login.html"
+                    class="text-purple-700 font-bold hover:underline">
+
+                    Login
+
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <p class="text-[10px] text-center text-gray-400 mt-4">
+
+        🔒 আপনার তথ্য সুরক্ষিত রাখুন
+
+    </p>
+
 </div>
-<h1 class="text-2xl font-black">Halal Income</h1>
-<p class="text-xs text-white/80 mt-1">আপনার অনলাইন আয়ের যাত্রা শুরু করুন 🚀</p>
-</div><div class="p-6"><h2 class="text-xl font-black text-center text-gray-800">Create Account</h2>
-<p class="text-xs text-gray-500 text-center mt-1 mb-5">নতুন অ্যাকাউন্ট তৈরি করতে তথ্য দিন</p><form id="registerForm" class="space-y-3"><div class="relative">
-<i class="fa-solid fa-gift absolute left-4 top-3.5 text-purple-500"></i>
-<input id="referral" value="800" readonly class="w-full pl-11 py-3 bg-purple-50 border border-purple-100 rounded-2xl text-sm font-bold text-purple-700">
-</div><div class="relative">
-<i class="fa-solid fa-user absolute left-4 top-3.5 text-purple-600"></i>
-<input id="name" type="text" placeholder="আপনার Full Name" required class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
-</div><div class="relative">
-<i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
-<input id="email" type="email" placeholder="Email Address" required class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
-</div><div class="relative">
-<i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
-<input id="password" type="password" minlength="6" placeholder="Password (কমপক্ষে ৬ অক্ষর)" required class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
-</div><div class="relative">
-<i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
-<input id="confirm" type="password" minlength="6" placeholder="Confirm Password" required class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
-</div><label class="flex gap-2 text-[10px] text-gray-500">
-<input id="terms" type="checkbox" required>
-<span>আমি Halal Income-এর নিয়ম ও শর্ত মেনে অ্যাকাউন্ট তৈরি করতে সম্মত।</span>
-</label><button id="registerBtn" class="w-full bg-gradient-to-r from-purple-700 to-blue-600 text-white font-black py-3.5 rounded-2xl shadow-lg">
-Create Account <i class="fa-solid fa-arrow-right ml-1"></i>
-</button></form><p class="text-xs text-center text-gray-500 mt-5">
-Already have an account?
-<a href="login.html" class="text-purple-700 font-bold">Login</a>
-</p></div>
+
+
+
+<!-- ================================================= -->
+<!-- SUCCESS POPUP -->
+<!-- ================================================= -->
+
+<div
+    id="successModal"
+    class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+
+    <div class="popup-animation bg-white w-full max-w-sm rounded-[32px] overflow-hidden shadow-2xl">
+
+
+        <!-- POPUP HEADER -->
+
+        <div class="bg-gradient-to-br from-purple-700 via-indigo-600 to-blue-600 text-white text-center px-6 pt-7 pb-6">
+
+
+            <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl">
+
+                <i class="fa-solid fa-check text-green-500 text-4xl"></i>
+
+            </div>
+
+
+            <div class="inline-flex items-center gap-1 bg-white/15 px-3 py-1 rounded-full text-[10px] font-bold">
+
+                <i class="fa-solid fa-circle-check text-green-300"></i>
+
+                Registration Successful
+
+            </div>
+
+
+            <h2 class="text-2xl font-black mt-3">
+                অভিনন্দন! 🎉
+            </h2>
+
+
+            <p class="text-xs text-white/85 mt-2">
+                আপনার Account সফলভাবে তৈরি হয়েছে।
+            </p>
+
+        </div>
+
+
+
+        <!-- POPUP BODY -->
+
+        <div class="p-6 text-center">
+
+
+            <div class="w-14 h-14 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
+
+                <i class="fa-brands fa-telegram text-sky-500 text-3xl"></i>
+
+            </div>
+
+
+            <h3 class="text-lg font-black text-gray-800">
+
+                আমাদের Telegram Group-এ Join করুন! 🚀
+
+            </h3>
+
+
+            <p class="text-xs text-gray-500 leading-5 mt-2">
+
+                গুরুত্বপূর্ণ Update, নতুন কাজের খবর,
+                Announcement এবং বিশেষ অফার পেতে
+                আমাদের Official Community-তে যুক্ত থাকুন।
+
+            </p>
+
+
+
+            <!-- BENEFITS -->
+
+            <div class="grid grid-cols-2 gap-2 mt-5">
+
+
+                <div class="bg-purple-50 rounded-2xl p-3">
+
+                    <i class="fa-solid fa-bell text-purple-600"></i>
+
+                    <p class="text-[10px] font-bold text-gray-700 mt-1">
+                        গুরুত্বপূর্ণ Update
+                    </p>
+
+                </div>
+
+
+                <div class="bg-blue-50 rounded-2xl p-3">
+
+                    <i class="fa-solid fa-bullhorn text-blue-600"></i>
+
+                    <p class="text-[10px] font-bold text-gray-700 mt-1">
+                        নতুন Announcement
+                    </p>
+
+                </div>
+
+
+                <div class="bg-green-50 rounded-2xl p-3">
+
+                    <i class="fa-solid fa-briefcase text-green-600"></i>
+
+                    <p class="text-[10px] font-bold text-gray-700 mt-1">
+                        নতুন কাজ
+                    </p>
+
+                </div>
+
+
+                <div class="bg-orange-50 rounded-2xl p-3">
+
+                    <i class="fa-solid fa-gift text-orange-600"></i>
+
+                    <p class="text-[10px] font-bold text-gray-700 mt-1">
+                        বিশেষ অফার
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TELEGRAM BUTTON -->
+
+            <a
+                href="https://t.me/+cz4esCEcuPNlYjdl"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="telegram-pulse mt-5 w-full bg-gradient-to-r from-sky-500 to-blue-600 text-white py-3.5 rounded-2xl font-black text-sm shadow-lg flex items-center justify-center gap-2">
+
+                <i class="fa-brands fa-telegram text-xl"></i>
+
+                JOIN TELEGRAM GROUP
+
+            </a>
+
+
+
+            <!-- LOGIN BUTTON -->
+
+            <button
+                onclick="goToLogin()"
+                class="w-full mt-3 bg-gray-100 hover:bg-gray-200 text-gray-700 py-3 rounded-2xl font-bold text-xs">
+
+                Continue to Login
+
+                <i class="fa-solid fa-arrow-right ml-1"></i>
+
+            </button>
+
+
+            <p class="text-[9px] text-gray-400 mt-4">
+
+                ❤️ Halal Income Community-তে আপনাকে স্বাগতম
+
+            </p>
+
+        </div>
+
+    </div>
+
 </div>
-</div><!-- TELEGRAM POPUP --><div id="telegramPopup" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4 z-50"><div class="popup bg-white w-full max-w-sm rounded-[32px] overflow-hidden shadow-2xl"><div class="bg-gradient-to-br from-purple-700 via-indigo-600 to-blue-600 text-white text-center p-7"><div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto shadow-xl">
-<i class="fa-solid fa-check text-green-500 text-4xl"></i>
-</div><div class="mt-4 inline-block bg-white/15 px-3 py-1 rounded-full text-[10px] font-bold">
-Registration Successful
-</div><h2 class="text-2xl font-black mt-3">অভিনন্দন! 🎉</h2><p class="text-xs text-white/80 mt-2">
-আপনার Account সফলভাবে তৈরি হয়েছে।
-</p></div><div class="p-6 text-center"><div class="w-14 h-14 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto">
-<i class="fa-brands fa-telegram text-sky-500 text-3xl"></i>
-</div><h3 class="text-lg font-black text-gray-800 mt-3">
-আমাদের Telegram Group-এ Join করুন! 🚀
-</h3><p class="text-xs text-gray-500 leading-5 mt-2">
-গুরুত্বপূর্ণ Update, নতুন কাজের খবর,
-Announcement এবং বিশেষ অফার পেতে
-আমাদের Community-তে যুক্ত থাকুন।
-</p><div class="grid grid-cols-2 gap-2 mt-5"><div class="bg-purple-50 rounded-2xl p-3">
-<i class="fa-solid fa-bell text-purple-600"></i>
-<p class="text-[10px] font-bold mt-1">গুরুত্বপূর্ণ Update</p>
-</div><div class="bg-blue-50 rounded-2xl p-3">
-<i class="fa-solid fa-bullhorn text-blue-600"></i>
-<p class="text-[10px] font-bold mt-1">নতুন Announcement</p>
-</div><div class="bg-green-50 rounded-2xl p-3">
-<i class="fa-solid fa-briefcase text-green-600"></i>
-<p class="text-[10px] font-bold mt-1">নতুন কাজ</p>
-</div><div class="bg-orange-50 rounded-2xl p-3">
-<i class="fa-solid fa-gift text-orange-600"></i>
-<p class="text-[10px] font-bold mt-1">বিশেষ অফার</p>
-</div></div><a href="https://t.me/+cz4esCEcuPNlYjdl"
-target="_blank"
-class="pulse mt-5 w-full bg-gradient-to-r from-sky-500 to-blue-600 text-white py-3.5 rounded-2xl font-black text-sm shadow-lg flex items-center justify-center gap-2">
 
-<i class="fa-brands fa-telegram text-xl"></i>
-JOIN TELEGRAM GROUP
 
-</a><button onclick="location.href='login.html'"
-class="w-full mt-3 bg-gray-100 text-gray-700 py-3 rounded-2xl font-bold text-xs">
 
-Continue to Login
-<i class="fa-solid fa-arrow-right ml-1"></i>
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
 
-</button><p class="text-[9px] text-gray-400 mt-4">
-❤️ Halal Income Community-তে আপনাকে স্বাগতম
-</p></div>
-</div>
-</div><script>
+<script>
 
-document.getElementById("registerForm").addEventListener("submit",function(e){
 
-e.preventDefault();
+/* PASSWORD SHOW / HIDE */
 
-const name=document.getElementById("name").value.trim();
-const email=document.getElementById("email").value.trim().toLowerCase();
-const password=document.getElementById("password").value;
-const confirm=document.getElementById("confirm").value;
+function togglePassword(inputId, iconId){
 
-if(password.length<6){
-alert("❌ Password কমপক্ষে ৬ অক্ষরের হতে হবে।");
-return;
+    const input =
+        document.getElementById(inputId);
+
+    const icon =
+        document.getElementById(iconId);
+
+
+    if(input.type === "password"){
+
+        input.type = "text";
+
+        icon.className =
+            "fa-solid fa-eye-slash";
+
+    }else{
+
+        input.type = "password";
+
+        icon.className =
+            "fa-solid fa-eye";
+
+    }
+
 }
 
-if(password!==confirm){
-alert("❌ Password এবং Confirm Password একই নয়।");
-return;
-}
 
-const user={
-name:name,
-email:email,
-password:password,
-referral:document.getElementById("referral").value
-};
 
-localStorage.setItem("hi_user",JSON.stringify(user));
-localStorage.setItem("hi_user_name",name);
-localStorage.setItem("hi_user_email",email);
-localStorage.setItem("hi_account_active","false");
-localStorage.setItem("hi_user_balance","15.00");
+/* REGISTRATION */
 
-document.getElementById("telegramPopup").classList.remove("hidden");
-document.getElementById("telegramPopup").classList.add("flex");
+document
+.getElementById("registerForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById("fullName").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+
+    /* PASSWORD CHECK */
+
+    if(password.length < 6){
+
+        alert(
+            "❌ Password কমপক্ষে ৬ অক্ষরের হতে হবে।"
+        );
+
+        return;
+    }
+
+
+    /* CONFIRM PASSWORD */
+
+    if(password !== confirmPassword){
+
+        alert(
+            "❌ Password দুইটি একই নয়।"
+        );
+
+        return;
+    }
+
+
+    /* SAVE USER */
+
+    localStorage.setItem(
+        "hi_user_name",
+        name
+    );
+
+    localStorage.setItem(
+        "hi_user_email",
+        email
+    );
+
+    localStorage.setItem(
+        "hi_user_password",
+        password
+    );
+
+
+    /* STARTING BALANCE */
+
+    localStorage.setItem(
+        "hi_user_balance",
+        "15.00"
+    );
+
+
+    /* ACCOUNT INACTIVE */
+
+    localStorage.setItem(
+        "hi_account_active",
+        "false"
+    );
+
+
+    /* HIDE REGISTER */
+
+    document
+    .getElementById("registerPage")
+    .style.display = "none";
+
+
+    /* SHOW SUCCESS POPUP */
+
+    const modal =
+        document.getElementById("successModal");
+
+    modal.classList.remove("hidden");
+
+    modal.classList.add("flex");
 
 });
 
-</script></body>
+
+
+/* GO LOGIN */
+
+function goToLogin(){
+
+    window.location.href =
+        "login.html";
+
+}
+
+</script>
+
+
+</body>
 </html>
