@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <!-- ৪টি বাটন (বাম পাশের দুটোই টেলিগ্রাম আইকনসহ) -->
+        <!-- ৪টি বাটন (টেলিগ্রাম চ্যানেল, গ্রুপ, ইউটিউব, সাপোর্ট) -->
         <div class="grid grid-cols-4 gap-2">
             <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
                 <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
@@ -264,23 +264,57 @@
         </div>
     </div>
 
-    <!-- Profile Modal -->
-    <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative text-center">
-            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+    <!-- বিশাল এবং আকর্ষণীয় বড় প্রোফাইল মডাল (আজকের ইনকাম, কালকের ইনকাম ও লেভেল ১ থেকে ১০ জেনারেশন ইনকামসহ) -->
+    <div id="profileModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 z-50 overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 w-full max-w-md shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center z-10"><i class="fa-solid fa-xmark"></i></button>
+            
+            <!-- প্রোফাইল হেডার -->
             <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-lg font-black text-2xl">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <h3 class="text-lg font-bold text-white uppercase" id="profileNameDisplay">ব্যবহারকারী</h3>
-            <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
+            <h3 class="text-base font-bold text-white uppercase" id="profileNameDisplay">ব্যবহারকারী</h3>
+            <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>
+            <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2">Inactive User</span>
             
-            <div class="space-y-2.5 text-xs text-slate-300 border-t border-b border-slate-800 py-3.5 my-4 text-left">
-                <div class="flex justify-between">
-                    <span class="text-slate-400">রেফার কোড:</span>
-                    <span class="font-bold text-emerald-400 font-mono" id="profileReferCode">USER123</span>
+            <!-- আজকের ও কালকের ইনকাম বক্স -->
+            <div class="grid grid-cols-2 gap-2.5 my-4">
+                <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold">আজকের ইনকাম</p>
+                    <h4 class="text-base font-black text-emerald-400 mt-1">৳০.০০</h4>
+                </div>
+                <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-2xl text-center">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold">গতকালের ইনকাম</p>
+                    <h4 class="text-base font-black text-teal-400 mt-1">৳০.০০</h4>
                 </div>
             </div>
-            <button onclick="closeModal('profileModal')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 rounded-xl text-xs transition border border-slate-700">
+
+            <!-- রেফার কোড ইনফো -->
+            <div class="bg-slate-800/50 border border-slate-700 p-3 rounded-2xl mb-4 text-xs text-slate-300 flex justify-between items-center">
+                <span class="text-slate-400">আপনার রেফার কোড:</span>
+                <span class="font-bold text-emerald-400 font-mono" id="profileReferCode">USER123</span>
+            </div>
+
+            <!-- লেভেল ১ থেকে লেভেল ১০ জেনারেশন ইনকাম সেকশন -->
+            <div class="text-left space-y-2 mb-4">
+                <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1.5 mb-2">
+                    <i class="fa-solid fa-network-wired"></i> ১০ জেনারেশন লেভেল ইনকাম (Level 1 - 10)
+                </h4>
+                <div class="space-y-1.5 max-h-48 overflow-y-auto pr-1 text-xs">
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ১ (Level 1)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ২ (Level 2)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৩ (Level 3)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৪ (Level 4)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৫ (Level 5)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৬ (Level 6)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৭ (Level 7)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৮ (Level 8)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ৯ (Level 9)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                    <div class="flex justify-between items-center bg-slate-800/70 px-3 py-2 rounded-xl border border-slate-700/50"><span class="text-slate-300 font-medium">লেভেল ১০ (Level 10)</span><span class="font-bold text-emerald-400">৳০.০০</span></div>
+                </div>
+            </div>
+
+            <button onclick="closeModal('profileModal')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 rounded-xl text-xs transition border border-slate-700">
                 বন্ধ করুন
             </button>
         </div>
@@ -329,7 +363,7 @@
             if (isAccountActive) {
                 document.getElementById('statusText').innerText = 'Active';
                 document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
-                document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+                document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2";
                 document.getElementById('profileStatusBadge').innerText = "Active User";
                 document.getElementById('inactiveAlertCard').style.display = 'none';
             }
