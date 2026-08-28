@@ -1,100 +1,191 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halal Income</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .phone-container {
+            width: 100%;
+            max-width: 400px;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #ff4e50, #f9d423);
+            padding: 20px;
+            color: white;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        .user-details h3 {
+            font-size: 18px;
+        }
+        .user-details p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .balance-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .balance-card h4 {
+            font-size: 14px;
+            font-weight: normal;
+        }
+        .balance-card h2 {
+            font-size: 24px;
+            margin-top: 5px;
+        }
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .menu-item {
+            background: #ffffff;
+            padding: 15px 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 12px;
+            color: #333;
+        }
+        .menu-item div {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        /* Options List */
+        .options-list {
+            padding: 0 20px;
+        }
+        .option-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .option-card-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .icon-box {
+            width: 35px;
+            height: 35px;
+            background: #ffebee;
+            color: #ff4e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+        }
+        .option-text h4 {
+            font-size: 14px;
+            color: #333;
+        }
+        .option-text p {
+            font-size: 11px;
+            color: #777;
+        }
+    </style>
 </head>
+<body>
 
-<body class="bg-slate-950 min-h-screen text-white">
-
-<div class="max-w-md mx-auto min-h-screen px-5 py-8">
-
-    <div class="text-center pt-10">
-
-        <div class="w-20 h-20 mx-auto rounded-3xl
-        bg-gradient-to-br from-violet-600 to-blue-600
-        flex items-center justify-center shadow-2xl">
-
-            <i class="fa-solid fa-mosque text-4xl text-amber-300"></i>
-
+    <div class="phone-container">
+        <div class="header">
+            <div class="user-info">
+                <img src="https://via.placeholder.com/50" alt="User">
+                <div class="user-details">
+                    <h3>TNL LAB</h3>
+                    <p>UID | 26289</p>
+                </div>
+            </div>
+            <div class="balance-card">
+                <h4>Total balance</h4>
+                <h2>₹10640.00</h2>
+            </div>
         </div>
 
-        <h1 class="text-3xl font-black mt-5">
-            HALAL INCOME
-        </h1>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div>👛</div>
+                Wallet
+            </div>
+            <div class="menu-item">
+                <div>📥</div>
+                Deposit
+            </div>
+            <div class="menu-item">
+                <div>📤</div>
+                Withdraw
+            </div>
+            <div class="menu-item">
+                <div>👑</div>
+                VIP
+            </div>
+        </div>
 
-        <p class="text-slate-400 text-sm mt-2">
-            Premium Earning Platform
-        </p>
+        <div class="options-list">
+            <div class="option-card">
+                <div class="option-card-left">
+                    <div class="icon-box">📊</div>
+                    <div class="option-text">
+                        <h4>Game History</h4>
+                        <p>My game history</p>
+                    </div>
+                </div>
+                <span>></span>
+            </div>
 
+            <div class="option-card">
+                <div class="option-card-left">
+                    <div class="icon-box">📋</div>
+                    <div class="option-text">
+                        <h4>Transaction</h4>
+                        <p>My transaction history</p>
+                    </div>
+                </div>
+                <span>></span>
+            </div>
+        </div>
     </div>
-
-
-    <div class="mt-10 bg-white/10 border border-white/10
-    rounded-3xl p-6 backdrop-blur-xl">
-
-        <h2 class="text-xl font-black text-center">
-            Halal Income-এ স্বাগতম
-        </h2>
-
-        <p class="text-xs text-slate-400 text-center mt-2">
-            আপনার Account-এ প্রবেশ করুন অথবা নতুন Account তৈরি করুন।
-        </p>
-
-
-        <a href="login.html"
-        class="block text-center mt-7 py-4 rounded-2xl
-        bg-gradient-to-r from-violet-600 to-blue-600
-        font-black shadow-xl">
-
-            <i class="fa-solid fa-right-to-bracket mr-2"></i>
-            Login
-
-        </a>
-
-
-        <a href="register.html"
-        class="block text-center mt-3 py-4 rounded-2xl
-        bg-white/10 border border-white/10 font-bold">
-
-            <i class="fa-solid fa-user-plus mr-2"></i>
-            নতুন Account খুলুন
-
-        </a>
-
-    </div>
-
-
-    <div class="mt-7 grid grid-cols-3 gap-2 text-center">
-
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-bolt text-amber-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Quick</p>
-        </div>
-
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-gift text-pink-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Referral</p>
-        </div>
-
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-wallet text-emerald-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Wallet</p>
-        </div>
-
-    </div>
-
-
-    <p class="text-center text-[10px] text-slate-600 mt-10">
-        © 2026 Halal Income
-    </p>
-
-</div>
 
 </body>
 </html>
