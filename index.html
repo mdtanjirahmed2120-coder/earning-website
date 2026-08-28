@@ -1,100 +1,573 @@
-<!DOCTYPE html>
-<html lang="bn">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Halal Income</title>
+<script>
+    // ==========================================
+    // ACCOUNT & BALANCE
+    // ==========================================
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
+    let isAccountActive =
+        localStorage.getItem('hi_account_active') === 'true';
 
-<body class="bg-slate-950 min-h-screen text-white">
-
-<div class="max-w-md mx-auto min-h-screen px-5 py-8">
-
-    <div class="text-center pt-10">
-
-        <div class="w-20 h-20 mx-auto rounded-3xl
-        bg-gradient-to-br from-violet-600 to-blue-600
-        flex items-center justify-center shadow-2xl">
-
-            <i class="fa-solid fa-mosque text-4xl text-amber-300"></i>
-
-        </div>
-
-        <h1 class="text-3xl font-black mt-5">
-            HALAL INCOME
-        </h1>
-
-        <p class="text-slate-400 text-sm mt-2">
-            Premium Earning Platform
-        </p>
-
-    </div>
+    let userBalance =
+        parseFloat(localStorage.getItem('hi_user_balance')) || 15.00;
 
 
-    <div class="mt-10 bg-white/10 border border-white/10
-    rounded-3xl p-6 backdrop-blur-xl">
+    // ==========================================
+    // PAGE LOAD
+    // ==========================================
 
-        <h2 class="text-xl font-black text-center">
-            Halal Income-এ স্বাগতম
-        </h2>
+    window.addEventListener('DOMContentLoaded', () => {
 
-        <p class="text-xs text-slate-400 text-center mt-2">
-            আপনার Account-এ প্রবেশ করুন অথবা নতুন Account তৈরি করুন।
-        </p>
+        const savedName =
+            localStorage.getItem('hi_user_name');
 
+        if (savedName) {
 
-        <a href="login.html"
-        class="block text-center mt-7 py-4 rounded-2xl
-        bg-gradient-to-r from-violet-600 to-blue-600
-        font-black shadow-xl">
+            const userNameDisplay =
+                document.getElementById('userNameDisplay');
 
-            <i class="fa-solid fa-right-to-bracket mr-2"></i>
-            Login
+            const profileNameDisplay =
+                document.getElementById('profileNameDisplay');
 
-        </a>
+            if (userNameDisplay) {
+                userNameDisplay.innerText =
+                    savedName.toUpperCase();
+            }
 
+            if (profileNameDisplay) {
+                profileNameDisplay.innerText =
+                    savedName.toUpperCase();
+            }
+        }
 
-        <a href="register.html"
-        class="block text-center mt-3 py-4 rounded-2xl
-        bg-white/10 border border-white/10 font-bold">
-
-            <i class="fa-solid fa-user-plus mr-2"></i>
-            নতুন Account খুলুন
-
-        </a>
-
-    </div>
+        updateAccountStatus();
+        updateBalanceUI();
+    });
 
 
-    <div class="mt-7 grid grid-cols-3 gap-2 text-center">
+    // ==========================================
+    // ACCOUNT STATUS
+    // ==========================================
 
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-bolt text-amber-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Quick</p>
-        </div>
+    function updateAccountStatus() {
 
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-gift text-pink-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Referral</p>
-        </div>
+        const statusText =
+            document.getElementById('statusText');
 
-        <div class="bg-white/5 rounded-2xl p-3">
-            <i class="fa-solid fa-wallet text-emerald-400"></i>
-            <p class="text-[9px] mt-2 text-slate-400">Wallet</p>
-        </div>
+        const badgeStatus =
+            document.getElementById('badgeStatus');
 
-    </div>
+        const profileStatusBadge =
+            document.getElementById('profileStatusBadge');
+
+        const inactiveAlertCard =
+            document.getElementById('inactiveAlertCard');
 
 
-    <p class="text-center text-[10px] text-slate-600 mt-10">
-        © 2026 Halal Income
-    </p>
+        if (isAccountActive) {
 
-</div>
+            if (statusText) {
+                statusText.innerText = 'Active';
+            }
 
-</body>
-</html>
+            if (badgeStatus) {
+                badgeStatus.className =
+                    "bg-green-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
+            }
+
+            if (profileStatusBadge) {
+
+                profileStatusBadge.className =
+                    "bg-green-100 text-green-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+
+                profileStatusBadge.innerText =
+                    "Active User";
+            }
+
+            if (inactiveAlertCard) {
+                inactiveAlertCard.style.display = 'none';
+            }
+
+        } else {
+
+            if (statusText) {
+                statusText.innerText = 'Inactive';
+            }
+
+            if (profileStatusBadge) {
+
+                profileStatusBadge.className =
+                    "bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+
+                profileStatusBadge.innerText =
+                    "Inactive User";
+            }
+
+            if (inactiveAlertCard) {
+                inactiveAlertCard.style.display = 'block';
+            }
+        }
+    }
+
+
+    // ==========================================
+    // BALANCE
+    // ==========================================
+
+    function updateBalanceUI() {
+
+        const mainBalanceDisplay =
+            document.getElementById('mainBalanceDisplay');
+
+        const modalBalanceDisplay =
+            document.getElementById('modalBalanceDisplay');
+
+
+        if (mainBalanceDisplay) {
+
+            mainBalanceDisplay.innerText =
+                '৳' + userBalance.toFixed(2);
+        }
+
+        if (modalBalanceDisplay) {
+
+            modalBalanceDisplay.innerText =
+                '৳' + userBalance.toFixed(2);
+        }
+
+        localStorage.setItem(
+            'hi_user_balance',
+            userBalance.toFixed(2)
+        );
+    }
+
+
+    // ==========================================
+    // TASK ACCESS
+    // ==========================================
+
+    function checkTaskAccess(taskName) {
+
+        if (!isAccountActive) {
+
+            alert(
+                '⚠️ আপনার অ্যাকাউন্টটি এখনো Active নয়।\n\n' +
+                'কাজ শুরু করতে প্রথমে অ্যাকাউন্ট Active করুন।'
+            );
+
+            openActivationModal();
+            return;
+        }
+
+        alert(
+            '🎉 ' +
+            taskName +
+            ' সেকশনে আপনাকে স্বাগতম!'
+        );
+    }
+
+
+    // ==========================================
+    // ACTIVATION MODAL
+    // ==========================================
+
+    function openActivationModal() {
+
+        const modal =
+            document.getElementById('activationModal');
+
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+    }
+
+
+    // ==========================================
+    // WALLET MODAL
+    // ==========================================
+
+    function openWalletModal() {
+
+        if (!isAccountActive) {
+
+            alert(
+                '⚠️ আপনার অ্যাকাউন্ট Active নয়।\n\n' +
+                'Withdraw করার আগে Account Active করুন।'
+            );
+
+            openActivationModal();
+            return;
+        }
+
+
+        const modal =
+            document.getElementById('walletModal');
+
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+    }
+
+
+    // ==========================================
+    // PROFILE MODAL
+    // ==========================================
+
+    function openProfileModal() {
+
+        const modal =
+            document.getElementById('profileModal');
+
+        if (modal) {
+            modal.classList.remove('hidden');
+        }
+    }
+
+
+    // ==========================================
+    // CLOSE MODAL
+    // ==========================================
+
+    function closeModal(id) {
+
+        const modal =
+            document.getElementById(id);
+
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    }
+
+
+    // ==========================================
+    // COPY REFERRAL LINK
+    // ==========================================
+
+    function copyReferLink() {
+
+        if (!isAccountActive) {
+
+            alert(
+                '⚠️ Account Active না হওয়া পর্যন্ত ' +
+                'Referral Link ব্যবহার করতে পারবেন না।'
+            );
+
+            openActivationModal();
+            return;
+        }
+
+
+        const copyText =
+            document.getElementById('referLinkInput');
+
+        if (!copyText) {
+            return;
+        }
+
+
+        navigator.clipboard.writeText(copyText.value)
+            .then(() => {
+
+                alert(
+                    '✅ আপনার Referral Link কপি হয়েছে!\n\n' +
+                    copyText.value
+                );
+
+            })
+            .catch(() => {
+
+                copyText.select();
+
+                document.execCommand('copy');
+
+                alert(
+                    '✅ Referral Link কপি হয়েছে!'
+                );
+            });
+    }
+
+
+    // ==========================================
+    // ACTIVATION REQUEST
+    // ==========================================
+
+    async function handleActivationSubmit(event) {
+
+        event.preventDefault();
+
+
+        const name =
+            document.getElementById('senderName').value.trim();
+
+        const phone =
+            document.getElementById('senderPhone').value.trim();
+
+        const trxid =
+            document.getElementById('senderTrxid').value.trim();
+
+        const submitBtn =
+            document.getElementById('submitBtn');
+
+
+        if (!name || !phone || !trxid) {
+
+            alert(
+                '❌ অনুগ্রহ করে নাম, মোবাইল নম্বর এবং TrxID পূরণ করুন।'
+            );
+
+            return;
+        }
+
+
+        submitBtn.innerText =
+            'রিকোয়েস্ট পাঠানো হচ্ছে...';
+
+        submitBtn.disabled = true;
+
+
+        try {
+
+            /*
+             * Backend API
+             *
+             * এখানে Telegram Bot Token রাখা হয়নি।
+             * নিরাপত্তার জন্য Telegram request SERVER থেকে
+             * পাঠানো উচিত।
+             */
+
+            const response = await fetch(
+                '/api/activation-request',
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        trxid: trxid
+                    })
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (response.ok && data.success) {
+
+                /*
+                 * এখানে Account Active করা হচ্ছে না।
+                 *
+                 * Admin payment যাচাই করার পর
+                 * Server থেকে Account Active হবে।
+                 */
+
+
+                localStorage.setItem(
+                    'hi_user_name',
+                    name
+                );
+
+
+                const userNameDisplay =
+                    document.getElementById('userNameDisplay');
+
+                const profileNameDisplay =
+                    document.getElementById('profileNameDisplay');
+
+
+                if (userNameDisplay) {
+                    userNameDisplay.innerText =
+                        name.toUpperCase();
+                }
+
+
+                if (profileNameDisplay) {
+                    profileNameDisplay.innerText =
+                        name.toUpperCase();
+                }
+
+
+                alert(
+                    '✅ Activation Request সফলভাবে জমা হয়েছে!\n\n' +
+                    'Payment যাচাই করার পর আপনার Account Active করা হবে।'
+                );
+
+
+                closeModal('activationModal');
+
+            } else {
+
+                alert(
+                    data.message ||
+                    '❌ Request পাঠাতে সমস্যা হয়েছে।'
+                );
+            }
+
+        } catch (error) {
+
+            alert(
+                '❌ Server-এর সাথে যোগাযোগ করা যাচ্ছে না।'
+            );
+
+        } finally {
+
+            submitBtn.innerText =
+                'তথ্য জমা দিন';
+
+            submitBtn.disabled = false;
+        }
+    }
+
+
+    // ==========================================
+    // WITHDRAW REQUEST
+    // ==========================================
+
+    async function handleWithdrawSubmit(event) {
+
+        event.preventDefault();
+
+
+        if (!isAccountActive) {
+
+            alert(
+                '⚠️ Account Active না থাকলে Withdraw করা যাবে না।'
+            );
+
+            openActivationModal();
+            return;
+        }
+
+
+        const method =
+            document.getElementById('withdrawMethod').value;
+
+        const phone =
+            document.getElementById('withdrawPhone').value.trim();
+
+        const amount =
+            parseFloat(
+                document.getElementById('withdrawAmount').value
+            );
+
+        const withdrawBtn =
+            document.getElementById('withdrawBtn');
+
+
+        // Minimum Withdraw = 100 টাকা
+
+        if (isNaN(amount) || amount < 100) {
+
+            alert(
+                '❌ সর্বনিম্ন ১০০ টাকা হলে Withdraw করতে পারবেন।'
+            );
+
+            return;
+        }
+
+
+        // Balance Check
+
+        if (amount > userBalance) {
+
+            alert(
+                '❌ আপনার Account-এ পর্যাপ্ত Balance নেই।'
+            );
+
+            return;
+        }
+
+
+        // Payment Number Check
+
+        if (!phone) {
+
+            alert(
+                '❌ আপনার Payment Number দিন।'
+            );
+
+            return;
+        }
+
+
+        withdrawBtn.innerText =
+            'Request পাঠানো হচ্ছে...';
+
+        withdrawBtn.disabled = true;
+
+
+        try {
+
+            const response = await fetch(
+                '/api/withdraw-request',
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        method: method,
+                        phone: phone,
+                        amount: amount
+                    })
+                }
+            );
+
+
+            const data =
+                await response.json();
+
+
+            if (response.ok && data.success) {
+
+                /*
+                 * Server থেকে নতুন Balance আসবে।
+                 */
+
+                if (
+                    typeof data.balance !== 'undefined'
+                ) {
+
+                    userBalance =
+                        parseFloat(data.balance);
+
+                    updateBalanceUI();
+                }
+
+
+                alert(
+                    '✅ Withdraw Request সফলভাবে জমা হয়েছে!\n\n' +
+                    'Admin যাচাই করার পর Payment দেওয়া হবে।'
+                );
+
+
+                closeModal('walletModal');
+
+            } else {
+
+                alert(
+                    data.message ||
+                    '❌ Withdraw Request পাঠানো যায়নি।'
+                );
+            }
+
+        } catch (error) {
+
+            alert(
+                '❌ Server-এর সাথে যোগাযোগ করা যাচ্ছে না।'
+            );
+
+        } finally {
+
+            withdrawBtn.innerText =
+                'উইথড্র রিকোয়েস্ট পাঠান';
+
+            withdrawBtn.disabled = false;
+        }
+    }
+</script>
