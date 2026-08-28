@@ -96,7 +96,7 @@
                 </div>  
             </div>  
 
-            <!-- ৩টি সোশ্যাল বাটন (ইউটিউব রিমুভ করে ৩ কলাম করা হয়েছে) -->  
+            <!-- ৩টি সোশ্যাল বাটন -->  
             <div class="grid grid-cols-3 gap-2">  
                 <!-- টেলিগ্রাম চ্যানেল -->
                 <a href="https://t.me/+cz4esCEcuPNlYjdl" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
@@ -145,30 +145,25 @@
             </div>  
         </div>  
 
-        <!-- Fixed Bottom Navigation Bar (5টি অপশন সহ) -->
+        <!-- Fixed Bottom Navigation Bar -->
         <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-2 px-3 z-40 max-w-md mx-auto">
             <div class="grid grid-cols-5 gap-1 text-center">
-                <!-- হোম -->
                 <button onclick="showCustomPopup('হোম পেজে আছেন')" class="flex flex-col items-center text-emerald-400 transition">
                     <i class="fa-solid fa-house text-base"></i>
                     <span class="text-[9px] font-bold mt-0.5">হোম</span>
                 </button>
-                <!-- টাস্ক -->
                 <button onclick="checkTaskAccess('টাস্ক')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-briefcase text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">টাস্ক</span>
                 </button>
-                <!-- হিস্ট্রি -->
                 <button onclick="showCustomPopup('হিস্ট্রি সেকশন')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-clock-rotate-left text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">হিস্ট্রি</span>
                 </button>
-                <!-- ওয়ালেট -->
                 <button onclick="openActivationModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-wallet text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">ওয়ালেট</span>
                 </button>
-                <!-- প্রোফাইল -->
                 <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-user text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">প্রোফাইল</span>
@@ -177,7 +172,7 @@
         </div>
     </div>
 
-    <!-- লজিক অথেন্টিকেশন পেজ (লগইন ও রেজিস্ট্রেশন ফর্ম) -->
+    <!-- লজিক অথেন্টিকেশন পেজ -->
     <div id="authScreen" class="max-w-md mx-auto p-4 min-h-screen flex items-center justify-center">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full shadow-2xl space-y-5">
             
@@ -189,7 +184,7 @@
                 <p class="text-xs text-slate-400" id="formSubtitle">আপনার অ্যাকাউন্টে প্রবেশ করতে তথ্য দিন</p>
             </div>
 
-            <!-- ট্যাব সুইচ বাটন (লগইন / রেজিস্টার) -->
+            <!-- ট্যাব সুইচ বাটন -->
             <div class="grid grid-cols-2 bg-slate-950 p-1 rounded-2xl border border-slate-800 text-xs font-bold">
                 <button type="button" id="loginTabBtn" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl bg-emerald-500 text-slate-950 transition">লগইন</button>
                 <button type="button" id="registerTabBtn" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl text-slate-400 transition">রেজিস্ট্রেশন</button>
@@ -198,13 +193,10 @@
             <!-- ফর্ম সেকশন -->
             <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3.5">
                 
-                <!-- নাম ফিল্ড ও রেজিস্ট্রেশন বোনাস নোটিশ (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
                 <div id="nameFieldContainer" class="hidden space-y-3.5">
-                    <!-- রেজিস্ট্রেশন বোনাস নোটিশ ব্যানার (সর্বোপরি উপরে লেখা থাকবে) -->
                     <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3 text-center text-xs font-bold text-emerald-400 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-gift text-sm"></i> রেজিস্ট্রেশন বোনাস ৫০ টাকা! 🎉
                     </div>
-
                     <div>
                         <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>
                         <input type="text" id="regName" placeholder="যেমন: আব্দুর রহমান" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
@@ -221,7 +213,6 @@
                     <input type="password" id="authPassword" placeholder="••••••••" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
                 </div>
 
-                <!-- রেফার কোড ফিল্ড (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
                 <div id="referFieldContainer" class="hidden">
                     <label class="block text-xs font-bold text-slate-300 mb-1">রেফার কোড (ঐচ্ছিক)</label>
                     <input type="text" id="regReferCode" placeholder="যেমন: REF-12345" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
@@ -247,7 +238,7 @@
         </div>  
     </div>  
 
-    <!-- প্রোফাইল মডাল (১ থেকে ১০ লেবেল ইনকাম সহ) -->  
+    <!-- প্রোফাইল মডাল -->  
     <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50 overflow-y-auto">  
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 w-full max-w-sm shadow-2xl relative my-8">  
             <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
@@ -258,7 +249,6 @@
                 <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>  
             </div>
 
-            <!-- ১ থেকে ১০ লেবেল ইনকাম চার্ট -->
             <div class="mb-4">
                 <h4 class="text-xs font-bold text-emerald-400 mb-2 flex items-center gap-1.5">
                     <i class="fa-solid fa-chart-line"></i> লেবেলভিত্তিক রেফার কমিশন (১ - ১০ লেবেল)
@@ -288,7 +278,7 @@
         </div>  
     </div>  
 
-    <!-- একাউন্ট একটিভেশন ফর্ম (Nagad Payment) -->  
+    <!-- একাউন্ট একটিভেশন ফর্ম -->  
     <div id="activationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">  
             <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
@@ -405,6 +395,11 @@
                 usersList.push(newUser);
                 localStorage.setItem('hi_all_users', JSON.stringify(usersList));
                 localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
+
+                // নতুন রেজিস্ট্রেশনের নোটিফিকেশন টেলিগ্রামে পাঠানোর কোড
+                const regMsg = `👤 নতুন ইউজার রেজিস্ট্রেশন!\n\n📛 নাম: ${name}\n📱 নম্বর: ${phone}\n🆔 ইউজার আইডি: #${userId}\n🔗 রেফার কোড: ${referCodeInput || 'কেউ না'}`;
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(regMsg)}`)
+                .catch(err => console.log(err));
 
                 showCustomPopup('অভিনন্দন! সফলভাবে অ্যাকাউন্ট তৈরি হয়েছে এবং ৫০ টাকা বোনাস যোগ হয়েছে।');
                 setTimeout(() => {
