@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <!-- আপনার চাহিদা অনুযায়ী কাজের উপরে ৪টি অপশন (টেলিগ্রাম চ্যানেল, গ্রুপ, ইউটিউব, কাস্টমার সার্ভিস) -->
+        <!-- ৪টি বাটন (বাম পাশের দুটোই টেলিগ্রাম আইকনসহ) -->
         <div class="grid grid-cols-4 gap-2">
             <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
                 <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
@@ -95,9 +95,9 @@
                 </div>
                 <span class="text-[10px] font-bold text-slate-200">টিজি চ্যানেল</span>
             </a>
-            <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-cyan-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                <div class="w-9 h-9 bg-cyan-500/20 text-cyan-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
-                    <i class="fa-solid fa-users"></i>
+            <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-telegram"></i>
                 </div>
                 <span class="text-[10px] font-bold text-slate-200">টিজি গ্রুপ</span>
             </a>
@@ -115,7 +115,7 @@
             </a>
         </div>
 
-        <!-- Services & Tasks Grid (সব অপশনসহ) -->
+        <!-- Services & Tasks Grid -->
         <div class="flex justify-between items-center pt-1 px-1">
             <h3 class="font-bold text-slate-200 text-xs flex items-center gap-2">
                 <i class="fa-solid fa-layer-group text-emerald-400"></i> প্রিমিয়াম সার্ভিস ও ক্যাটাগরি
@@ -388,7 +388,7 @@
         function handleActivationSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('senderName').value;
-            const phone = document.getElementById('senderPhone.value') || document.getElementById('senderPhone').value;
+            const phone = document.getElementById('senderPhone').value;
             const trxid = document.getElementById('senderTrxid').value;
             const submitBtn = document.getElementById('submitBtn');
 
