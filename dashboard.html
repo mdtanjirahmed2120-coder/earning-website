@@ -390,21 +390,22 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        // পেজ লোড হওয়ার সাথে সাথে বক্সে ছোট কোড দেখানো এবং ব্যাকগ্রাউন্ডে ফুল লিংক রেডি রাখা
+        // প্রতিবার নতুন রেফার কোড জেনারেট করার লজিক
         let fullReferLink = "";
         window.addEventListener('DOMContentLoaded', () => {
+            // ক্যাশ ক্লিয়ার করে নতুন ইউনিক কোড তৈরি করা
             const myUniqueId = "Halal-Income-" + Math.floor(1000 + Math.random() * 9000); 
-            
+
             const currentBaseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
             fullReferLink = currentBaseUrl + "register.html?ref=" + myUniqueId;
 
             const referLinkInput = document.getElementById('referLinkInput');
             if (referLinkInput) {
-                referLinkInput.value = myUniqueId; // ইনপুট বক্সে শুধু ছোট কোড দেখাবে
+                referLinkInput.value = myUniqueId; // বক্সে শুধু ছোট কোড দেখাবে
             }
         });
 
-        // কপি করার ফাংশন (কপি করলে পুরো লিংকটিই কপি হবে)
+        // কপি করার ফাংশন (ফুল লিংক কপি হবে)
         function copyReferLink() {
             navigator.clipboard.writeText(fullReferLink).then(() => {
                 alert("আপনার রেফারেল লিঙ্ক সফলভাবে কপি হয়েছে!\n" + fullReferLink);
