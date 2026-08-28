@@ -1,573 +1,530 @@
-<script>
-    // ==========================================
-    // ACCOUNT & BALANCE
-    // ==========================================
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halal Income - Premium Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 pb-28 font-sans antialiased">
 
-    let isAccountActive =
-        localStorage.getItem('hi_account_active') === 'true';
+    <!-- Top Navbar -->
+    <div class="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 p-4 sticky top-0 z-40 flex justify-between items-center max-w-md mx-auto">
+        <div class="flex items-center space-x-3">
+            <button onclick="openProfileModal()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                <i class="fa-solid fa-user-shield text-sm"></i>
+            </button>
+            <div>
+                <div class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-mosque text-emerald-400 text-xs"></i>
+                    <span class="font-bold tracking-wide text-sm bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Halal Income</span>
+                </div>
+                <p class="text-[10px] text-slate-400 font-medium">হালাল উপার্জনের আস্থার ঠিকানা</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2">
+            <span id="badgeStatus" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1">
+                <i class="fa-solid fa-circle text-[6px] animate-pulse"></i> <span id="statusText">Inactive</span>
+            </span>
+        </div>
+    </div>
 
-    let userBalance =
-        parseFloat(localStorage.getItem('hi_user_balance')) || 15.00;
+    <div class="max-w-md mx-auto p-4 space-y-4">
 
+        <!-- Inactive Account Alert Card -->
+        <div id="inactiveAlertCard" class="bg-gradient-to-r from-amber-500/10 to-rose-500/10 border border-amber-500/30 p-4 rounded-3xl shadow-lg flex items-center justify-between backdrop-blur-sm">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 text-lg shrink-0">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-amber-300 text-xs">অ্যাকাউন্টটি ইনঅ্যাক্টিভ রয়েছে!</h4>
+                    <p class="text-[11px] text-slate-300 mt-0.5">কাজ শুরু করতে ১০ দিয়ে একাউন্ট একটিভ করুন।</p>
+                </div>
+            </div>
+            <button onclick="openActivationModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-extrabold px-3.5 py-2.5 rounded-2xl text-xs shadow-lg shadow-orange-500/20 flex items-center gap-1 hover:scale-105 transition shrink-0">
+                <i class="fa-solid fa-bolt text-slate-950"></i> একটিভ করুন
+            </button>
+        </div>
 
-    // ==========================================
-    // PAGE LOAD
-    // ==========================================
+        <!-- User Balance Card -->
+        <div class="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-emerald-950 text-white p-5 rounded-3xl shadow-2xl border border-slate-700/60">
+            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
+            <div class="flex justify-between items-start relative z-10">
+                <div>
+                    <p class="text-[10px] tracking-wider uppercase text-emerald-400 font-bold">WELCOME BACK</p>
+                    <h2 class="text-lg font-black tracking-wide mt-0.5 text-white" id="userNameDisplay">MD JAHID</h2>
+                    <p class="text-[11px] text-slate-400 mt-0.5 font-mono">ID: #HI-98402</p>
+                </div>
+                <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700">
+                    <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">MAIN BALANCE</p>
+                    <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳15.00</h1>
+                </div>
+            </div>
+        </div>
 
-    window.addEventListener('DOMContentLoaded', () => {
+        <!-- Refer & Earn Box -->
+        <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/40 to-slate-800 border border-emerald-500/30 text-white p-4 rounded-3xl shadow-lg space-y-3 backdrop-blur-sm">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl shrink-0">
+                    <i class="fa-solid fa-gift"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>
+                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে ইনস্ট্যান্ট পান <b class="text-emerald-400">১৫ টাকা</b> 💸</p>
+                </div>
+            </div>
+            <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">
+                <input type="text" id="referLinkInput" readonly value="https://mdtanjirahmed2120-coder.github.io/earning-website/index.html?ref=USER123" class="bg-transparent text-[11px] px-2 w-full text-slate-300 focus:outline-none font-mono">
+                <button onclick="copyReferLink()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition shrink-0">
+                    কপি করুন
+                </button>
+            </div>
+        </div>
 
-        const savedName =
-            localStorage.getItem('hi_user_name');
+        <!-- Section Title -->
+        <div class="flex justify-between items-center pt-1 px-1">
+            <h3 class="font-bold text-slate-200 text-xs flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-emerald-400"></i> প্রিমিয়াম সার্ভিস ও ক্যাটাগরি
+            </h3>
+        </div>
 
-        if (savedName) {
+        <!-- 16 Grid Items Section -->
+        <div class="grid grid-cols-4 gap-3 bg-slate-800/50 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-700/60">
+            
+            <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">ফেসবুক সেল</span>
+            </a>
 
-            const userNameDisplay =
-                document.getElementById('userNameDisplay');
+            <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">জিমেইল সেল</span>
+            </a>
 
-            const profileNameDisplay =
-                document.getElementById('profileNameDisplay');
+            <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-purple-600/20 text-purple-400 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">ইনস্টা সেল</span>
+            </a>
 
-            if (userNameDisplay) {
-                userNameDisplay.innerText =
-                    savedName.toUpperCase();
+            <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-coins"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">কয়েন সেল</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('Micro Job')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-pink-600/20 text-pink-400 border border-pink-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">Micro Job</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('প্রিমিয়াম জব')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-amber-600/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-crown"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">প্রিমিয়াম জব</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('ভিডিওর কাজ')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-red-600/20 text-red-400 border border-red-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-circle-play"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">ভিডিওর কাজ</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('VIP প্ল্যান')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-gem"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">VIP প্ল্যান</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('জব হিস্ট্রি')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-sky-600/20 text-sky-400 border border-sky-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">জব হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('রেফার হিস্ট্রি')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-user-clock"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">রেফার হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="openWalletModal(); return false;" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-teal-600/20 text-teal-400 border border-teal-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">উইথড্র হিস্ট্রি</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('My Team')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">My Team</span>
+            </a>
+
+            <a href="#" onclick="openWalletModal(); return false;" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">Withdraw</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('গিফট কোড')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">গিফট কোড</span>
+            </a>
+
+            <a href="#" onclick="checkTaskAccess('লিডারবোর্ড')" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-purple-500/20 text-purple-400 border border-purple-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">লিডারবোর্ড</span>
+            </a>
+
+            <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center group">
+                <div class="w-12 h-12 bg-sky-500/20 text-sky-400 border border-sky-500/30 rounded-2xl flex items-center justify-center text-lg shadow-sm group-hover:scale-110 transition">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">সাপোর্ট</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Account Activation Modal -->
+    <div id="activationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
+            <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/30">
+                    <i class="fa-solid fa-bolt text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">একাউন্ট একটিভ করুন</h3>
+                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ অবশ্যই ১০ টাকা Send Money করতে হবে!</p>
+            </div>
+            <div class="bg-slate-800/80 border border-slate-700 p-3.5 rounded-2xl mb-4 text-xs text-slate-300 space-y-1">
+                <p class="flex justify-between items-center">
+                    <span class="text-slate-400">Nagad Personal:</span> 
+                    <span class="font-mono bg-slate-900 px-2.5 py-1 rounded-xl border border-slate-700 font-bold text-emerald-400">01784087562</span>
+                </p>
+                <p class="text-[10px] text-slate-400 pt-1 text-center">নম্বরে টাকা পাঠিয়ে নিচের ফর্মটি পূরণ করুন।</p>
+            </div>
+            <form onsubmit="handleActivationSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">আপনার নাম</label>
+                    <input type="text" id="senderName" placeholder="আপনার নাম লিখুন" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">নগদ সেন্ড মানি নম্বর</label>
+                    <input type="text" id="senderPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">TrxID (Transaction ID)</label>
+                    <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-slate-950 font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-emerald-500/20 mt-2 transition">
+                    তথ্য জমা দিন
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Wallet Modal -->
+    <div id="walletModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
+            <button onclick="closeModal('walletModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-12 h-12 bg-teal-500/20 text-teal-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-teal-500/30">
+                    <i class="fa-solid fa-wallet text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white">মাই ওয়ালেট (Withdraw)</h3>
+                <p class="text-xs text-amber-400 font-medium mt-0.5">⚠️ সর্বনিম্ন উইথড্র ১০০ টাকা</p>
+            </div>
+            
+            <div class="bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-500/30 p-4 rounded-2xl text-white text-center mb-4 shadow-inner">
+                <p class="text-[10px] uppercase font-bold tracking-wider text-teal-300">বর্তমান ব্যালেন্স</p>
+                <h2 class="text-2xl font-black mt-0.5 text-emerald-400" id="modalBalanceDisplay">৳15.00</h2>
+            </div>
+
+            <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">পেমেন্ট মেথড</label>
+                    <select id="withdrawMethod" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500 font-semibold">
+                        <option value="bKash">bKash (বিকাশ)</option>
+                        <option value="Nagad">Nagad (নগদ)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">একাউন্ট নম্বর</label>
+                    <input type="text" id="withdrawPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">টাকার পরিমাণ</label>
+                    <input type="number" id="withdrawAmount" placeholder="সর্বনিম্ন ১০০ টাকা" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+                <button type="submit" id="withdrawBtn" class="w-full bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-slate-950 font-extrabold py-3 rounded-xl text-xs shadow-lg shadow-teal-500/20 mt-2 transition">
+                    উইথড্র রিকোয়েস্ট পাঠান
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="text-center mb-4">
+                <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-lg font-black text-2xl">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-lg font-bold text-white" id="profileNameDisplay">MD JAHID</h3>
+                <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
+            </div>
+
+            <div class="space-y-2.5 text-xs text-slate-300 border-t border-b border-slate-800 py-3.5 mb-4">
+                <div class="flex justify-between py-0.5">
+                    <span class="text-slate-400">ইউজার আইডি:</span>
+                    <span class="font-bold text-white font-mono">#HI-98402</span>
+                </div>
+                <div class="flex justify-between py-0.5">
+                    <span class="text-slate-400">রেফার কোড:</span>
+                    <span class="font-bold text-emerald-400 font-mono">USER123</span>
+                </div>
+                <div class="flex justify-between py-0.5">
+                    <span class="text-slate-400">যোগদানের তারিখ:</span>
+                    <span class="font-bold text-white">২৮ আগস্ট, ২০২৬</span>
+                </div>
+            </div>
+
+            <button onclick="closeModal('profileModal')" class="block text-center w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-3 rounded-xl text-xs transition border border-slate-700">
+                বন্ধ করুন
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <div class="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-slate-800 py-2.5 px-6 flex justify-between items-center z-40 max-w-md mx-auto">
+        <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 cursor-pointer transition">
+            <i class="fa-solid fa-headset text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Help</span>
+        </a>
+        <button onclick="openWalletModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 cursor-pointer bg-transparent border-0 focus:outline-none transition">
+            <i class="fa-solid fa-wallet text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Wallet</span>
+        </button>
+        <div class="flex flex-col items-center -mt-6">
+            <div onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/30 cursor-pointer hover:scale-105 transition border-2 border-slate-900">
+                <i class="fa-solid fa-house text-lg font-bold"></i>
+            </div>
+            <span class="text-[10px] font-extrabold text-emerald-400 mt-1">HOME</span>
+        </div>
+        <button onclick="checkTaskAccess('Team')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 cursor-pointer bg-transparent border-0 focus:outline-none transition">
+            <i class="fa-solid fa-users text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Team</span>
+        </button>
+        <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 cursor-pointer bg-transparent border-0 focus:outline-none transition">
+            <i class="fa-solid fa-user text-lg"></i>
+            <span class="text-[10px] font-semibold mt-0.5">Profile</span>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
+        const CHAT_ID = '6733473116';
+
+        let isAccountActive = localStorage.getItem('hi_account_active') === 'true';
+        let userBalance = parseFloat(localStorage.getItem('hi_user_balance')) || 15.00;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('hi_user_name');
+            if (savedName) {
+                document.getElementById('userNameDisplay').innerText = savedName.toUpperCase();
+                document.getElementById('profileNameDisplay').innerText = savedName.toUpperCase();
             }
 
-            if (profileNameDisplay) {
-                profileNameDisplay.innerText =
-                    savedName.toUpperCase();
-            }
-        }
-
-        updateAccountStatus();
-        updateBalanceUI();
-    });
-
-
-    // ==========================================
-    // ACCOUNT STATUS
-    // ==========================================
-
-    function updateAccountStatus() {
-
-        const statusText =
-            document.getElementById('statusText');
-
-        const badgeStatus =
-            document.getElementById('badgeStatus');
-
-        const profileStatusBadge =
-            document.getElementById('profileStatusBadge');
-
-        const inactiveAlertCard =
-            document.getElementById('inactiveAlertCard');
-
-
-        if (isAccountActive) {
-
-            if (statusText) {
-                statusText.innerText = 'Active';
+            if (isAccountActive) {
+                document.getElementById('statusText').innerText = 'Active';
+                document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+                document.getElementById('profileStatusBadge').innerText = "Active User";
+                document.getElementById('inactiveAlertCard').style.display = 'none';
             }
 
-            if (badgeStatus) {
-                badgeStatus.className =
-                    "bg-green-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
+            updateBalanceUI();
+        });
+
+        function updateBalanceUI() {
+            document.getElementById('mainBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
+            document.getElementById('modalBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
+            localStorage.setItem('hi_user_balance', userBalance);
+        }
+
+        function checkTaskAccess(taskName) {
+            if (!isAccountActive) {
+                alert('⚠️ আপনার অ্যাকাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে ১০ টাকা দিয়ে আগে অ্যাকাউন্টটি একটিভ করুন।');
+                openActivationModal();
+                return;
+            }
+            alert(taskName + ' সেকশনে আপনাকে স্বাগতম!');
+        }
+
+        function openActivationModal() {
+            document.getElementById('activationModal').classList.remove('hidden');
+        }
+
+        function openWalletModal() {
+            document.getElementById('walletModal').classList.remove('hidden');
+        }
+
+        function openProfileModal() {
+            document.getElementById('profileModal').classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function copyReferLink() {
+            if (!isAccountActive) {
+                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া আপনি রেফার লিঙ্ক শেয়ার করতে পারবেন না!');
+                openActivationModal();
+                return;
+            }
+            const copyText = document.getElementById("referLinkInput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+            alert("আপনার রেফারেল লিঙ্ক কপি হয়েছে: \n" + copyText.value);
+        }
+
+        function handleActivationSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('senderName').value;
+            const phone = document.getElementById('senderPhone').value;
+            const trxid = document.getElementById('senderTrxid').value;
+            const submitBtn = document.getElementById('submitBtn');
+
+            submitBtn.innerText = 'জমা হচ্ছে...';
+            submitBtn.disabled = true;
+
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        if(name) {
+                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
+                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
+                            localStorage.setItem('hi_user_name', name);
+                        }
+                        
+                        isAccountActive = true;
+                        localStorage.setItem('hi_account_active', 'true');
+
+                        document.getElementById('statusText').innerText = 'Active';
+                        document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                        document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+                        document.getElementById('profileStatusBadge').innerText = "Active User";
+                        document.getElementById('inactiveAlertCard').style.display = 'none';
+
+                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
+                        closeModal('activationModal');
+                    } else {
+                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+                    }
+                })
+                .catch(error => {
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                })
+                .finally(() => {
+                    submitBtn.innerText = 'তথ্য জমা দিন';
+                    submitBtn.disabled = false;
+                });
+        }
+
+        function handleWithdrawSubmit(event) {
+            event.preventDefault();
+            
+            if (!isAccountActive) {
+                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
+                openActivationModal();
+                return;
             }
 
-            if (profileStatusBadge) {
+            const method = document.getElementById('withdrawMethod').value;
+            const phone = document.getElementById('withdrawPhone').value;
+            const amount = parseFloat(document.getElementById('withdrawAmount').value);
+            const withdrawBtn = document.getElementById('withdrawBtn');
 
-                profileStatusBadge.className =
-                    "bg-green-100 text-green-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-
-                profileStatusBadge.innerText =
-                    "Active User";
+            if (isnan(amount) || amount < 100) {
+                alert('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
+                return;
             }
 
-            if (inactiveAlertCard) {
-                inactiveAlertCard.style.display = 'none';
+            if (amount > userBalance) {
+                alert('❌ আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!');
+                return;
             }
 
-        } else {
+            withdrawBtn.innerText = 'পাঠানো হচ্ছে...';
+            withdrawBtn.disabled = true;
 
-            if (statusText) {
-                statusText.innerText = 'Inactive';
-            }
+            const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
-            if (profileStatusBadge) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        userBalance -= amount;
+                        updateBalanceUI();
 
-                profileStatusBadge.className =
-                    "bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-
-                profileStatusBadge.innerText =
-                    "Inactive User";
-            }
-
-            if (inactiveAlertCard) {
-                inactiveAlertCard.style.display = 'block';
-            }
+                        alert('আপনার উইথড্র রিকোয়েস্ট সফলভাবে জমা হয়েছে! শীঘ্রই পেমেন্ট দেওয়া হবে।');
+                        closeModal('walletModal');
+                    } else {
+                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
+                    }
+                })
+                .catch(error => {
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                })
+                .finally(() => {
+                    withdrawBtn.innerText = 'উইথড্র রিকোয়েস্ট পাঠান';
+                    withdrawBtn.disabled = false;
+                });
         }
-    }
-
-
-    // ==========================================
-    // BALANCE
-    // ==========================================
-
-    function updateBalanceUI() {
-
-        const mainBalanceDisplay =
-            document.getElementById('mainBalanceDisplay');
-
-        const modalBalanceDisplay =
-            document.getElementById('modalBalanceDisplay');
-
-
-        if (mainBalanceDisplay) {
-
-            mainBalanceDisplay.innerText =
-                '৳' + userBalance.toFixed(2);
-        }
-
-        if (modalBalanceDisplay) {
-
-            modalBalanceDisplay.innerText =
-                '৳' + userBalance.toFixed(2);
-        }
-
-        localStorage.setItem(
-            'hi_user_balance',
-            userBalance.toFixed(2)
-        );
-    }
-
-
-    // ==========================================
-    // TASK ACCESS
-    // ==========================================
-
-    function checkTaskAccess(taskName) {
-
-        if (!isAccountActive) {
-
-            alert(
-                '⚠️ আপনার অ্যাকাউন্টটি এখনো Active নয়।\n\n' +
-                'কাজ শুরু করতে প্রথমে অ্যাকাউন্ট Active করুন।'
-            );
-
-            openActivationModal();
-            return;
-        }
-
-        alert(
-            '🎉 ' +
-            taskName +
-            ' সেকশনে আপনাকে স্বাগতম!'
-        );
-    }
-
-
-    // ==========================================
-    // ACTIVATION MODAL
-    // ==========================================
-
-    function openActivationModal() {
-
-        const modal =
-            document.getElementById('activationModal');
-
-        if (modal) {
-            modal.classList.remove('hidden');
-        }
-    }
-
-
-    // ==========================================
-    // WALLET MODAL
-    // ==========================================
-
-    function openWalletModal() {
-
-        if (!isAccountActive) {
-
-            alert(
-                '⚠️ আপনার অ্যাকাউন্ট Active নয়।\n\n' +
-                'Withdraw করার আগে Account Active করুন।'
-            );
-
-            openActivationModal();
-            return;
-        }
-
-
-        const modal =
-            document.getElementById('walletModal');
-
-        if (modal) {
-            modal.classList.remove('hidden');
-        }
-    }
-
-
-    // ==========================================
-    // PROFILE MODAL
-    // ==========================================
-
-    function openProfileModal() {
-
-        const modal =
-            document.getElementById('profileModal');
-
-        if (modal) {
-            modal.classList.remove('hidden');
-        }
-    }
-
-
-    // ==========================================
-    // CLOSE MODAL
-    // ==========================================
-
-    function closeModal(id) {
-
-        const modal =
-            document.getElementById(id);
-
-        if (modal) {
-            modal.classList.add('hidden');
-        }
-    }
-
-
-    // ==========================================
-    // COPY REFERRAL LINK
-    // ==========================================
-
-    function copyReferLink() {
-
-        if (!isAccountActive) {
-
-            alert(
-                '⚠️ Account Active না হওয়া পর্যন্ত ' +
-                'Referral Link ব্যবহার করতে পারবেন না।'
-            );
-
-            openActivationModal();
-            return;
-        }
-
-
-        const copyText =
-            document.getElementById('referLinkInput');
-
-        if (!copyText) {
-            return;
-        }
-
-
-        navigator.clipboard.writeText(copyText.value)
-            .then(() => {
-
-                alert(
-                    '✅ আপনার Referral Link কপি হয়েছে!\n\n' +
-                    copyText.value
-                );
-
-            })
-            .catch(() => {
-
-                copyText.select();
-
-                document.execCommand('copy');
-
-                alert(
-                    '✅ Referral Link কপি হয়েছে!'
-                );
-            });
-    }
-
-
-    // ==========================================
-    // ACTIVATION REQUEST
-    // ==========================================
-
-    async function handleActivationSubmit(event) {
-
-        event.preventDefault();
-
-
-        const name =
-            document.getElementById('senderName').value.trim();
-
-        const phone =
-            document.getElementById('senderPhone').value.trim();
-
-        const trxid =
-            document.getElementById('senderTrxid').value.trim();
-
-        const submitBtn =
-            document.getElementById('submitBtn');
-
-
-        if (!name || !phone || !trxid) {
-
-            alert(
-                '❌ অনুগ্রহ করে নাম, মোবাইল নম্বর এবং TrxID পূরণ করুন।'
-            );
-
-            return;
-        }
-
-
-        submitBtn.innerText =
-            'রিকোয়েস্ট পাঠানো হচ্ছে...';
-
-        submitBtn.disabled = true;
-
-
-        try {
-
-            /*
-             * Backend API
-             *
-             * এখানে Telegram Bot Token রাখা হয়নি।
-             * নিরাপত্তার জন্য Telegram request SERVER থেকে
-             * পাঠানো উচিত।
-             */
-
-            const response = await fetch(
-                '/api/activation-request',
-                {
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                    body: JSON.stringify({
-                        name: name,
-                        phone: phone,
-                        trxid: trxid
-                    })
-                }
-            );
-
-
-            const data =
-                await response.json();
-
-
-            if (response.ok && data.success) {
-
-                /*
-                 * এখানে Account Active করা হচ্ছে না।
-                 *
-                 * Admin payment যাচাই করার পর
-                 * Server থেকে Account Active হবে।
-                 */
-
-
-                localStorage.setItem(
-                    'hi_user_name',
-                    name
-                );
-
-
-                const userNameDisplay =
-                    document.getElementById('userNameDisplay');
-
-                const profileNameDisplay =
-                    document.getElementById('profileNameDisplay');
-
-
-                if (userNameDisplay) {
-                    userNameDisplay.innerText =
-                        name.toUpperCase();
-                }
-
-
-                if (profileNameDisplay) {
-                    profileNameDisplay.innerText =
-                        name.toUpperCase();
-                }
-
-
-                alert(
-                    '✅ Activation Request সফলভাবে জমা হয়েছে!\n\n' +
-                    'Payment যাচাই করার পর আপনার Account Active করা হবে।'
-                );
-
-
-                closeModal('activationModal');
-
-            } else {
-
-                alert(
-                    data.message ||
-                    '❌ Request পাঠাতে সমস্যা হয়েছে।'
-                );
-            }
-
-        } catch (error) {
-
-            alert(
-                '❌ Server-এর সাথে যোগাযোগ করা যাচ্ছে না।'
-            );
-
-        } finally {
-
-            submitBtn.innerText =
-                'তথ্য জমা দিন';
-
-            submitBtn.disabled = false;
-        }
-    }
-
-
-    // ==========================================
-    // WITHDRAW REQUEST
-    // ==========================================
-
-    async function handleWithdrawSubmit(event) {
-
-        event.preventDefault();
-
-
-        if (!isAccountActive) {
-
-            alert(
-                '⚠️ Account Active না থাকলে Withdraw করা যাবে না।'
-            );
-
-            openActivationModal();
-            return;
-        }
-
-
-        const method =
-            document.getElementById('withdrawMethod').value;
-
-        const phone =
-            document.getElementById('withdrawPhone').value.trim();
-
-        const amount =
-            parseFloat(
-                document.getElementById('withdrawAmount').value
-            );
-
-        const withdrawBtn =
-            document.getElementById('withdrawBtn');
-
-
-        // Minimum Withdraw = 100 টাকা
-
-        if (isNaN(amount) || amount < 100) {
-
-            alert(
-                '❌ সর্বনিম্ন ১০০ টাকা হলে Withdraw করতে পারবেন।'
-            );
-
-            return;
-        }
-
-
-        // Balance Check
-
-        if (amount > userBalance) {
-
-            alert(
-                '❌ আপনার Account-এ পর্যাপ্ত Balance নেই।'
-            );
-
-            return;
-        }
-
-
-        // Payment Number Check
-
-        if (!phone) {
-
-            alert(
-                '❌ আপনার Payment Number দিন।'
-            );
-
-            return;
-        }
-
-
-        withdrawBtn.innerText =
-            'Request পাঠানো হচ্ছে...';
-
-        withdrawBtn.disabled = true;
-
-
-        try {
-
-            const response = await fetch(
-                '/api/withdraw-request',
-                {
-                    method: 'POST',
-
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                    body: JSON.stringify({
-                        method: method,
-                        phone: phone,
-                        amount: amount
-                    })
-                }
-            );
-
-
-            const data =
-                await response.json();
-
-
-            if (response.ok && data.success) {
-
-                /*
-                 * Server থেকে নতুন Balance আসবে।
-                 */
-
-                if (
-                    typeof data.balance !== 'undefined'
-                ) {
-
-                    userBalance =
-                        parseFloat(data.balance);
-
-                    updateBalanceUI();
-                }
-
-
-                alert(
-                    '✅ Withdraw Request সফলভাবে জমা হয়েছে!\n\n' +
-                    'Admin যাচাই করার পর Payment দেওয়া হবে।'
-                );
-
-
-                closeModal('walletModal');
-
-            } else {
-
-                alert(
-                    data.message ||
-                    '❌ Withdraw Request পাঠানো যায়নি।'
-                );
-            }
-
-        } catch (error) {
-
-            alert(
-                '❌ Server-এর সাথে যোগাযোগ করা যাচ্ছে না।'
-            );
-
-        } finally {
-
-            withdrawBtn.innerText =
-                'উইথড্র রিকোয়েস্ট পাঠান';
-
-            withdrawBtn.disabled = false;
-        }
-    }
-</script>
+    </script>
+</body>
+</html>
