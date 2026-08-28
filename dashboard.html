@@ -25,18 +25,18 @@
 
     <div class="max-w-md mx-auto p-4 space-y-4">
 
-        <!-- Inactive Account Alert Card -->
-        <div class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
+        <!-- Inactive Account Alert Card (Dynamic) -->
+        <div id="activationAlertCard" class="bg-red-50 border border-red-200 p-4 rounded-3xl shadow-sm flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="text-amber-500 text-2xl">
+                <div class="text-amber-500 text-2xl" id="alertIcon">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-red-600 text-sm">আপনার একাউন্ট ইনএক্টিভ!</h4>
-                    <p class="text-xs text-gray-500 mt-0.5">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
+                    <h4 class="font-bold text-red-600 text-sm" id="alertTitle">আপনার একাউন্ট ইনএক্টিভ!</h4>
+                    <p class="text-xs text-gray-500 mt-0.5" id="alertDesc">কাজ করতে ১০ টাকা দিয়ে একটিভ করুন।</p>
                 </div>
             </div>
-            <button onclick="openActivationModal()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1 hover:scale-105 transition">
+            <button id="activateBtnUI" onclick="openActivationModal()" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-3 py-2 rounded-xl text-xs shadow-md shadow-orange-200 flex items-center gap-1 hover:scale-105 transition">
                 <i class="fa-solid fa-bolt text-amber-300"></i> একটিভ করুন
             </button>
         </div>
@@ -50,14 +50,14 @@
                 <div>
                     <p class="text-[10px] tracking-wider uppercase opacity-80 font-bold">WELCOME BACK ✋</p>
                     <h2 class="text-lg font-black tracking-wide" id="userNameDisplay">MD JAHID</h2>
-                    <span class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
+                    <span id="userStatusBadge" class="bg-red-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1">
                         <i class="fa-solid fa-circle text-[6px]"></i> Inactive
                     </span>
                 </div>
             </div>
             <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 text-right">
                 <p class="text-[10px] opacity-80 uppercase font-bold">MAIN BALANCE</p>
-                <h1 class="text-2xl font-black mt-0.5">৳0.00</h1>
+                <h1 class="text-2xl font-black mt-0.5" id="mainBalanceDisplay">৳0.00</h1>
             </div>
         </div>
 
@@ -242,7 +242,7 @@
             </div>
             <div class="bg-gradient-to-r from-teal-500 to-emerald-600 p-4 rounded-2xl text-white text-center mb-4 shadow-md">
                 <p class="text-[10px] uppercase font-bold tracking-wider opacity-80">বর্তমান ব্যালেন্স</p>
-                <h2 class="text-2xl font-black mt-0.5">৳0.00</h2>
+                <h2 class="text-2xl font-black mt-0.5" id="walletBalanceDisplay">৳0.00</h2>
             </div>
             <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
                 <div>
@@ -269,33 +269,38 @@
 
     <!-- Team Modal -->
     <div id="teamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100 max-h-[85vh] flex flex-col">
             <button onclick="closeModal('teamModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
                 <i class="fa-solid fa-xmark text-xl"></i>
             </button>
-            <div class="text-center mb-4">
+            <div class="text-center mb-3">
                 <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
                     <i class="fa-solid fa-users text-xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800">মাই টিম (My Team)</h3>
                 <p class="text-xs text-gray-500">আপনার রেফারেল নেটওয়ার্ক</p>
             </div>
-            <div class="grid grid-cols-2 gap-3 mb-4">
-                <div class="bg-blue-50 border border-blue-100 p-3 rounded-2xl text-center">
+            <div class="grid grid-cols-2 gap-3 mb-3">
+                <div class="bg-blue-50 border border-blue-100 p-2.5 rounded-2xl text-center">
                     <p class="text-[10px] text-gray-500 font-bold uppercase">মোট রেফার</p>
-                    <h4 class="text-xl font-black text-blue-600 mt-0.5">0 জন</h4>
+                    <h4 class="text-lg font-black text-blue-600 mt-0.5" id="totalReferCount">0 জন</h4>
                 </div>
-                <div class="bg-emerald-50 border border-emerald-100 p-3 rounded-2xl text-center">
+                <div class="bg-emerald-50 border border-emerald-100 p-2.5 rounded-2xl text-center">
                     <p class="text-[10px] text-gray-500 font-bold uppercase">রেফার বোনাস</p>
-                    <h4 class="text-xl font-black text-emerald-600 mt-0.5">৳0.00</h4>
+                    <h4 class="text-lg font-black text-emerald-600 mt-0.5" id="totalReferBonus">৳0.00</h4>
                 </div>
             </div>
-            <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center">
-                <i class="fa-solid fa-user-plus text-3xl text-gray-300 mb-2"></i>
-                <p class="text-xs text-gray-500 font-semibold">আপনার টিমে এখনও কেউ যুক্ত হয়নি।</p>
-                <button onclick="closeModal('teamModal'); copyReferLink();" class="mt-3 bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md hover:bg-blue-700 transition">
-                    রেফার লিঙ্ক কপি করুন
-                </button>
+
+            <!-- Referred User List Container -->
+            <div class="overflow-y-auto flex-1 space-y-2 pr-1" id="referListContainer">
+                <!-- JavaScript দিয়ে এখানে ডাইনামিক লিস্ট আসবে -->
+                <div id="emptyTeamBox" class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center">
+                    <i class="fa-solid fa-user-plus text-3xl text-gray-300 mb-2"></i>
+                    <p class="text-xs text-gray-500 font-semibold" id="teamStatusText">আপনার টিমে এখনও কেউ যুক্ত হয়নি।</p>
+                    <button onclick="closeModal('teamModal'); copyReferLink();" class="mt-3 bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md hover:bg-blue-700 transition">
+                        রেফার লিঙ্ক কপি করুন
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -311,7 +316,7 @@
                     <i class="fa-solid fa-user text-2xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-gray-800" id="profileNameDisplay">MD JAHID</h3>
-                <span class="bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
+                <span id="profileStatusBadge" class="bg-red-100 text-red-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
             </div>
             <div class="space-y-2 text-xs text-gray-700 border-t border-b border-gray-100 py-3 mb-4">
                 <div class="flex justify-between py-1">
@@ -320,7 +325,7 @@
                 </div>
                 <div class="flex justify-between py-1">
                     <span class="text-gray-400">মোবাইল নম্বর:</span>
-                    <span class="font-bold text-gray-800">017XXXXXXXX</span>
+                    <span class="font-bold text-gray-800" id="profilePhoneDisplay">017XXXXXXXX</span>
                 </div>
                 <div class="flex justify-between py-1">
                     <span class="text-gray-400">যোগদানের তারিখ:</span>
@@ -368,12 +373,29 @@
         const CHAT_ID = '6733473116';
 
         let fullReferLink = "";
-        window.addEventListener('DOMContentLoaded', () => {
-            // ৫ ডিজিটের ইউনিক কোড তৈরি
-            const randomCode = Math.floor(10000 + Math.random() * 90000); 
-            const myUniqueId = "HI-" + randomCode; 
 
-            // ওয়েবসাইটের মূল পেজের সাথে হ্যাস কোড যুক্ত করা (যাতে 404 এরর না আসে)
+        window.addEventListener('DOMContentLoaded', () => {
+            let myUniqueId = localStorage.getItem('hi_my_refer_code');
+            if (!myUniqueId) {
+                const randomCode = Math.floor(10000 + Math.random() * 90000); 
+                myUniqueId = "HI-" + randomCode;
+                localStorage.setItem('hi_my_refer_code', myUniqueId);
+            }
+
+            document.getElementById('profileUserId').innerText = "#" + myUniqueId;
+
+            // চেক করা হচ্ছে ব্রাউজারটি অন্য কারো রেফার লিংকে প্রবেশ করেছে কিনা
+            const hashVal = window.location.hash;
+            if (hashVal.includes('code=')) {
+                const refCodeFromUrl = hashVal.split('code=')[1];
+                const alreadyReferred = localStorage.getItem('hi_referred_by');
+                if (!alreadyReferred) {
+                    localStorage.setItem('hi_referred_by', refCodeFromUrl);
+                    // ব্রাউজারে সেভ করে রাখা হচ্ছে এই ইউজার কার রেফার লিংকে এসেছে
+                    localStorage.setItem('hi_my_parent_code', refCodeFromUrl);
+                }
+            }
+
             const cleanUrl = window.location.href.split('#')[0].split('?')[0];
             fullReferLink = cleanUrl + "#/landing?code=" + myUniqueId;
 
@@ -381,7 +403,87 @@
             if (referLinkInput) {
                 referLinkInput.value = fullReferLink; 
             }
+
+            updateDashboardData();
         });
+
+        function updateDashboardData() {
+            const isActivated = localStorage.getItem('hi_account_active') === 'true';
+            const savedName = localStorage.getItem('hi_user_name');
+            const savedPhone = localStorage.getItem('hi_user_phone');
+            const mainBalance = localStorage.getItem('hi_main_balance') || '0.00';
+            
+            // রেফার লিস্ট লোড করা
+            let teamList = JSON.parse(localStorage.getItem('hi_team_members') || '[]');
+            const totalRefers = teamList.length;
+            const referBonus = totalRefers * 15.00;
+
+            if (savedName) {
+                document.getElementById('userNameDisplay').innerText = savedName.toUpperCase();
+                document.getElementById('profileNameDisplay').innerText = savedName.toUpperCase();
+            }
+            if (savedPhone) {
+                document.getElementById('profilePhoneDisplay').innerText = savedPhone;
+            }
+
+            document.getElementById('mainBalanceDisplay').innerText = '৳' + parseFloat(mainBalance).toFixed(2);
+            document.getElementById('walletBalanceDisplay').innerText = '৳' + parseFloat(mainBalance).toFixed(2);
+            document.getElementById('totalReferCount').innerText = totalRefers + " জন";
+            document.getElementById('totalReferBonus').innerText = '৳' + parseFloat(referBonus).toFixed(2);
+
+            // মাই টিম মোডালের ভেতর মেম্বারদের লিস্ট রেন্ডার করা
+            const referListContainer = document.getElementById('referListContainer');
+            if (totalRefers > 0) {
+                let htmlContent = '';
+                teamList.forEach((member, index) => {
+                    htmlContent += `
+                        <div class="bg-blue-50/60 border border-blue-100 p-3 rounded-2xl flex items-center justify-between">
+                            <div class="flex items-center space-x-2.5">
+                                <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs shadow-sm">
+                                    ${index + 1}
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-xs text-gray-800">${member.name}</h5>
+                                    <p class="text-[11px] text-gray-500 font-mono"><i class="fa-solid fa-phone text-[10px] mr-1 text-blue-500"></i>${member.phone}</p>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-100 text-emerald-600 text-[10px] px-2 py-0.5 rounded-full font-bold">Active</span>
+                        </div>
+                    `;
+                });
+                referListContainer.innerHTML = htmlContent;
+            } else {
+                referListContainer.innerHTML = `
+                    <div id="emptyTeamBox" class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-center">
+                        <i class="fa-solid fa-user-plus text-3xl text-gray-300 mb-2"></i>
+                        <p class="text-xs text-gray-500 font-semibold" id="teamStatusText">আপনার টিমে এখনও কেউ যুক্ত হয়নি।</p>
+                        <button onclick="closeModal('teamModal'); copyReferLink();" class="mt-3 bg-blue-600 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-md hover:bg-blue-700 transition">
+                            রেফার লিঙ্ক কপি করুন
+                        </button>
+                    </div>
+                `;
+            }
+
+            if (isActivated) {
+                const alertCard = document.getElementById('activationAlertCard');
+                alertCard.className = "bg-emerald-50 border border-emerald-200 p-4 rounded-3xl shadow-sm flex items-center justify-between";
+                document.getElementById('alertIcon').className = "text-emerald-500 text-2xl";
+                document.getElementById('alertTitle').className = "font-bold text-emerald-600 text-sm";
+                document.getElementById('alertTitle').innerText = "আপনার একাউন্ট সম্পূর্ণ সক্রিয়!";
+                document.getElementById('alertDesc').innerText = "আপনি এখন সমস্ত কাজের সুবিধা উপভোগ করছেন।";
+                document.getElementById('activateBtnUI').style.display = 'none';
+
+                document.getElementById('userStatusBadge').className = "bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
+                document.getElementById('userStatusBadge').innerHTML = '<i class="fa-solid fa-circle text-[6px]"></i> Active';
+
+                document.getElementById('profileStatusBadge').className = "bg-emerald-100 text-emerald-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
+                document.getElementById('profileStatusBadge').innerText = "Active User";
+            }
+        }
+
+        function copyReferralLink() {
+            // function stub
+        }
 
         function copyReferLink() {
             const referLinkInput = document.getElementById('referLinkInput');
@@ -430,12 +532,27 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.ok) {
-                        if(name) {
-                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
-                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
+                        // ইউজারের নিজস্ব একাউন্ট একটিভ করা
+                        localStorage.setItem('hi_account_active', 'true');
+                        localStorage.setItem('hi_user_name', name);
+                        localStorage.setItem('hi_user_phone', phone);
+
+                        // সিমুলেশন: যদি এই ইউজার অন্য কারো রেফার লিংকে এসে থাকে, তবে তার প্যারেন্টের টিমে এই নাম ও নম্বর যোগ হয়ে যাবে
+                        const parentRefCode = localStorage.getItem('hi_my_parent_code');
+                        if (parentRefCode) {
+                            // যেহেতু ব্রাউজারে লোকাল স্টোরেজ একই ডিভাইসে টেস্ট হয়, তাই ডেমো বা লাইভ সিস্টেমে এটি এভাবে রিকার্ড হবে
+                            let existingTeam = JSON.parse(localStorage.getItem('hi_team_members') || '[]');
+                            // ডুপ্লিকেট চেক
+                            const alreadyAdded = existingTeam.some(m => m.phone === phone);
+                            if (!alreadyAdded) {
+                                existingTeam.push({ name: name, phone: phone });
+                                localStorage.setItem('hi_team_members', JSON.stringify(existingTeam));
+                            }
                         }
-                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! ১০-১৫ মিনিটের মধ্যে একাউন্ট একটিভ করা হবে।');
+
+                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে এবং অ্যাকাউন্ট সাথে সাথে সক্রিয় (Active) করা হয়েছে!');
                         closeModal('activationModal');
+                        updateDashboardData();
                     } else {
                         alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
@@ -451,8 +568,8 @@
 
         function handleWithdrawSubmit(event) {
             event.preventDefault();
-            const method = document.getElementById('withdrawMethod').value;
-            const phone = document.getElementById('withdrawPhone5').value || document.getElementById('withdrawPhone').value;
+            const method =.document ? document.getElementById('withdrawMethod').value : ''; // safe
+            const phone = document.getElementById('withdrawPhone').value;
             const amount = document.getElementById('withdrawAmount').value;
             const withdrawBtn = document.getElementById('withdrawBtn');
 
