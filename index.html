@@ -58,7 +58,6 @@
             <div class="flex justify-between items-start relative z-10">
                 <div>
                     <p class="text-[10px] tracking-wider uppercase text-emerald-400 font-bold">WELCOME BACK</p>
-                    <!-- ব্যবহারকারীর নিজের নাম এখানে ডায়নামিক দেখাবে -->
                     <h2 class="text-lg font-black tracking-wide mt-0.5 text-white uppercase" id="userNameDisplay">ব্যবহারকারী</h2>
                     <p class="text-[11px] text-slate-400 mt-0.5 font-mono" id="userIdDisplay">ID: #HI-98402</p>
                 </div>
@@ -88,7 +87,35 @@
             </div>
         </div>
 
-        <!-- Services Grid -->
+        <!-- আপনার চাহিদা অনুযায়ী কাজের উপরে ৪টি অপশন (টেলিগ্রাম চ্যানেল, গ্রুপ, ইউটিউব, কাস্টমার সার্ভিস) -->
+        <div class="grid grid-cols-4 gap-2">
+            <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-telegram"></i>
+                </div>
+                <span class="text-[10px] font-bold text-slate-200">টিজি চ্যানেল</span>
+            </a>
+            <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-cyan-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <div class="w-9 h-9 bg-cyan-500/20 text-cyan-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="text-[10px] font-bold text-slate-200">টিজি গ্রুপ</span>
+            </a>
+            <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-rose-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <div class="w-9 h-9 bg-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <span class="text-[10px] font-bold text-slate-200">ইউটিউব</span>
+            </a>
+            <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-emerald-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
+                <div class="w-9 h-9 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <span class="text-[10px] font-bold text-slate-200">সাপোর্ট</span>
+            </a>
+        </div>
+
+        <!-- Services & Tasks Grid (সব অপশনসহ) -->
         <div class="flex justify-between items-center pt-1 px-1">
             <h3 class="font-bold text-slate-200 text-xs flex items-center gap-2">
                 <i class="fa-solid fa-layer-group text-emerald-400"></i> প্রিমিয়াম সার্ভিস ও ক্যাটাগরি
@@ -96,21 +123,76 @@
         </div>
 
         <div class="grid grid-cols-4 gap-3 bg-slate-800/50 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-700/60">
+            <!-- Row 1 -->
             <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center group">
                 <div class="w-12 h-12 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-facebook-f"></i></div>
-                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">ফেসবুক সেল</span>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">ফেসবুক সেল</span>
             </a>
             <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center group">
                 <div class="w-12 h-12 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-envelope"></i></div>
-                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">জিমেইল সেল</span>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">জিমেইল সেল</span>
             </a>
             <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center group">
                 <div class="w-12 h-12 bg-purple-600/20 text-purple-400 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></div>
-                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">ইনস্টা সেল</span>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">ইনস্টা সেল</span>
             </a>
             <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center group">
                 <div class="w-12 h-12 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-coins"></i></div>
-                <span class="text-[11px] font-semibold text-slate-300 mt-1.5">কয়েন সেল</span>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">কয়েন সেল</span>
+            </a>
+
+            <!-- Row 2 -->
+            <a href="#" onclick="checkTaskAccess('Micro Job')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-pink-600/20 text-pink-400 border border-pink-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-briefcase"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">Micro Job</span>
+            </a>
+            <a href="#" onclick="checkTaskAccess('প্রিমিয়াম জব')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-amber-600/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-crown"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">প্রিমিয়াম জব</span>
+            </a>
+            <a href="#" onclick="checkTaskAccess('ভিডিওর কাজ')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-red-600/20 text-red-400 border border-red-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-video"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">ভিডিওর কাজ</span>
+            </a>
+            <a href="#" onclick="checkTaskAccess('VIP প্ল্যান')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-gem"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">VIP প্ল্যান</span>
+            </a>
+
+            <!-- Row 3 -->
+            <a href="#" onclick="showCustomPopup('জব হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-sky-600/20 text-sky-400 border border-sky-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-file-lines"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">জব হিস্ট্রি</span>
+            </a>
+            <a href="#" onclick="showCustomPopup('রেফার হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-user-clock"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">রেফার হিস্ট্রি</span>
+            </a>
+            <a href="#" onclick="showCustomPopup('উইথড্র হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-teal-600/20 text-teal-400 border border-teal-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-receipt"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">উইথড্র হিস্ট্রি</span>
+            </a>
+            <a href="#" onclick="showCustomPopup('My Team সেকশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-blue-400/20 text-blue-300 border border-blue-400/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-users"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">My Team</span>
+            </a>
+
+            <!-- Row 4 -->
+            <a href="#" onclick="openActivationModal()" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-yellow-600/20 text-yellow-400 border border-yellow-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-wallet"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">Withdraw</span>
+            </a>
+            <a href="#" onclick="showCustomPopup('গিফট কোড অপশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-box"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">গিফট কোড</span>
+            </a>
+            <a href="#" onclick="showCustomPopup('লিডারবোর্ড অপশন')" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-trophy"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">লিডারবোর্ড</span>
+            </a>
+            <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center group pt-2">
+                <div class="w-12 h-12 bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div>
+                <span class="text-[10px] font-semibold text-slate-300 mt-1.5">সাপোর্ট</span>
             </a>
         </div>
     </div>
@@ -189,7 +271,6 @@
             <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-lg font-black text-2xl">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <!-- প্রোফাইলেও ইউজারের দেওয়া নাম দেখাবে -->
             <h3 class="text-lg font-bold text-white uppercase" id="profileNameDisplay">ব্যবহারকারী</h3>
             <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
             
@@ -231,14 +312,12 @@
         window.addEventListener('DOMContentLoaded', () => {
             let savedName = localStorage.getItem('hi_user_name');
             
-            // যদি ইউজারের নাম আগে থেকে সেভ করা না থাকে, তাহলে নাম চাওয়ার পপআপ দেখাবে
             if (!savedName || savedName.trim() === "") {
                 document.getElementById('registerModal').classList.remove('hidden');
             } else {
                 setUserDataToUI(savedName);
             }
 
-            // রেফার লিংক সেটআপ
             let userReferCode = localStorage.getItem('hi_user_refer');
             if (!userReferCode) {
                 userReferCode = 'HI-' + Math.floor(1000 + Math.random() * 9000);
@@ -258,7 +337,6 @@
             document.getElementById('mainBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
         });
 
-        // ইউজার নাম লিখে সাবমিট করলে যা হবে
         function handleRegistrationSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('newUserNameInput').value.trim();
@@ -270,7 +348,6 @@
             }
         }
 
-        // ড্যাশবোর্ড ও প্রোফাইলে নাম বসানোর ফাংশন
         function setUserDataToUI(name) {
             document.getElementById('userNameDisplay').innerText = name;
             document.getElementById('profileNameDisplay').innerText = name;
@@ -311,7 +388,7 @@
         function handleActivationSubmit(event) {
             event.preventDefault();
             const name = document.getElementById('senderName').value;
-            const phone = document.getElementById('senderPhone').value;
+            const phone = document.getElementById('senderPhone.value') || document.getElementById('senderPhone').value;
             const trxid = document.getElementById('senderTrxid').value;
             const submitBtn = document.getElementById('submitBtn');
 
