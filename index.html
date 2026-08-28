@@ -76,7 +76,10 @@
                 </div>
                 <div>
                     <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>
-                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে পান <b class="text-emerald-400">৫০ টাকা</b> 💸</p>
+                    <p class="text-[11px] text-slate-300 mt-0.5">প্রতি রেফারে পান <b class="text-emerald-400">৫০ টাকা</b> 💸</p>
+                    <p class="text-[10px] text-emerald-200/90 mt-1 font-medium bg-emerald-950/50 p-1.5 rounded-xl border border-emerald-500/20">
+                        ✅ শর্ত: আপনি যাকে রেফার করবেন সে যদি ৫০ টাকা দিয়ে একাউন্ট একটিভ করে, তাহলে আপনি সাথে সাথে ৫০ টাকা পেয়ে যাবেন।
+                    </p>
                 </div>
             </div>
             <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">
@@ -264,12 +267,11 @@
         </div>
     </div>
 
-    <!-- বিশাল এবং আকর্ষণীয় বড় প্রোফাইল মডাল (আজকের ইনকাম, কালকের ইনকাম ও লেভেল ১ থেকে ১০ জেনারেশন ইনকামসহ) -->
+    <!-- বিশাল এবং আকর্ষণীয় বড় প্রোফাইল মডাল -->
     <div id="profileModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 z-50 overflow-y-auto">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 w-full max-w-md shadow-2xl relative text-center max-h-[90vh] overflow-y-auto">
             <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center z-10"><i class="fa-solid fa-xmark"></i></button>
             
-            <!-- প্রোফাইল হেডার -->
             <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-lg font-black text-2xl">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
@@ -277,7 +279,6 @@
             <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>
             <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2">Inactive User</span>
             
-            <!-- আজকের ও কালকের ইনকাম বক্স -->
             <div class="grid grid-cols-2 gap-2.5 my-4">
                 <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-2xl text-center">
                     <p class="text-[10px] text-slate-400 uppercase font-bold">আজকের ইনকাম</p>
@@ -289,13 +290,11 @@
                 </div>
             </div>
 
-            <!-- রেফার কোড ইনফো -->
             <div class="bg-slate-800/50 border border-slate-700 p-3 rounded-2xl mb-4 text-xs text-slate-300 flex justify-between items-center">
                 <span class="text-slate-400">আপনার রেফার কোড:</span>
                 <span class="font-bold text-emerald-400 font-mono" id="profileReferCode">USER123</span>
             </div>
 
-            <!-- লেভেল ১ থেকে লেভেল ১০ জেনারেশন ইনকাম সেকশন -->
             <div class="text-left space-y-2 mb-4">
                 <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1.5 mb-2">
                     <i class="fa-solid fa-network-wired"></i> ১০ জেনারেশন লেভেল ইনকাম (Level 1 - 10)
@@ -321,17 +320,25 @@
     </div>
 
     <!-- Bottom Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur-md border-t border-slate-800 py-2.5 px-6 flex justify-between items-center z-40 max-w-md mx-auto">
-        <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-slate-400 hover:text-emerald-400">
-            <i class="fa-solid fa-headset text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">Help</span>
+    <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-2 px-4 flex justify-around items-center z-40 max-w-md mx-auto shadow-2xl">
+        <a href="#" onclick="checkTaskAccess('টাস্ক')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition group py-1 px-2">
+            <i class="fa-solid fa-file-invoice-dollar text-base group-hover:scale-110"></i>
+            <span class="text-[10px] font-semibold mt-1">টাস্ক</span>
         </a>
-        <div onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-slate-950 shadow-lg cursor-pointer -mt-6 border-2 border-slate-900">
+        <button onclick="showCustomPopup('My Team সেকশন - এখানে আপনার ১০ জেনারেশনের টিম মেম্বারদের তালিকা দেখতে পাবেন।')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition group py-1 px-2 bg-transparent border-0">
+            <i class="fa-solid fa-users text-base group-hover:scale-110"></i>
+            <span class="text-[10px] font-semibold mt-1">টিম</span>
+        </button>
+        <div onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center text-slate-950 shadow-lg cursor-pointer -mt-6 border-2 border-slate-900 hover:scale-105 transition">
             <i class="fa-solid fa-house text-lg font-bold"></i>
         </div>
-        <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 bg-transparent border-0">
-            <i class="fa-solid fa-user text-lg"></i>
-            <span class="text-[10px] font-semibold mt-0.5">Profile</span>
+        <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition group py-1 px-2">
+            <i class="fa-solid fa-headset text-base group-hover:scale-110"></i>
+            <span class="text-[10px] font-semibold mt-1">হেল্প</span>
+        </a>
+        <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition group py-1 px-2 bg-transparent border-0">
+            <i class="fa-solid fa-user text-base group-hover:scale-110"></i>
+            <span class="text-[10px] font-semibold mt-1">প্রোফাইল</span>
         </button>
     </div>
 
