@@ -189,7 +189,7 @@
 
     </div>
 
-    <!-- Modals (Activation, Wallet, Team, Profile) -->
+    <!-- Modals -->
     <!-- Account Activation Modal -->
     <div id="activationModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
         <div class="bg-white rounded-3xl p-6 w-full max-w-sm shadow-2xl relative border border-purple-100">
@@ -369,19 +369,23 @@
 
         let fullReferLink = "";
         window.addEventListener('DOMContentLoaded', () => {
-            const myUniqueId = "Halal-Income-" + Math.floor(1000 + Math.random() * 9000); 
+            // লিংকে কোনো নাম ছাড়াই শুধু HI-XXXXX ফরম্যাটে ইউনিক কোড তৈরি করা
+            const randomCode = Math.floor(10000 + Math.random() * 90000); 
+            const myUniqueId = "HI-" + randomCode; 
 
-            // নিজের ওয়েবসাইটের ডোমেইনের অধীনে লিংক তৈরি করা (অন্য কোনো থার্ড-পার্টি ডোমেইন ছাড়াই)
+            // নিজের ওয়েবসাইটের ডোমেইনের অধীনে register.html?ref=HI-XXXXX ফরম্যাট তৈরি
             const currentBaseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
             fullReferLink = currentBaseUrl + "register.html?ref=" + myUniqueId;
 
             const referLinkInput = document.getElementById('referLinkInput');
             if (referLinkInput) {
-                referLinkInput.value = myUniqueId; 
+                referLinkInput.value = fullReferLink; // ইনপুট বক্সে পুরো পরিষ্কার লিংক দেখাবে
             }
         });
 
         function copyReferLink() {
+            const referLinkInput = document.getElementById('referLinkInput');
+            referLinkInput.select();
             navigator.clipboard.writeText(fullReferLink).then(() => {
                 alert("আপনার রেফারেল লিঙ্ক সফলভাবে কপি হয়েছে!\n" + fullReferLink);
             }).catch(err => {
