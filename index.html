@@ -13,8 +13,8 @@
 </head>
 <body class="bg-slate-950 text-slate-100 pb-28 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
 
-    <!-- Auth Wrapper -->
-    <div id="authContainer" class="hidden">
+    <!-- Auth Container (Dashboard - Hidden by default) -->
+    <div id="dashboardContainer" class="hidden">
         
         <!-- Top Navbar -->  
         <div class="bg-slate-900/85 backdrop-blur-md border-b border-slate-800 p-4 sticky top-0 z-40 flex justify-between items-center max-w-md mx-auto">  
@@ -96,7 +96,7 @@
                 </div>  
             </div>  
 
-            <!-- ৪টি বাটন (টেলিগ্রাম চ্যানেল, গ্রুপ, ইউটিউব, সাপোর্ট) -->  
+            <!-- ৪টি সোশ্যাল বাটন -->  
             <div class="grid grid-cols-4 gap-2">  
                 <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
                     <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>  
@@ -124,25 +124,21 @@
             </div>  
 
             <div class="grid grid-cols-4 gap-3 bg-slate-800/50 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-700/60">  
-                <!-- Row 1 -->  
                 <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-facebook-f"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ফেসবুক সেল</span></a>  
                 <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-envelope"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">জিমেইল সেল</span></a>  
                 <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-purple-600/20 text-purple-400 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ইনস্টা সেল</span></a>  
                 <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-coins"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">কয়েন সেল</span></a>  
 
-                <!-- Row 2 -->  
                 <a href="#" onclick="checkTaskAccess('Micro Job')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-pink-600/20 text-pink-400 border border-pink-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-briefcase"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">Micro Job</span></a>  
                 <a href="#" onclick="checkTaskAccess('প্রিমিয়াম জব')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-amber-600/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-crown"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">প্রিমিয়াম জব</span></a>  
                 <a href="#" onclick="checkTaskAccess('ভিডিওর কাজ')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-red-600/20 text-red-400 border border-red-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-video"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ভিডিওর কাজ</span></a>  
                 <a href="#" onclick="checkTaskAccess('VIP প্ল্যান')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-gem"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">VIP প্ল্যান</span></a>  
 
-                <!-- Row 3 -->  
                 <a href="#" onclick="showCustomPopup('জব হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-sky-600/20 text-sky-400 border border-sky-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-file-lines"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">জব হিস্ট্রি</span></a>  
                 <a href="#" onclick="showCustomPopup('রেফার হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-user-clock"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">রেফার হিস্ট্রি</span></a>  
                 <a href="#" onclick="showCustomPopup('উইথড্র হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-teal-600/20 text-teal-400 border border-teal-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-receipt"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">উইথড্র হিস্ট্রি</span></a>  
                 <a href="#" onclick="showCustomPopup('My Team সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-blue-400/20 text-blue-300 border border-blue-400/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-users"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">My Team</span></a>  
 
-                <!-- Row 4 -->  
                 <a href="#" onclick="openActivationModal()" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-yellow-600/20 text-yellow-400 border border-yellow-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-wallet"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">Withdraw</span></a>  
                 <a href="#" onclick="showCustomPopup('গিফট কোড অপশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-box"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">গিফট কোড</span></a>  
                 <a href="#" onclick="showCustomPopup('লিডারবোর্ড অপশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-trophy"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">লিডারবোর্ড</span></a>  
@@ -151,27 +147,62 @@
         </div>  
     </div>
 
-    <!-- রেজিস্ট্রেশন পপআপ -->  
-    <div id="registerModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl text-center space-y-4">  
-            <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto text-2xl">  
-                <i class="fa-solid fa-user-plus"></i>  
-            </div>  
-            <div>  
-                <h3 class="text-base font-bold text-white">ওয়েবসাইটে স্বাগতম!</h3>  
-                <p class="text-xs text-slate-400 mt-1">আপনার নামটি লিখুন, যাতে আপনার প্রোফাইলে সেটি সেট হয়ে যায়।</p>  
-            </div>  
-            <form onsubmit="handleRegistrationSubmit(event)" class="space-y-3 text-left">  
-                <div>  
-                    <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>  
-                    <input type="text" id="newUserNameInput" placeholder="যেমন: আব্দুর রহমান" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">  
-                </div>  
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">  
-                    একাউন্ট তৈরি করুন (+৫০ টাকা বোনাস)  
-                </button>  
-            </form>  
-        </div>  
-    </div>  
+    <!-- লজিক অথেন্টিকেশন পেজ (লগইন ও রেজিস্ট্রেশন ফর্ম) -->
+    <div id="authScreen" class="max-w-md mx-auto p-4 min-h-screen flex items-center justify-center">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full shadow-2xl space-y-5">
+            
+            <div class="text-center space-y-1">
+                <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto text-2xl font-bold">
+                    <i class="fa-solid fa-mosque"></i>
+                </div>
+                <h2 class="text-lg font-bold text-white" id="formTitle">লগইন করুন</h2>
+                <p class="text-xs text-slate-400" id="formSubtitle">আপনার অ্যাকাউন্টে প্রবেশ করতে তথ্য দিন</p>
+            </div>
+
+            <!-- ট্যাব সুইচ বাটন (লগইন / রেজিস্টার) -->
+            <div class="grid grid-cols-2 bg-slate-950 p-1 rounded-2xl border border-slate-800 text-xs font-bold">
+                <button type="button" id="loginTabBtn" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl bg-emerald-500 text-slate-950 transition">লগইন</button>
+                <button type="button" id="registerTabBtn" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl text-slate-400 transition">রেজিস্ট্রেশন</button>
+            </div>
+
+            <!-- ফর্ম সেকশন -->
+            <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3.5">
+                
+                <!-- নাম ফিল্ড ও রেজিস্ট্রেশন বোনাস নোটিশ (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
+                <div id="nameFieldContainer" class="hidden space-y-3.5">
+                    <!-- রেজিস্ট্রেশন বোনাস নোটিশ ব্যানার (সর্বোপরি উপরে লেখা থাকবে) -->
+                    <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3 text-center text-xs font-bold text-emerald-400 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-gift text-sm"></i> রেজিস্ট্রেশন বোনাস ৫০ টাকা! 🎉
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>
+                        <input type="text" id="regName" placeholder="যেমন: আব্দুর রহমান" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">মোবাইল নম্বর</label>
+                    <input type="text" id="authPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">পাসওয়ার্ড</label>
+                    <input type="password" id="authPassword" placeholder="••••••••" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <!-- রেফার কোড ফিল্ড (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
+                <div id="referFieldContainer" class="hidden">
+                    <label class="block text-xs font-bold text-slate-300 mb-1">রেফার কোড (ঐচ্ছিক)</label>
+                    <input type="text" id="regReferCode" placeholder="যেমন: REF-12345" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <button type="submit" id="authSubmitBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3.5 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">
+                    লগইন করুন
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- সাধারণ পপআপ মেসেজ -->  
     <div id="customPopupModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
@@ -260,41 +291,112 @@
     <script>  
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';  
         const CHAT_ID = '6733473116';  
+        let isRegisterMode = false;
 
         window.addEventListener('DOMContentLoaded', () => {  
             const urlParams = new URLSearchParams(window.location.search);  
             const refCode = urlParams.get('ref');  
-            if(refCode) localStorage.setItem('hi_temp_ref', refCode);  
+            if(refCode) {
+                localStorage.setItem('hi_temp_ref', refCode);
+                switchAuthMode('register');
+                document.getElementById('regReferCode').value = refCode;
+            }
 
             const currentUser = localStorage.getItem('hi_logged_user');  
             if (!currentUser) {  
-                document.getElementById('registerModal').classList.remove('hidden');  
+                document.getElementById('authScreen').classList.remove('hidden');  
+                document.getElementById('dashboardContainer').classList.add('hidden');  
             } else {  
+                document.getElementById('authScreen').classList.add('hidden');
                 loadDashboard(JSON.parse(currentUser));  
             }  
         });  
 
-        function handleRegistrationSubmit(event) {  
-            event.preventDefault();  
-            const name = document.getElementById('newUserNameInput').value.trim();  
-            const userId = 'HI-' + Math.floor(1000 + Math.random() * 9000);  
-            const referCode = 'REF-' + Math.floor(10000 + Math.random() * 90000);  
+        function switchAuthMode(mode) {
+            isRegisterMode = (mode === 'register');
+            const nameContainer = document.getElementById('nameFieldContainer');
+            const referContainer = document.getElementById('referFieldContainer');
+            const formTitle = document.getElementById('formTitle');
+            const formSubtitle = document.getElementById('formSubtitle');
+            const submitBtn = document.getElementById('authSubmitBtn');
+            const loginBtn = document.getElementById('loginTabBtn');
+            const registerBtn = document.getElementById('registerTabBtn');
 
-            const newUser = {  
-                name: name,  
-                userId: userId,  
-                referCode: referCode,  
-                balance: 50.00, // প্রোফাইলে ৫০ টাকা বোনাস
-                active: false  
-            };  
+            if(isRegisterMode) {
+                nameContainer.classList.remove('hidden');
+                referContainer.classList.remove('hidden');
+                formTitle.innerText = "নতুন অ্যাকাউন্ট তৈরি করুন";
+                formSubtitle.innerText = "সাইন আপ করলেই পাবেন ৫০ টাকা বোনাস!";
+                submitBtn.innerText = "একাউন্ট তৈরি করুন";
+                registerBtn.className = "py-2.5 rounded-xl bg-emerald-500 text-slate-950 transition";
+                loginBtn.className = "py-2.5 rounded-xl text-slate-400 transition";
+            } else {
+                nameContainer.classList.add('hidden');
+                referContainer.classList.add('hidden');
+                formTitle.innerText = "লগইন করুন";
+                formSubtitle.innerText = "আপনার অ্যাকাউন্টে প্রবেশ করতে তথ্য দিন";
+                submitBtn.innerText = "লগইন করুন";
+                loginBtn.className = "py-2.5 rounded-xl bg-emerald-500 text-slate-950 transition";
+                registerBtn.className = "py-2.5 rounded-xl text-slate-400 transition";
+            }
+        }
 
-            localStorage.setItem('hi_logged_user', JSON.stringify(newUser));  
-            document.getElementById('registerModal').classList.add('hidden');  
-            loadDashboard(newUser);  
-        }  
+        function handleAuthSubmit(event) {
+            event.preventDefault();
+            const phone = document.getElementById('authPhone').value.trim();
+            const password = document.getElementById('authPassword').value.trim();
+            
+            let usersList = JSON.parse(localStorage.getItem('hi_all_users') || '[]');
+
+            if(isRegisterMode) {
+                const name = document.getElementById('regName').value.trim();
+                const referCodeInput = document.getElementById('regReferCode').value.trim();
+
+                const existing = usersList.find(u => u.phone === phone);
+                if(existing) {
+                    showCustomPopup('⚠️ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট রয়েছে!');
+                    return;
+                }
+
+                const userId = Math.floor(100000 + Math.random() * 900000).toString();
+                const referCode = 'REF-' + Math.floor(10000 + Math.random() * 90000);
+
+                const newUser = {
+                    name: name,
+                    phone: phone,
+                    password: password,
+                    userId: userId,
+                    referCode: referCode,
+                    balance: 50.00,
+                    active: false,
+                    referredBy: referCodeInput || ''
+                };
+
+                usersList.push(newUser);
+                localStorage.setItem('hi_all_users', JSON.stringify(usersList));
+                localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
+
+                showCustomPopup('অভিনন্দন! সফলভাবে অ্যাকাউন্ট তৈরি হয়েছে এবং ৫০ টাকা বোনাস যোগ হয়েছে।');
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+
+            } else {
+                const foundUser = usersList.find(u => u.phone === phone && u.password === password);
+                if(!foundUser) {
+                    showCustomPopup('⚠️ ভুল মোবাইল নম্বর অথবা পাসওয়ার্ড!');
+                    return;
+                }
+
+                localStorage.setItem('hi_logged_user', JSON.stringify(foundUser));
+                document.getElementById('authScreen').classList.add('hidden');
+                loadDashboard(foundUser);
+            }
+        }
 
         function loadDashboard(user) {  
-            document.getElementById('authContainer').classList.remove('hidden');  
+            document.getElementById('authScreen').classList.add('hidden');
+            document.getElementById('dashboardContainer').classList.remove('hidden');  
             document.getElementById('userNameDisplay').innerText = user.name;  
             document.getElementById('profileNameDisplay').innerText = user.name;  
             document.getElementById('userIdDisplay').innerText = 'ID: #' + user.userId;  
