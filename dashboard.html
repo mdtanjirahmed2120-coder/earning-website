@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="flex items-center bg-white/20 backdrop-blur-md rounded-2xl p-1.5 border border-white/30">
-                <input type="text" id="referLinkInput" readonly value="" class="bg-transparent text-xs px-2 w-full text-white focus:outline-none font-mono">
+                <input type="text" id="referLinkInput" readonly value="" class="bg-transparent text-xs px-2 w-full text-white focus:outline-none font-mono font-bold">
                 <button onclick="copyReferLink()" class="bg-white text-orange-600 font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm hover:bg-orange-50 transition shrink-0">
                     কপি করুন
                 </button>
@@ -390,18 +390,28 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        // পেজ লোড হওয়ার সাথে সাথে ড্যাশবোর্ডের রেফার লিংক জেনারেট করা (Halal-Income সহ)
+        // পেজ লোড হওয়ার সাথে সাথে বক্সে ছোট কোড দেখানো এবং ব্যাকগ্রাউন্ডে ফুল লিংক রেডি রাখা
+        let fullReferLink = "";
         window.addEventListener('DOMContentLoaded', () => {
             const myUniqueId = "Halal-Income-" + Math.floor(1000 + Math.random() * 9000); 
             
             const currentBaseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-            const generatedReferLink = currentBaseUrl + "register.html?ref=" + myUniqueId;
+            fullReferLink = currentBaseUrl + "register.html?ref=" + myUniqueId;
 
             const referLinkInput = document.getElementById('referLinkInput');
             if (referLinkInput) {
-                referLinkInput.value = generatedReferLink;
+                referLinkInput.value = myUniqueId; // ইনপুট বক্সে শুধু ছোট কোড দেখাবে
             }
         });
+
+        // কপি করার ফাংশন (কপি করলে পুরো লিংকটিই কপি হবে)
+        function copyReferLink() {
+            navigator.clipboard.writeText(fullReferLink).then(() => {
+                alert("আপনার রেফারেল লিঙ্ক সফলভাবে কপি হয়েছে!\n" + fullReferLink);
+            }).catch(err => {
+                alert("কপি করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।");
+            });
+        }
 
         function openActivationModal() {
             document.getElementById('activationModal').classList.remove('hidden');
@@ -421,14 +431,6 @@
 
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
-        }
-
-        function copyReferLink() {
-            const copyText = document.getElementById("referLinkInput");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-            alert("আপনার রেফারেল লিঙ্ক কপি হয়েছে: \n" + copyText.value);
         }
 
         function handleActivationSubmit(event) {
