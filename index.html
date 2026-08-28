@@ -58,7 +58,7 @@
             <div class="flex justify-between items-start relative z-10">
                 <div>
                     <p class="text-[10px] tracking-wider uppercase text-emerald-400 font-bold">WELCOME BACK</p>
-                    <h2 class="text-lg font-black tracking-wide mt-0.5 text-white" id="userNameDisplay">MD JAHID</h2>
+                    <h2 class="text-lg font-black tracking-wide mt-0.5 text-white" id="userNameDisplay">ব্যবহারকারী</h2>
                     <p class="text-[11px] text-slate-400 mt-0.5 font-mono">ID: #HI-98402</p>
                 </div>
                 <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700">
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">
-                <input type="text" id="referLinkInput" readonly value="https://mdtanjirahmed2120-coder.github.io/earning-website/index.html?ref=USER123" class="bg-transparent text-[11px] px-2 w-full text-slate-300 focus:outline-none font-mono">
+                <input type="text" id="referLinkInput" readonly class="bg-transparent text-[11px] px-2 w-full text-slate-300 focus:outline-none font-mono">
                 <button onclick="copyReferLink()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition shrink-0">
                     কপি করুন
                 </button>
@@ -320,7 +320,7 @@
                 <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 shadow-lg font-black text-2xl">
                     <i class="fa-solid fa-user-shield"></i>
                 </div>
-                <h3 class="text-lg font-bold text-white" id="profileNameDisplay">MD JAHID</h3>
+                <h3 class="text-lg font-bold text-white" id="profileNameDisplay">ব্যবহারকারী</h3>
                 <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1">Inactive User</span>
             </div>
 
@@ -331,7 +331,7 @@
                 </div>
                 <div class="flex justify-between py-0.5">
                     <span class="text-slate-400">রেফার কোড:</span>
-                    <span class="font-bold text-emerald-400 font-mono">USER123</span>
+                    <span class="font-bold text-emerald-400 font-mono" id="profileReferCode">USER123</span>
                 </div>
                 <div class="flex justify-between py-0.5">
                     <span class="text-slate-400">যোগদানের তারিখ:</span>
@@ -380,11 +380,23 @@
         let userBalance = localStorage.getItem('hi_user_balance') !== null ? parseFloat(localStorage.getItem('hi_user_balance')) : 0.00;
 
         window.addEventListener('DOMContentLoaded', () => {
+            // ইউজারের নাম সেটআপ করা
             const savedName = localStorage.getItem('hi_user_name');
             if (savedName) {
                 document.getElementById('userNameDisplay').innerText = savedName.toUpperCase();
                 document.getElementById('profileNameDisplay').innerText = savedName.toUpperCase();
             }
+
+            // ডায়নামিক রেফার লিংক ও কোড জেনারেট করা
+            const currentUrl = window.location.origin + window.location.pathname;
+            let userReferCode = localStorage.getItem('hi_user_refer');
+            if (!userReferCode) {
+                userReferCode = 'HI-' + Math.floor(1000 + Math.random() * 9000);
+                localStorage.setItem('hi_user_refer', userReferCode);
+            }
+            
+            document.getElementById('referLinkInput').value = `${currentUrl}?ref=${userReferCode}`;
+            document.getElementById('profileReferCode').innerText = userReferCode;
 
             if (isAccountActive) {
                 document.getElementById('statusText').innerText = 'Active';
@@ -451,7 +463,7 @@
         function handleActivationSubmit(event) {
             event.preventDefault();
 
-            const name = document.getElementById('senderName').value;
+            const name = document.getElementById('senderName').value.trim();
             const phone = document.getElementById('senderPhone').value;
             const trxid = document.getElementById('senderTrxid').value;
             const submitBtn = document.getElementById('submitBtn');
@@ -468,9 +480,11 @@
                     if (data.ok) {
                         if(name) {
                             localStorage.setItem('hi_user_name', name);
+                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
+                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
                         }
                         closeModal('activationModal');
-                        showCustomPopup('আপনার পেমেন্ট রিকোয়েস্ট সফলভাবে সাবমিট হয়েছে। অ্যাডমিন পেমেন্ট চেক করার পর আপনার অ্যাকাউন্ট ও বোনাস ৫০ টাকা একটিভ করে দেওয়া হবে। ভুল তথ্য দিলে অ্যাকাউন্ট সাসপেন্ড করা হবে।');
+                        showCustomPopup('আপনার পেমেন্ট রিকোয়েস্ট সফলভাবে সাবমিট হয়েছে। অ্যাডমিন পেমেন্ট চেক করার পর আপনার অ্যাকাউন্ট একটিভ করে দেওয়া হবে। ভুল তথ্য দিলে অ্যাকাউন্ট সাসপেন্ড করা হবে।');
                     } else {
                         showCustomPopup('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
