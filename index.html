@@ -145,6 +145,37 @@
                 <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">সাপোর্ট</span></a>  
             </div>  
         </div>  
+
+        <!-- Fixed Bottom Navigation Bar (5টি অপশন সহ) -->
+        <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-2 px-3 z-40 max-w-md mx-auto">
+            <div class="grid grid-cols-5 gap-1 text-center">
+                <!-- হোম -->
+                <button onclick="showCustomPopup('হোম পেজে আছেন')" class="flex flex-col items-center text-emerald-400 transition">
+                    <i class="fa-solid fa-house text-base"></i>
+                    <span class="text-[9px] font-bold mt-0.5">হোম</span>
+                </button>
+                <!-- টাস্ক -->
+                <button onclick="checkTaskAccess('টাস্ক')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
+                    <i class="fa-solid fa-briefcase text-base"></i>
+                    <span class="text-[9px] font-semibold mt-0.5">টাস্ক</span>
+                </button>
+                <!-- হিস্ট্রি -->
+                <button onclick="showCustomPopup('হিস্ট্রি সেকশন')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
+                    <i class="fa-solid fa-clock-rotate-left text-base"></i>
+                    <span class="text-[9px] font-semibold mt-0.5">হিস্ট্রি</span>
+                </button>
+                <!-- ওয়ালেট -->
+                <button onclick="openActivationModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
+                    <i class="fa-solid fa-wallet text-base"></i>
+                    <span class="text-[9px] font-semibold mt-0.5">ওয়ালেট</span>
+                </button>
+                <!-- প্রোফাইল -->
+                <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
+                    <i class="fa-solid fa-user text-base"></i>
+                    <span class="text-[9px] font-semibold mt-0.5">প্রোফাইল</span>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- লজিক অথেন্টিকেশন পেজ (লগইন ও রেজিস্ট্রেশন ফর্ম) -->
