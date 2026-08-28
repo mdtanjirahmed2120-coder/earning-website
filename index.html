@@ -213,6 +213,21 @@
 
     </div>
 
+    <!-- Custom Beautiful Popup Modal (Replaces Browser Alert) -->
+    <div id="customPopupModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl text-center space-y-4">
+            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <p id="customPopupText" class="text-xs text-slate-200 font-medium leading-relaxed"></p>
+            <div class="flex gap-2 pt-2">
+                <button onclick="closeCustomPopup()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition shadow-lg shadow-emerald-500/20">
+                    ঠিক আছে
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Account Activation Modal -->
     <div id="activationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
@@ -382,6 +397,15 @@
             updateBalanceUI();
         });
 
+        function showCustomPopup(message) {
+            document.getElementById('customPopupText').innerText = message;
+            document.getElementById('customPopupModal').classList.remove('hidden');
+        }
+
+        function closeCustomPopup() {
+            document.getElementById('customPopupModal').classList.add('hidden');
+        }
+
         function updateBalanceUI() {
             document.getElementById('mainBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
             document.getElementById('modalBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
@@ -390,11 +414,10 @@
 
         function checkTaskAccess(taskName) {
             if (!isAccountActive) {
-                alert('⚠️ দয়া করে আমাদের সব গুলো প্রজেক্টে কাজ করার আগে আপনার একাউন্ট টি Active করুন!');
-                openActivationModal();
+                showCustomPopup('⚠️ দয়া করে আমাদের সব গুলো প্রজেক্টে কাজ করার আগে আপনার একাউন্ট টি Active করুন!');
                 return;
             }
-            alert(taskName + ' সেকশনে আপনাকে স্বাগতম!');
+            showCustomPopup(taskName + ' সেকশনে আপনাকে স্বাগতম!');
         }
 
         function openActivationModal() {
@@ -415,15 +438,14 @@
 
         function copyReferLink() {
             if (!isAccountActive) {
-                alert('⚠️ দয়া করে রেফার করার আগে আপনার একাউন্টি Active করে নিন!');
-                openActivationModal();
+                showCustomPopup('⚠️ দয়া করে রেফার করার আগে আপনার একাউন্টি Active করে নিন!');
                 return;
             }
             const copyText = document.getElementById("referLinkInput");
             copyText.select();
             copyText.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(copyText.value);
-            alert("আপনার রেফারেল লিঙ্ক কপি হয়েছে: \n" + copyText.value);
+            showCustomPopup("আপনার রেফারেল লিঙ্ক কপি হয়েছে!");
         }
 
         function handleActivationSubmit(event) {
@@ -459,14 +481,14 @@
                         document.getElementById('profileStatusBadge').innerText = "Active User";
                         document.getElementById('inactiveAlertCard').style.display = 'none';
 
-                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
                         closeModal('activationModal');
+                        showCustomPopup('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
                     } else {
-                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
+                        showCustomPopup('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
                     }
                 })
                 .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                    showCustomPopup('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
                 })
                 .finally(() => {
                     submitBtn.innerText = 'তথ্য জমা দিন';
@@ -478,8 +500,7 @@
             event.preventDefault();
             
             if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
-                openActivationModal();
+                showCustomPopup('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
                 return;
             }
 
@@ -489,12 +510,12 @@
             const withdrawBtn = document.getElementById('withdrawBtn');
 
             if (isNaN(amount) || amount < 100) {
-                alert('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
+                showCustomPopup('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
                 return;
             }
 
             if (amount > userBalance) {
-                alert('❌ আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!');
+                showCustomPopup('❌ আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!');
                 return;
             }
 
@@ -511,14 +532,14 @@
                         userBalance -= amount;
                         updateBalanceUI();
 
-                        alert('আপনার উইথড্র রিকোয়েস্ট সফলভাবে জমা হয়েছে! শীঘ্রই পেমেন্ট দেওয়া হবে।');
                         closeModal('walletModal');
+                        showCustomPopup('আপনার উইথড্র রিকোয়েস্ট সফলভাবে জমা হয়েছে! শীঘ্রই পেমেন্ট দেওয়া হবে।');
                     } else {
-                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
+                        showCustomPopup('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
                     }
                 })
                 .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                    showCustomPopup('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
                 })
                 .finally(() => {
                     withdrawBtn.innerText = 'উইথড্র রিকোয়েস্ট পাঠান';
