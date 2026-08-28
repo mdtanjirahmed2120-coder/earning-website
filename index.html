@@ -390,7 +390,7 @@
 
         function checkTaskAccess(taskName) {
             if (!isAccountActive) {
-                alert('⚠️ আপনার অ্যাকাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে ১০ টাকা দিয়ে আগে অ্যাকাউন্টটি একটিভ করুন।');
+                alert('⚠️ দয়া করে আমাদের সব গুলো প্রজেক্টে কাজ করার আগে আপনার একাউন্ট টি Active করুন!');
                 openActivationModal();
                 return;
             }
@@ -415,7 +415,7 @@
 
         function copyReferLink() {
             if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া আপনি রেফার লিঙ্ক শেয়ার করতে পারবেন না!');
+                alert('⚠️ দয়া করে রেফার করার আগে আপনার একাউন্টি Active করে নিন!');
                 openActivationModal();
                 return;
             }
@@ -488,7 +488,7 @@
             const amount = parseFloat(document.getElementById('withdrawAmount').value);
             const withdrawBtn = document.getElementById('withdrawBtn');
 
-            if (isnan(amount) || amount < 100) {
+            if (isNaN(amount) || amount < 100) {
                 alert('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
                 return;
             }
