@@ -444,12 +444,13 @@
             let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
             let referCount = users.filter(u => u.usedRefer === user.referCode).length;
 
-            // শর্ত চেক: কমপক্ষে বা সর্বোচ্চ ২০ টি রেফার কমপ্লিট হতে হবে
+            // শর্ত চেক: কমপক্ষে ২০ টি রেফার কমপ্লিট হতে হবে
             if (referCount < 20) {
                 showCustomPopup(`⚠️ উইথড্র করতে হলে আপনার কমপক্ষে ২০টি রেফার সম্পন্ন হতে হবে! আপনার বর্তমান রেফার রয়েছে ${referCount}টি।`);
                 return;
             }
 
+            // উইথড্র মডাল ওপেন করা
             document.getElementById('withdrawModal').classList.remove('hidden');
         }
 
