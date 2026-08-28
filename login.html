@@ -1,171 +1,61 @@
-<script>
-        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
-        const CHAT_ID = '6733473116';
+<!DOCTYPE html><html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halal Income - Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head><body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen flex items-center justify-center p-4"><div class="bg-white p-7 rounded-[32px] shadow-2xl w-full max-w-md border border-purple-100"><div class="text-center mb-6"><div class="w-16 h-16 bg-gradient-to-tr from-purple-700 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+<i class="fa-solid fa-mosque text-white text-2xl"></i>
+</div><h1 class="text-2xl font-black text-gray-800">Halal Income</h1><p class="text-xs text-gray-500 mt-1">
+আপনার অ্যাকাউন্টে লগইন করুন
+</p></div><form id="loginForm" class="space-y-4"><div class="relative">
+<i class="fa-solid fa-envelope absolute left-4 top-3.5 text-gray-400"></i>
+<input id="email" type="email" placeholder="Email Address" required
+class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
+</div><div class="relative">
+<i class="fa-solid fa-lock absolute left-4 top-3.5 text-gray-400"></i>
+<input id="password" type="password" placeholder="Password" required
+class="w-full pl-11 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm outline-none focus:border-purple-600">
+</div><button class="w-full bg-gradient-to-r from-purple-700 to-indigo-600 text-white font-bold py-3.5 rounded-2xl shadow-lg">
+Login Account
+<i class="fa-solid fa-right-to-bracket ml-1"></i>
+</button></form><p class="text-xs text-center text-gray-500 mt-5">
+Don't have an account?
+<a href="register.html" class="text-purple-700 font-bold">Register</a>
+</p></div><script>
 
-        // লোকাল স্টোরেজ থেকে ডাটা লোড করা (যাতে রিফ্রেশ করলে মুছে না যায়)
-        let isAccountActive = localStorage.getItem('hi_account_active') === 'true';
-        let userBalance = parseFloat(localStorage.getItem('hi_user_balance')) || 15.00;
+document.getElementById("loginForm").addEventListener("submit",function(e){
 
-        window.addEventListener('DOMContentLoaded', () => {
-            // সেভ করা নাম ও ফোন নম্বর ডিসপ্লে করা
-            const savedName = localStorage.getItem('hi_user_name');
-            if (savedName) {
-                document.getElementById('userNameDisplay').innerText = savedName.toUpperCase();
-                document.getElementById('profileNameDisplay').innerText = savedName.toUpperCase();
-            }
+e.preventDefault();
 
-            if (isAccountActive) {
-                document.getElementById('statusText').innerText = 'Active';
-                document.getElementById('badgeStatus').className = "bg-green-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
-                document.getElementById('profileStatusBadge').className = "bg-green-100 text-green-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-                document.getElementById('profileStatusBadge').innerText = "Active User";
-                document.getElementById('inactiveAlertCard').style.display = 'none';
-            }
+const saved=localStorage.getItem("hi_user");
 
-            updateBalanceUI();
-        });
+if(!saved){
 
-        function updateBalanceUI() {
-            document.getElementById('mainBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
-            document.getElementById('modalBalanceDisplay').innerText = '৳' + userBalance.toFixed(2);
-            localStorage.setItem('hi_user_balance', userBalance);
-        }
+alert("❌ আগে একটি Account Register করুন।");
+location.href="register.html";
+return;
 
-        function checkTaskAccess(taskName) {
-            if (!isAccountActive) {
-                alert('⚠️ আপনার অ্যাকাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে ১০ টাকা দিয়ে আগে অ্যাকাউন্টটি একটিভ করুন।');
-                openActivationModal();
-                return;
-            }
-            alert(taskName + ' সেকশনে আপনাকে স্বাগতম!');
-        }
+}
 
-        function openActivationModal() {
-            document.getElementById('activationModal').classList.remove('hidden');
-        }
+const user=JSON.parse(saved);
 
-        function openWalletModal() {
-            document.getElementById('walletModal').classList.remove('hidden');
-        }
+const email=document.getElementById("email").value.trim().toLowerCase();
+const password=document.getElementById("password").value;
 
-        function openProfileModal() {
-            document.getElementById('profileModal').classList.remove('hidden');
-        }
+if(email!==user.email || password!==user.password){
 
-        function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
-        }
+alert("❌ Email অথবা Password সঠিক নয়।");
+return;
 
-        function copyReferLink() {
-            if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া আপনি রেফার লিঙ্ক শেয়ার করতে পারবেন না!');
-                openActivationModal();
-                return;
-            }
-            const copyText = document.getElementById("referLinkInput");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-            alert("আপনার রেফারেল লিঙ্ক কপি হয়েছে: \n" + copyText.value);
-        }
+}
 
-        function handleActivationSubmit(event) {
-            event.preventDefault();
+localStorage.setItem("hi_logged_in","true");
 
-            const name = document.getElementById('senderName').value;
-            const phone = document.getElementById('senderPhone').value;
-            const trxid = document.getElementById('senderTrxid').value;
-            const submitBtn = document.getElementById('submitBtn');
+location.href="dashboard.html";
 
-            submitBtn.innerText = 'জমা হচ্ছে...';
-            submitBtn.disabled = true;
+});
 
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A%0A👤 *নাম:* ${name}%0A📱 *নগদ নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        if(name) {
-                            document.getElementById('userNameDisplay').innerText = name.toUpperCase();
-                            document.getElementById('profileNameDisplay').innerText = name.toUpperCase();
-                            localStorage.setItem('hi_user_name', name);
-                        }
-                        
-                        isAccountActive = true;
-                        localStorage.setItem('hi_account_active', 'true');
-
-                        document.getElementById('statusText').innerText = 'Active';
-                        document.getElementById('badgeStatus').className = "bg-green-500/80 text-[10px] px-2 py-0.5 rounded-full font-bold flex items-center gap-1 w-fit mt-1";
-                        document.getElementById('profileStatusBadge').className = "bg-green-100 text-green-600 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-1";
-                        document.getElementById('profileStatusBadge').innerText = "Active User";
-                        document.getElementById('inactiveAlertCard').style.display = 'none';
-
-                        alert('আপনার তথ্য সফলভাবে জমা হয়েছে! অ্যাকাউন্ট সফলভাবে একটিভ করা হয়েছে।');
-                        closeModal('activationModal');
-                    } else {
-                        alert('তথ্য পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন।');
-                    }
-                })
-                .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
-                })
-                .finally(() => {
-                    submitBtn.innerText = 'তথ্য জমা দিন';
-                    submitBtn.disabled = false;
-                });
-        }
-
-        function handleWithdrawSubmit(event) {
-            event.preventDefault();
-            
-            if (!isAccountActive) {
-                alert('⚠️ অ্যাকাউন্ট একটিভ ছাড়া উইথড্র করা যাবে না!');
-                openActivationModal();
-                return;
-            }
-
-            const method = document.getElementById('withdrawMethod').value;
-            const phone = document.getElementById('withdrawPhone').value;
-            const amount = parseFloat(document.getElementById('withdrawAmount').value);
-            const withdrawBtn = document.getElementById('withdrawBtn');
-
-            if (isNaN(amount) || amount < 100) {
-                alert('❌ সর্বনিম্ন ১০০ টাকা বা তার বেশি হলে তবেই উইথড্র করতে পারবেন!');
-                return;
-            }
-
-            if (amount > userBalance) {
-                alert('❌ আপনার অ্যাকাউন্টে পর্যাপ্ত ব্যালেন্স নেই!');
-                return;
-            }
-
-            withdrawBtn.innerText = 'পাঠানো হচ্ছে...';
-            withdrawBtn.disabled = true;
-
-            const message = `💸 *নতুন উইথড্র রিকোয়েস্ট!* %0A%0A📱 *মেথড:* ${method}%0A📞 *নম্বর:* ${phone}%0A💰 *পরিমাণ:* ${amount} টাকা%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
-
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
-                        userBalance -= amount;
-                        updateBalanceUI();
-
-                        alert('আপনার উইথড্র রিকোয়েস্ট সফলভাবে জমা হয়েছে! শীঘ্রই পেমেন্ট দেওয়া হবে।');
-                        closeModal('walletModal');
-                    } else {
-                        alert('উইথড্র রিকোয়েস্ট পাঠাতে সমস্যা হয়েছে।');
-                    }
-                })
-                .catch(error => {
-                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
-                })
-                .finally(() => {
-                    withdrawBtn.innerText = 'উইথড্র রিকোয়েস্ট পাঠান';
-                    withdrawBtn.disabled = false;
-                });
-        }
-    </script>
+</script></body>
+</html>
