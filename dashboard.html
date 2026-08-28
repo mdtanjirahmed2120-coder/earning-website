@@ -390,12 +390,12 @@
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
         const CHAT_ID = '6733473116';
 
-        // পেজ লোড হওয়ার সাথে সাথে ড্যাশবোর্ডের রেফার লিংক জেনারেট করা
+        // পেজ লোড হওয়ার সাথে সাথে ড্যাশবোর্ডের রেফার লিংক জেনারেট করা (Halal-Income সহ)
         window.addEventListener('DOMContentLoaded', () => {
-            const myUniqueId = "HI-" + Math.floor(10000 + Math.random() * 90000); 
+            const myUniqueId = "Halal-Income-" + Math.floor(1000 + Math.random() * 9000); 
             
             const currentBaseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/') + 1);
-            const generatedReferLink = currentBaseUrl + "dashboard.html?ref=" + myUniqueId;
+            const generatedReferLink = currentBaseUrl + "register.html?ref=" + myUniqueId;
 
             const referLinkInput = document.getElementById('referLinkInput');
             if (referLinkInput) {
