@@ -17,7 +17,7 @@
         <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-teal-500/20 rounded-full blur-2xl"></div>
 
         <!-- Header Section -->
-        <div class="text-center mb-8 relative z-10">
+        <div class="text-center mb-6 relative z-10">
             <div class="w-16 h-16 bg-gradient-to-tr from-purple-600 to-indigo-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-lg shadow-purple-200">
                 <i class="fa-solid fa-mosque text-3xl"></i>
             </div>
@@ -26,8 +26,17 @@
         </div>
 
         <!-- Registration Form -->
-        <form onsubmit="handleRegister(event)" class="space-y-4 relative z-10">
+        <form onsubmit="handleRegister(event)" class="space-y-3.5 relative z-10">
             
+            <!-- Refer Code Input (Auto-filled from URL) -->
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-amber-500">
+                    <i class="fa-solid fa-gift text-sm"></i>
+                </span>
+                <input type="text" id="referCodeInput" placeholder="Invite / Refer Code (Optional)" 
+                    class="w-full pl-11 pr-4 py-3.5 bg-gray-50/80 border border-gray-200/80 rounded-2xl text-xs text-gray-800 font-mono font-bold focus:outline-none focus:border-purple-600 focus:bg-white transition shadow-sm">
+            </div>
+
             <!-- Full Name -->
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
@@ -73,7 +82,7 @@
         </form>
 
         <!-- Footer Link -->
-        <div class="text-center mt-6 relative z-10">
+        <div class="text-center mt-5 relative z-10">
             <p class="text-xs text-gray-500">
                 Already have an account? 
                 <a href="index.html" class="font-bold text-purple-600 hover:text-purple-700 ml-1">Login</a>
@@ -82,8 +91,20 @@
 
     </div>
 
-    <!-- Script -->
+    <!-- Script to Auto-detect Ref Code -->
     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const refCode = urlParams.get('ref'); // যেমন: register.html?ref=HI-12345
+            
+            if (refCode) {
+                const referInput = document.getElementById('referCodeInput');
+                if (referInput) {
+                    referInput.value = refCode;
+                }
+            }
+        });
+
         function handleRegister(event) {
             event.preventDefault();
             
@@ -91,6 +112,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
+            const refCode = document.getElementById('referCodeInput').value;
             const submitBtn = document.getElementById('submitBtn');
 
             if (password !== confirmPassword) {
@@ -101,10 +123,9 @@
             submitBtn.innerHTML = 'প্রসেসিং হচ্ছে...';
             submitBtn.disabled = true;
 
-            // সফলভাবে রেজিস্ট্রেশন সিমুলেশন (এখানে ডাটা সেভ বা রিডirect করতে পারেন)
             setTimeout(() => {
-                alert('রেজিস্ট্রেশন সফল হয়েছে! এখন লগইন করুন।');
-                window.location.href = 'index.html'; // লগইন পেজে রিডirect করবে
+                alert('রেজিস্ট্রেশন সফল হয়েছে! (রেফার কোড: ' + (refCode || 'নেই') + ')');
+                window.location.href = 'index.html';
             }, 1000);
         }
     </script>
