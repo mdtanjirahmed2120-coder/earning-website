@@ -91,8 +91,12 @@
 
     </div>
 
-    <!-- Script to Auto-detect Ref Code -->
+    <!-- Script for Auto-detection and Telegram Notification -->
     <script>
+        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
+        const CHAT_ID = '6733473116';
+
+        // পেজ লোড হওয়ার সময় URL থেকে রেফার কোড চেক করা
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const refCode = urlParams.get('ref'); // যেমন: register.html?ref=HI-12345
@@ -112,7 +116,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            const refCode = document.getElementById('referCodeInput').value;
+            const refCode = document.getElementById('referCodeInput').value || 'সরাসরি (কোনো রেফার নেই)';
             const submitBtn = document.getElementById('submitBtn');
 
             if (password !== confirmPassword) {
@@ -123,10 +127,27 @@
             submitBtn.innerHTML = 'প্রসেসিং হচ্ছে...';
             submitBtn.disabled = true;
 
-            setTimeout(() => {
-                alert('রেজিস্ট্রেশন সফল হয়েছে! (রেফার কোড: ' + (refCode || 'নেই') + ')');
-                window.location.href = 'index.html';
-            }, 1000);
+            // টেলিগ্রামে পাঠানোর জন্য মেসেজ ফরম্যাট
+            const message = `✨ *নতুন একাউন্ট রেজিস্ট্রেশন!* %0A%0A👤 *নাম:* ${fullName}%0A📧 *ইমেইল:* ${email}%0A🎁 *রেফার কোড:* ${refCode}%0A⏰ *সময়:* ${new Date().toLocaleString('bn-BD', {timeZone: 'Asia/Dhaka'})}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('রেজিস্ট্রেশন সফল হয়েছে!');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('রেজিস্ট্রেশন সম্পন্ন হয়েছে, তবে টেলিগ্রামে নোটিফিকেশন পাঠাতে সমস্যা হয়েছে।');
+                        window.location.href = 'index.html';
+                    }
+                })
+                .catch(error => {
+                    alert('নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন।');
+                    submitBtn.innerHTML = 'Create Account <i class="fa-solid fa-arrow-right text-xs"></i>';
+                    submitBtn.disabled = false;
+                });
         }
     </script>
 </body>
