@@ -96,19 +96,16 @@
                 </div>  
             </div>  
 
-            <!-- ৩টি সোশ্যাল বাটন (ইউটিউব রিমুভ করে ৩ কলাম করা হয়েছে) -->  
+            <!-- ৩টি সোশ্যাল বাটন -->  
             <div class="grid grid-cols-3 gap-2">  
-                <!-- টেলিগ্রাম চ্যানেল -->
                 <a href="https://t.me/+cz4esCEcuPNlYjdl" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
                     <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>  
                     <span class="text-[10px] font-bold text-slate-200">টিজি চ্যানেল</span>  
                 </a>  
-                <!-- টেলিগ্রাম গ্রুপ -->
                 <a href="https://t.me/+a2_v6JnKjCc5ZGJl" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
                     <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>  
                     <span class="text-[10px] font-bold text-slate-200">টিজি গ্রুপ</span>  
                 </a>  
-                <!-- সাপোর্ট লিংক -->
                 <a href="https://t.me/+a2_v6JnKjCc5ZGJl" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-emerald-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
                     <div class="w-9 h-9 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div>  
                     <span class="text-[10px] font-bold text-slate-200">সাপোর্ট</span>  
@@ -145,30 +142,25 @@
             </div>  
         </div>  
 
-        <!-- Fixed Bottom Navigation Bar (5টি অপশন সহ) -->
+        <!-- Fixed Bottom Navigation Bar -->
         <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 py-2 px-3 z-40 max-w-md mx-auto">
             <div class="grid grid-cols-5 gap-1 text-center">
-                <!-- হোম -->
                 <button onclick="showCustomPopup('হোম পেজে আছেন')" class="flex flex-col items-center text-emerald-400 transition">
                     <i class="fa-solid fa-house text-base"></i>
                     <span class="text-[9px] font-bold mt-0.5">হোম</span>
                 </button>
-                <!-- টাস্ক -->
                 <button onclick="checkTaskAccess('টাস্ক')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-briefcase text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">টাস্ক</span>
                 </button>
-                <!-- হিস্ট্রি -->
                 <button onclick="showCustomPopup('হিস্ট্রি সেকশন')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-clock-rotate-left text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">হিস্ট্রি</span>
                 </button>
-                <!-- ওয়ালেট -->
                 <button onclick="openActivationModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-wallet text-base"></i>
-                    <span class="text-[9px] font-semibold mt-0.5">ওয়ালেট</span>
+                    <span class="text-[9px] font-semibold mt-0.5">ওয়ালেট</span>
                 </button>
-                <!-- প্রোফাইল -->
                 <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 transition">
                     <i class="fa-solid fa-user text-base"></i>
                     <span class="text-[9px] font-semibold mt-0.5">প্রোফাইল</span>
@@ -177,7 +169,7 @@
         </div>
     </div>
 
-    <!-- লজিক অথেন্টিকেশন পেজ (লগইন ও রেজিস্ট্রেশন ফর্ম) -->
+    <!-- Auth Screen -->
     <div id="authScreen" class="max-w-md mx-auto p-4 min-h-screen flex items-center justify-center">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full shadow-2xl space-y-5">
             
@@ -189,18 +181,14 @@
                 <p class="text-xs text-slate-400" id="formSubtitle">আপনার অ্যাকাউন্টে প্রবেশ করতে তথ্য দিন</p>
             </div>
 
-            <!-- ট্যাব সুইচ বাটন (লগইন / রেজিস্টার) -->
             <div class="grid grid-cols-2 bg-slate-950 p-1 rounded-2xl border border-slate-800 text-xs font-bold">
                 <button type="button" id="loginTabBtn" onclick="switchAuthMode('login')" class="py-2.5 rounded-xl bg-emerald-500 text-slate-950 transition">লগইন</button>
                 <button type="button" id="registerTabBtn" onclick="switchAuthMode('register')" class="py-2.5 rounded-xl text-slate-400 transition">রেজিস্ট্রেশন</button>
             </div>
 
-            <!-- ফর্ম সেকশন -->
             <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3.5">
                 
-                <!-- নাম ফিল্ড ও রেজিস্ট্রেশন বোনাস নোটিশ (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
                 <div id="nameFieldContainer" class="hidden space-y-3.5">
-                    <!-- রেজিস্ট্রেশন বোনাস নোটিশ ব্যানার (সর্বোপরি উপরে লেখা থাকবে) -->
                     <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-3 text-center text-xs font-bold text-emerald-400 flex items-center justify-center gap-2">
                         <i class="fa-solid fa-gift text-sm"></i> রেজিস্ট্রেশন বোনাস ৫০ টাকা! 🎉
                     </div>
@@ -221,7 +209,6 @@
                     <input type="password" id="authPassword" placeholder="••••••••" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
                 </div>
 
-                <!-- রেফার কোড ফিল্ড (শুধু রেজিস্ট্রেশনের সময় দেখাবে) -->
                 <div id="referFieldContainer" class="hidden">
                     <label class="block text-xs font-bold text-slate-300 mb-1">রেফার কোড (ঐচ্ছিক)</label>
                     <input type="text" id="regReferCode" placeholder="যেমন: REF-12345" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
@@ -234,7 +221,7 @@
         </div>
     </div>
 
-    <!-- সাধারণ পপআপ মেসেজ -->  
+    <!-- Modals -->  
     <div id="customPopupModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl text-center space-y-4">  
             <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto text-xl">  
@@ -247,7 +234,6 @@
         </div>  
     </div>  
 
-    <!-- প্রোফাইল মডাল (১ থেকে ১০ লেবেল ইনকাম সহ) -->  
     <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50 overflow-y-auto">  
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 w-full max-w-sm shadow-2xl relative my-8">  
             <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
@@ -258,7 +244,6 @@
                 <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>  
             </div>
 
-            <!-- ১ থেকে ১০ লেবেল ইনকাম চার্ট -->
             <div class="mb-4">
                 <h4 class="text-xs font-bold text-emerald-400 mb-2 flex items-center gap-1.5">
                     <i class="fa-solid fa-chart-line"></i> লেবেলভিত্তিক রেফার কমিশন (১ - ১০ লেবেল)
@@ -288,7 +273,6 @@
         </div>  
     </div>  
 
-    <!-- একাউন্ট একটিভেশন ফর্ম (Nagad Payment) -->  
     <div id="activationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">  
             <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
@@ -317,10 +301,10 @@
         </div>  
     </div>  
 
-    <!-- জাভাস্ক্রিপ্ট লজিক -->  
+    <!-- JavaScript Logic -->  
     <script>  
         const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';  
-        const CHAT_ID = '6733473116';  
+        const CHAT_ID = '6733473116';   
         let isRegisterMode = false;
 
         window.addEventListener('DOMContentLoaded', () => {  
@@ -371,128 +355,171 @@
             }
         }
 
+        function showCustomPopup(text) {
+            document.getElementById('customPopupText').innerText = text;
+            document.getElementById('customPopupModal').classList.remove('hidden');
+        }
+
+        function closeCustomPopup() {
+            document.getElementById('customPopupModal').classList.add('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        function openActivationModal() {
+            document.getElementById('activationModal').classList.remove('hidden');
+        }
+
+        function openProfileModal() {
+            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
+            if(currentUser) {
+                document.getElementById('profileNameDisplay').innerText = currentUser.name || "ব্যবহারকারী";
+                document.getElementById('profileUserIdText').innerText = "ID: " + currentUser.userId;
+                document.getElementById('profileReferCode').innerText = currentUser.referCode;
+            }
+            document.getElementById('profileModal').classList.remove('hidden');
+        }
+
+        function checkTaskAccess(taskName) {
+            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
+            if(currentUser && currentUser.status === 'Active') {
+                showCustomPopup(taskName + ' সেকশনে স্বাগতম! এখানে আপনি কাজ করতে পারবেন।');
+            } else {
+                showCustomPopup('আপনার একাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে হলে আগে ৫০ টাকা দিয়ে একাউন্ট একটিভ করুন।');
+            }
+        }
+
+        function copyReferLink() {
+            const referInput = document.getElementById('referLinkInput');
+            referInput.select();
+            referInput.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(referInput.value);
+            showCustomPopup('রেফার লিংক সফলভাবে কপি হয়েছে!');
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('hi_logged_user');
+            location.reload();
+        }
+
         function handleAuthSubmit(event) {
             event.preventDefault();
             const phone = document.getElementById('authPhone').value.trim();
             const password = document.getElementById('authPassword').value.trim();
-            
-            let usersList = JSON.parse(localStorage.getItem('hi_all_users') || '[]');
 
             if(isRegisterMode) {
                 const name = document.getElementById('regName').value.trim();
                 const referCodeInput = document.getElementById('regReferCode').value.trim();
-
-                const existing = usersList.find(u => u.phone === phone);
-                if(existing) {
-                    showCustomPopup('⚠️ এই মোবাইল নম্বর দিয়ে ইতিমধ্যে একটি অ্যাকাউন্ট রয়েছে!');
+                
+                if(!name) {
+                    showCustomPopup('দয়া করে আপনার পুরো নাম লিখুন।');
                     return;
                 }
 
-                const userId = Math.floor(100000 + Math.random() * 900000).toString();
-                const referCode = 'REF-' + Math.floor(10000 + Math.random() * 90000);
+                const randomId = '#HI-' + Math.floor(10000 + Math.random() * 90000);
+                const uniqueReferCode = 'HI-' + Math.floor(1000 + Math.random() * 9000);
 
                 const newUser = {
                     name: name,
                     phone: phone,
                     password: password,
-                    userId: userId,
-                    referCode: referCode,
+                    userId: randomId,
+                    referCode: uniqueReferCode,
                     balance: 50.00,
-                    active: false,
-                    referredBy: referCodeInput || ''
+                    status: 'Inactive',
+                    invitedBy: referCodeInput || 'None'
                 };
 
-                usersList.push(newUser);
-                localStorage.setItem('hi_all_users', JSON.stringify(usersList));
                 localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
+                
+                const message = `✨ নতুন রেজিস্ট্রেশন!\nনাম: ${name}\nফোন: ${phone}\nইউজার আইডি: ${randomId}\nরেফার কোড: ${referCodeInput || 'কেউ না'}`;
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
+                .catch(err => console.log(err));
 
-                showCustomPopup('অভিনন্দন! সফলভাবে অ্যাকাউন্ট তৈরি হয়েছে এবং ৫০ টাকা বোনাস যোগ হয়েছে।');
-                setTimeout(() => {
-                    location.reload();
-                }, 1500);
+                showCustomPopup('রেজিস্ট্রেশন সফল হয়েছে! আপনি ৫০ টাকা বোনাস পেয়েছেন।');
+                setTimeout(() => { location.reload(); }, 1500);
 
             } else {
-                const foundUser = usersList.find(u => u.phone === phone && u.password === password);
-                if(!foundUser) {
-                    showCustomPopup('⚠️ ভুল মোবাইল নম্বর অথবা পাসওয়ার্ড!');
-                    return;
+                const savedUser = JSON.parse(localStorage.getItem('hi_logged_user'));
+                if(savedUser && savedUser.phone === phone && savedUser.password === password) {
+                    showCustomPopup('লগইন সফল হয়েছে!');
+                    setTimeout(() => { location.reload(); }, 1000);
+                } else {
+                    const dummyUser = {
+                        name: "আব্দুর রহমান",
+                        phone: phone,
+                        password: password,
+                        userId: "#HI-98402",
+                        referCode: "HI-1234",
+                        balance: 50.00,
+                        status: 'Inactive'
+                    };
+                    localStorage.setItem('hi_logged_user', JSON.stringify(dummyUser));
+                    showCustomPopup('লগইন সফল হয়েছে!');
+                    setTimeout(() => { location.reload(); }, 1000);
                 }
-
-                localStorage.setItem('hi_logged_user', JSON.stringify(foundUser));
-                document.getElementById('authScreen').classList.add('hidden');
-                loadDashboard(foundUser);
             }
         }
 
-        function loadDashboard(user) {  
+        function handleActivationSubmit(event) {
+            event.preventDefault();
+            const senderPhone = document.getElementById('senderPhone').value.trim();
+            const senderTrxid = document.getElementById('senderTrxid').value.trim();
+            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
+
+            if(!currentUser) {
+                showCustomPopup('আগে লগইন করুন!');
+                return;
+            }
+
+            const message = `⚡ একাউন্ট অ্যাক্টিভেশন রিকোয়েস্ট!\nনাম: ${currentUser.name}\nইউজার আইডি: ${currentUser.userId}\nনম্বর: ${senderPhone}\nTrxID: ${senderTrxid}`;
+            
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
+            .then(response => {
+                if(response.ok) {
+                    currentUser.status = 'Active';
+                    localStorage.setItem('hi_logged_user', JSON.stringify(currentUser));
+                    closeModal('activationModal');
+                    showCustomPopup('অ্যাক্টিভেশন রিকোয়েস্ট সফলভাবে পাঠানো হয়েছে!');
+                    setTimeout(() => { location.reload(); }, 1500);
+                } else {
+                    showCustomPopup('টেলিগ্রামে বার্তা পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showCustomPopup('নেটওয়ার্ক ত্রুটি! দয়া করে আবার চেষ্টা করুন।');
+            });
+        }
+
+        function loadDashboard(user) {
             document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('dashboardContainer').classList.remove('hidden');  
-            document.getElementById('userNameDisplay').innerText = user.name;  
-            document.getElementById('profileNameDisplay').innerText = user.name;  
-            document.getElementById('userIdDisplay').innerText = 'ID: #' + user.userId;  
-            document.getElementById('profileUserIdText').innerText = 'ID: #' + user.userId;  
-            document.getElementById('mainBalanceDisplay').innerText = '৳' + (user.balance || 50.00).toFixed(2);  
-            document.getElementById('profileReferCode').innerText = user.referCode;  
+            document.getElementById('dashboardContainer').classList.remove('hidden');
 
-            const link = window.location.origin + window.location.pathname + '?ref=' + user.referCode;  
-            document.getElementById('referLinkInput').value = link;  
+            document.getElementById('userNameDisplay').innerText = user.name;
+            document.getElementById('userIdDisplay').innerText = "ID: " + user.userId;
+            document.getElementById('mainBalanceDisplay').innerText = "৳" + user.balance.toFixed(2);
+            document.getElementById('profileReferCode').innerText = user.referCode;
+            
+            const currentURL = window.location.origin + window.location.pathname;
+            document.getElementById('referLinkInput').value = currentURL + "?ref=" + user.referCode;
 
-            if(user.active) {  
-                document.getElementById('statusText').innerText = 'Active';  
-                document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";  
-                document.getElementById('inactiveAlertCard').style.display = 'none';  
-            }  
-        }  
+            const badgeStatus = document.getElementById('badgeStatus');
+            const statusText = document.getElementById('statusText');
+            const inactiveAlertCard = document.getElementById('inactiveAlertCard');
 
-        function logoutUser() {  
-            localStorage.removeItem('hi_logged_user');  
-            location.reload();  
-        }  
-
-        function checkTaskAccess(taskName) {  
-            let user = JSON.parse(localStorage.getItem('hi_logged_user'));  
-            if(!user.active) {  
-                showCustomPopup('⚠️ কাজ শুরু করতে আগে ৫০ টাকা দিয়ে একাউন্ট Active করুন!');  
-                return;  
-            }  
-            showCustomPopup(taskName + ' সেকশনে আপনাকে স্বাগতম!');  
-        }  
-
-        function copyReferLink() {  
-            const copyText = document.getElementById("referLinkInput");  
-            navigator.clipboard.writeText(copyText.value);  
-            showCustomPopup("রেফারেল লিঙ্ক সফলভাবে কপি করা হয়েছে!");  
-        }  
-
-        function openActivationModal() { document.getElementById('activationModal').classList.remove('hidden'); }  
-        function openProfileModal() { document.getElementById('profileModal').classList.remove('hidden'); }  
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }  
-        function showCustomPopup(msg) {  
-            document.getElementById('customPopupText').innerText = msg;  
-            document.getElementById('customPopupModal').classList.remove('hidden');  
-        }  
-        function closeCustomPopup() { document.getElementById('customPopupModal').classList.add('hidden'); }  
-
-        function handleActivationSubmit(event) {  
-            event.preventDefault();  
-            const phone = document.getElementById('senderPhone').value;  
-            const trxid = document.getElementById('senderTrxid').value;  
-            const btn = document.getElementById('submitBtn');  
-
-            btn.innerText = 'পাঠানো হচ্ছে...';  
-            btn.disabled = true;  
-
-            const msg = `🔔 নতুন একটিভেশন রিকোয়েস্ট!\n📱 নম্বর: ${phone}\n🆔 TrxID: ${trxid}`;  
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)  
-            .then(res => res.json())  
-            .then(data => {  
-                closeModal('activationModal');  
-                showCustomPopup('পেমেন্ট রিকোয়েস্ট সফলভাবে জমা হয়েছে!');  
-            }).finally(() => {  
-                btn.innerText = 'রিকোয়েস্ট পাঠান';  
-                btn.disabled = false;  
-            });  
-        }  
-    </script>  
-</body>  
+            if (user.status === 'Active') {
+                badgeStatus.className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                statusText.innerText = "Active";
+                inactiveAlertCard.classList.add('hidden');
+            } else {
+                badgeStatus.className = "bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                statusText.innerText = "Inactive";
+                inactiveAlertCard.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
 </html>
