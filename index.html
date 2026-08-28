@@ -13,521 +13,354 @@
 </head>
 <body class="bg-slate-950 text-slate-100 pb-28 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
 
-    <!-- Auth Wrapper (Login / Register / Dashboard) -->
+    <!-- Auth Wrapper -->
     <div id="authContainer" class="hidden">
         
-        <!-- Top Navbar -->
-        <div class="bg-slate-900/90 backdrop-blur-xl border-b border-slate-800/80 p-4 sticky top-0 z-40 flex justify-between items-center max-w-md mx-auto shadow-sm">
-            <div class="flex items-center space-x-3">
-                <button onclick="openProfileModal()" class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 active:scale-95 transition">
-                    <i class="fa-solid fa-user-shield text-sm font-bold"></i>
-                </button>
-                <div>
-                    <div class="flex items-center gap-1.5">
-                        <i class="fa-solid fa-mosque text-emerald-400 text-xs"></i>
-                        <span class="font-black tracking-wide text-sm bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Halal Income</span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 font-medium">হালাল উপার্জনের বিশ্বস্ত মাধ্যম</p>
-                </div>
-            </div>
-            <div class="flex items-center space-x-2">
-                <span id="badgeStatus" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold flex items-center gap-1.5 shadow-sm">
-                    <i class="fa-solid fa-circle text-[6px] animate-pulse"></i> <span id="statusText">Inactive</span>
+        <!-- Top Navbar -->  
+        <div class="bg-slate-900/85 backdrop-blur-md border-b border-slate-800 p-4 sticky top-0 z-40 flex justify-between items-center max-w-md mx-auto">  
+            <div class="flex items-center space-x-3">  
+                <button onclick="openProfileModal()" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 active:scale-95 transition">  
+                    <i class="fa-solid fa-user-shield text-sm"></i>  
+                </button>  
+                <div>  
+                    <div class="flex items-center gap-1.5">  
+                        <i class="fa-solid fa-mosque text-emerald-400 text-xs"></i>  
+                        <span class="font-bold tracking-wide text-sm bg-gradient-to-r from-emerald-400 to-teal-200 bg-clip-text text-transparent">Halal Income</span>  
+                    </div>  
+                    <p class="text-[10px] text-slate-400 font-medium">হালাল উপার্জনের আস্থার ঠিকানা</p>  
+                </div>  
+            </div>  
+            <div class="flex items-center space-x-2">  
+                <span id="badgeStatus" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1">  
+                    <i class="fa-solid fa-circle text-[6px] animate-pulse"></i> <span id="statusText">Inactive</span>  
                 </span>
-                <button onclick="logoutUser()" class="bg-slate-800/80 hover:bg-rose-600/20 hover:text-rose-400 text-slate-300 w-9 h-9 rounded-2xl flex items-center justify-center text-xs transition border border-slate-700/60 shadow-sm" title="লগআউট">
+                <button onclick="logoutUser()" class="bg-slate-800 hover:bg-rose-600/20 hover:text-rose-400 text-slate-300 w-9 h-9 rounded-xl flex items-center justify-center text-xs transition border border-slate-700" title="লগআউট">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
-            </div>
-        </div>
+            </div>  
+        </div>  
 
-        <div class="max-w-md mx-auto p-4 space-y-4">
+        <div class="max-w-md mx-auto p-4 space-y-4">  
 
-            <!-- Inactive Account Alert Card -->
-            <div id="inactiveAlertCard" class="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-rose-500/10 border border-amber-500/30 p-4 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg shrink-0">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-amber-300 text-xs">অ্যাকাউন্টটি ইনঅ্যাক্টিভ রয়েছে!</h4>
-                        <p class="text-[11px] text-slate-300 mt-0.5">সব ফিচার আনলক করতে ৫০ টাকা দিয়ে একটিভ করুন।</p>
-                    </div>
-                </div>
-                <button onclick="openActivationModal()" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-black px-3.5 py-2.5 rounded-2xl text-xs shadow-lg shadow-orange-500/20 flex items-center gap-1.5 hover:scale-105 active:scale-95 transition shrink-0">
-                    <i class="fa-solid fa-bolt text-slate-950"></i> একটিভ
-                </button>
-            </div>
+            <!-- Inactive Account Alert Card -->  
+            <div id="inactiveAlertCard" class="bg-gradient-to-r from-amber-500/10 to-rose-500/10 border border-amber-500/30 p-4 rounded-3xl shadow-lg flex items-center justify-between backdrop-blur-sm">  
+                <div class="flex items-center space-x-3">  
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/20 flex items-center justify-center text-amber-400 text-lg shrink-0">  
+                        <i class="fa-solid fa-triangle-exclamation"></i>  
+                    </div>  
+                    <div>  
+                        <h4 class="font-bold text-amber-300 text-xs">অ্যাকাউন্টটি ইনঅ্যাক্টিভ রয়েছে!</h4>  
+                        <p class="text-[11px] text-slate-300 mt-0.5">৫০ টাকা দিয়ে একাউন্ট একটিভ করুন।</p>  
+                    </div>  
+                </div>  
+                <button onclick="openActivationModal()" class="bg-gradient-to-r from-amber-500 to-orange-600 text-slate-950 font-extrabold px-3.5 py-2.5 rounded-2xl text-xs shadow-lg shadow-orange-500/20 flex items-center gap-1 hover:scale-105 active:scale-95 transition shrink-0">  
+                    <i class="fa-solid fa-bolt text-slate-950"></i> একটিভ করুন  
+                </button>  
+            </div>  
 
-            <!-- User Balance & Name Card -->
-            <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950 text-white p-5 rounded-3xl shadow-2xl border border-slate-800">
-                <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-emerald-500/10 rounded-full blur-3xl"></div>
-                <div class="flex justify-between items-start relative z-10">
-                    <div>
-                        <p class="text-[10px] tracking-widest uppercase text-emerald-400 font-extrabold flex items-center gap-1">
-                            <i class="fa-solid fa-shield-halved"></i> WELCOME BACK
-                        </p>
-                        <h2 class="text-lg font-black tracking-wide mt-1 text-white uppercase" id="userNameDisplay">ব্যবহারকারী</h2>
-                        <p class="text-[11px] text-slate-400 mt-0.5 font-mono" id="userIdDisplay">ID: #HI-98402</p>
-                    </div>
-                    <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-3 rounded-2xl border border-slate-700/60 shadow-inner">
-                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">MAIN BALANCE</p>
-                        <h1 class="text-2xl font-black mt-0.5 text-emerald-400 font-mono" id="mainBalanceDisplay">৳0.00</h1>
-                    </div>
-                </div>
-                <!-- উইথড্র বাটন ও রেফার কাউন্ট -->
-                <div class="mt-4 pt-3.5 border-t border-slate-800 flex justify-between items-center relative z-10">
-                    <span class="text-[11px] text-slate-300 bg-slate-800/50 px-3 py-1.5 rounded-xl border border-slate-700/50">সফল রেফার: <b id="referCountDisplay" class="text-emerald-400 font-mono text-xs">০</b> / ১০</span>
-                    <button onclick="openWithdrawModal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black px-4 py-2.5 rounded-xl text-xs shadow-lg shadow-emerald-500/20 active:scale-95 transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-wallet"></i> উইথড্র করুন
-                    </button>
-                </div>
-            </div>
+            <!-- User Balance & Name Card -->  
+            <div class="relative overflow-hidden bg-gradient-to-br from-slate-800 via-slate-900 to-emerald-950 text-white p-5 rounded-3xl shadow-2xl border border-slate-700/60">  
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>  
+                <div class="flex justify-between items-start relative z-10">  
+                    <div>  
+                        <p class="text-[10px] tracking-wider uppercase text-emerald-400 font-bold">WELCOME BACK</p>  
+                        <h2 class="text-lg font-black tracking-wide mt-0.5 text-white uppercase" id="userNameDisplay">ব্যবহারকারী</h2>  
+                        <p class="text-[11px] text-slate-400 mt-0.5 font-mono" id="userIdDisplay">ID: #HI-98402</p>  
+                    </div>  
+                    <div class="text-right bg-slate-800/80 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-700">  
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">MAIN BALANCE</p>  
+                        <h1 class="text-2xl font-black mt-0.5 text-emerald-400" id="mainBalanceDisplay">৳50.00</h1>  
+                    </div>  
+                </div>  
+            </div>  
 
-            <!-- Refer & Earn Box -->
-            <div class="bg-gradient-to-r from-teal-950/40 via-emerald-950/40 to-slate-900 border border-emerald-500/30 text-white p-4 rounded-3xl shadow-xl space-y-3 backdrop-blur-md">
-                <div class="flex items-center space-x-3">
-                    <div class="w-11 h-11 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg shrink-0">
-                        <i class="fa-solid fa-gift"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>
-                        <p class="text-[11px] text-slate-300 mt-0.5">প্রতি সফল রেফারে আকর্ষণীয় বোনাস পান 💸</p>
-                    </div>
-                </div>
-                <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-800 shadow-inner">
-                    <input type="text" id="referLinkInput" readonly class="bg-transparent text-[11px] px-2.5 w-full text-slate-300 focus:outline-none font-mono">
-                    <button onclick="copyReferLink()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold px-4 py-2.5 rounded-xl text-xs shadow-md active:scale-95 transition shrink-0 flex items-center gap-1.5">
-                        <i class="fa-regular fa-copy"></i> কপি
-                    </button>
-                </div>
-            </div>
+            <!-- Refer & Earn Box -->  
+            <div class="bg-gradient-to-r from-teal-900/40 via-emerald-900/40 to-slate-800 border border-emerald-500/30 text-white p-4 rounded-3xl shadow-lg space-y-3 backdrop-blur-sm">  
+                <div class="flex items-center space-x-3">  
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-xl shrink-0">  
+                        <i class="fa-solid fa-gift"></i>  
+                    </div>  
+                    <div>  
+                        <h4 class="font-extrabold text-xs text-emerald-300">রেফার করুন ও প্রিমিয়াম আয় করুন!</h4>  
+                        <p class="text-[11px] text-slate-300 mt-0.5">প্রতি রেফারে পান <b class="text-emerald-400">৫০ টাকা</b> 💸</p>  
+                        <p class="text-[10px] text-emerald-200/90 mt-1 font-medium bg-emerald-950/50 p-1.5 rounded-xl border border-emerald-500/20">  
+                            ✅ শর্ত: আপনি যাকে রেফার করবেন তাকে ৫০ টাকা দিয়ে একাউন্ট Active করতে বলবেন। সে একটিভ করলেই আপনি ৫০ টাকা পাবেন!  
+                        </p>  
+                    </div>  
+                </div>  
+                <div class="flex items-center bg-slate-900/90 rounded-2xl p-1.5 border border-slate-700">  
+                    <input type="text" id="referLinkInput" readonly class="bg-transparent text-[11px] px-2 w-full text-slate-300 focus:outline-none font-mono">  
+                    <button onclick="copyReferLink()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs shadow-md transition shrink-0">  
+                        কপি করুন  
+                    </button>  
+                </div>  
+            </div>  
 
-            <!-- ৪টি সামাজিক বাটন -->
-            <div class="grid grid-cols-4 gap-2.5">
-                <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 border border-slate-800 p-3 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                    <div class="w-10 h-10 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-2xl flex items-center justify-center text-base mb-1.5 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>
-                    <span class="text-[10px] font-bold text-slate-300">টিজি চ্যানেল</span>
-                </a>
-                <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 border border-slate-800 p-3 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                    <div class="w-10 h-10 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-2xl flex items-center justify-center text-base mb-1.5 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>
-                    <span class="text-[10px] font-bold text-slate-300">টিজি গ্রুপ</span>
-                </a>
-                <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 border border-slate-800 p-3 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                    <div class="w-10 h-10 bg-rose-500/10 text-rose-400 border border-rose-500/20 rounded-2xl flex items-center justify-center text-base mb-1.5 group-hover:scale-110 transition"><i class="fa-brands fa-youtube"></i></div>
-                    <span class="text-[10px] font-bold text-slate-300">ইউটিউব</span>
-                </a>
-                <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="bg-slate-900/90 hover:bg-slate-800 border border-slate-800 p-3 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">
-                    <div class="w-10 h-10 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-base mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div>
-                    <span class="text-[10px] font-bold text-slate-300">সাপোর্ট</span>
-                </a>
-            </div>
+            <!-- ৪টি বাটন (টেলিগ্রাম চ্যানেল, গ্রুপ, ইউটিউব, সাপোর্ট) -->  
+            <div class="grid grid-cols-4 gap-2">  
+                <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
+                    <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>  
+                    <span class="text-[10px] font-bold text-slate-200">টিজি চ্যানেল</span>  
+                </a>  
+                <a href="https://t.me/YOUR_GROUP" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-blue-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
+                    <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-telegram"></i></div>  
+                    <span class="text-[10px] font-bold text-slate-200">টিজি গ্রুপ</span>  
+                </a>  
+                <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-rose-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
+                    <div class="w-9 h-9 bg-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-brands fa-youtube"></i></div>  
+                    <span class="text-[10px] font-bold text-slate-200">ইউটিউব</span>  
+                </a>  
+                <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="bg-slate-800/80 border border-slate-700/70 hover:border-emerald-500/50 p-2.5 rounded-2xl text-center flex flex-col items-center transition group shadow-sm">  
+                    <div class="w-9 h-9 bg-emerald-500/20 text-emerald-400 rounded-xl flex items-center justify-center text-sm mb-1 group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div>  
+                    <span class="text-[10px] font-bold text-slate-200">সাপোর্ট</span>  
+                </a>  
+            </div>  
 
-            <!-- Services Grid -->
-            <div class="grid grid-cols-4 gap-3 bg-slate-900/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-800">
-                <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-blue-600/10 text-blue-400 border border-blue-500/20 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-brands fa-facebook-f"></i></div><span class="text-[10px] font-bold text-slate-300 mt-2">ফেসবুক সেল</span></a>
-                <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-rose-600/10 text-rose-400 border border-rose-500/20 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-envelope"></i></div><span class="text-[10px] font-bold text-slate-300 mt-2">জিমেইল সেল</span></a>
-                <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-purple-600/10 text-purple-400 border border-purple-500/20 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></div><span class="text-[10px] font-bold text-slate-300 mt-2">ইনস্টা সেল</span></a>
-                <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-emerald-600/10 text-emerald-400 border border-emerald-500/20 rounded-2xl flex items-center justify-center text-xl group-hover:scale-110 transition"><i class="fa-solid fa-coins"></i></div><span class="text-[10px] font-bold text-slate-300 mt-2">কয়েন সেল</span></a>
-            </div>
-        </div>
+            <!-- Services & Tasks Grid -->  
+            <div class="flex justify-between items-center pt-1 px-1">  
+                <h3 class="font-bold text-slate-200 text-xs flex items-center gap-2">  
+                    <i class="fa-solid fa-layer-group text-emerald-400"></i> প্রিমিয়াম সার্ভিস ও ক্যাটাগরি  
+                </h3>  
+            </div>  
 
-        <!-- Bottom Navigation -->
-        <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-xl border-t border-slate-800/80 py-2.5 px-4 flex justify-around items-center z-40 max-w-md mx-auto shadow-2xl">
-            <a href="#" onclick="checkTaskAccess('টাস্ক')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 py-1 px-2 transition"><i class="fa-solid fa-file-invoice-dollar text-base"></i><span class="text-[10px] font-semibold mt-1">টাস্ক</span></a>
-            <button onclick="showCustomPopup('টিম সেকশন খুব শীঘ্রই আসছে!')" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 py-1 px-2 bg-transparent border-0 transition"><i class="fa-solid fa-users text-base"></i><span class="text-[10px] font-semibold mt-1">টিম</span></button>
-            <div onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/30 cursor-pointer -mt-6 border-4 border-slate-950 active:scale-95 transition"><i class="fa-solid fa-house text-base font-black"></i></div>
-            <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 py-1 px-2 transition"><i class="fa-solid fa-headset text-base"></i><span class="text-[10px] font-semibold mt-1">হেল্প</span></a>
-            <button onclick="openProfileModal()" class="flex flex-col items-center text-slate-400 hover:text-emerald-400 py-1 px-2 bg-transparent border-0 transition"><i class="fa-solid fa-user text-base"></i><span class="text-[10px] font-semibold mt-1">প্রোফাইল</span></button>
-        </div>
+            <div class="grid grid-cols-4 gap-3 bg-slate-800/50 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-slate-700/60">  
+                <!-- Row 1 -->  
+                <a href="#" onclick="checkTaskAccess('ফেসবুক সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-blue-600/20 text-blue-400 border border-blue-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-facebook-f"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ফেসবুক সেল</span></a>  
+                <a href="#" onclick="checkTaskAccess('জিমেইল সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-rose-600/20 text-rose-400 border border-rose-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-envelope"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">জিমেইল সেল</span></a>  
+                <a href="#" onclick="checkTaskAccess('ইনস্টা সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-purple-600/20 text-purple-400 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-brands fa-instagram"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ইনস্টা সেল</span></a>  
+                <a href="#" onclick="checkTaskAccess('কয়েন সেল')" class="flex flex-col items-center text-center group"><div class="w-12 h-12 bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-coins"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">কয়েন সেল</span></a>  
+
+                <!-- Row 2 -->  
+                <a href="#" onclick="checkTaskAccess('Micro Job')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-pink-600/20 text-pink-400 border border-pink-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-briefcase"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">Micro Job</span></a>  
+                <a href="#" onclick="checkTaskAccess('প্রিমিয়াম জব')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-amber-600/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-crown"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">প্রিমিয়াম জব</span></a>  
+                <a href="#" onclick="checkTaskAccess('ভিডিওর কাজ')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-red-600/20 text-red-400 border border-red-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-video"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">ভিডিওর কাজ</span></a>  
+                <a href="#" onclick="checkTaskAccess('VIP প্ল্যান')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-gem"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">VIP প্ল্যান</span></a>  
+
+                <!-- Row 3 -->  
+                <a href="#" onclick="showCustomPopup('জব হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-sky-600/20 text-sky-400 border border-sky-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-file-lines"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">জব হিস্ট্রি</span></a>  
+                <a href="#" onclick="showCustomPopup('রেফার হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-user-clock"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">রেফার হিস্ট্রি</span></a>  
+                <a href="#" onclick="showCustomPopup('উইথড্র হিস্ট্রি সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-teal-600/20 text-teal-400 border border-teal-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-receipt"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">উইথড্র হিস্ট্রি</span></a>  
+                <a href="#" onclick="showCustomPopup('My Team সেকশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-blue-400/20 text-blue-300 border border-blue-400/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-users"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">My Team</span></a>  
+
+                <!-- Row 4 -->  
+                <a href="#" onclick="openActivationModal()" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-yellow-600/20 text-yellow-400 border border-yellow-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-wallet"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">Withdraw</span></a>  
+                <a href="#" onclick="showCustomPopup('গিফট কোড অপশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-box"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">গিফট কোড</span></a>  
+                <a href="#" onclick="showCustomPopup('লিডারবোর্ড অপশন')" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-trophy"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">লিডারবোর্ড</span></a>  
+                <a href="https://t.me/OWNER_TANJIR_VAI" target="_blank" class="flex flex-col items-center text-center group pt-2"><div class="w-12 h-12 bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition"><i class="fa-solid fa-headset"></i></div><span class="text-[10px] font-semibold text-slate-300 mt-1.5">সাপোর্ট</span></a>  
+            </div>  
+        </div>  
     </div>
 
-    <!-- Login / Register Page Container -->
-    <div id="loginRegisterContainer" class="max-w-md mx-auto p-4 min-h-screen flex items-center justify-center">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full shadow-2xl space-y-5 backdrop-blur-xl">
+    <!-- রেজিস্ট্রেশন পপআপ -->  
+    <div id="registerModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl text-center space-y-4">  
+            <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 rounded-2xl flex items-center justify-center mx-auto text-2xl">  
+                <i class="fa-solid fa-user-plus"></i>  
+            </div>  
+            <div>  
+                <h3 class="text-base font-bold text-white">ওয়েবসাইটে স্বাগতম!</h3>  
+                <p class="text-xs text-slate-400 mt-1">আপনার নামটি লিখুন, যাতে আপনার প্রোফাইলে সেটি সেট হয়ে যায়।</p>  
+            </div>  
+            <form onsubmit="handleRegistrationSubmit(event)" class="space-y-3 text-left">  
+                <div>  
+                    <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>  
+                    <input type="text" id="newUserNameInput" placeholder="যেমন: আব্দুর রহমান" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">  
+                </div>  
+                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">  
+                    একাউন্ট তৈরি করুন (+৫০ টাকা বোনাস)  
+                </button>  
+            </form>  
+        </div>  
+    </div>  
+
+    <!-- সাধারণ পপআপ মেসেজ -->  
+    <div id="customPopupModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl text-center space-y-4">  
+            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto text-xl">  
+                <i class="fa-solid fa-triangle-exclamation"></i>  
+            </div>  
+            <p id="customPopupText" class="text-xs text-slate-200 font-medium leading-relaxed"></p>  
+            <button onclick="closeCustomPopup()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition">  
+                ঠিক আছে  
+            </button>  
+        </div>  
+    </div>  
+
+    <!-- প্রোফাইল মডাল (১ থেকে ১০ লেবেল ইনকাম সহ) -->  
+    <div id="profileModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50 overflow-y-auto">  
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 w-full max-w-sm shadow-2xl relative my-8">  
+            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
             
-            <!-- Tab Switcher -->
-            <div class="flex bg-slate-950 p-1 rounded-2xl border border-slate-800">
-                <button onclick="switchTab('login')" id="loginTabBtn" class="w-1/2 py-2.5 rounded-xl text-xs font-black transition bg-emerald-500 text-slate-950 shadow-md">লগইন</button>
-                <button onclick="switchTab('register')" id="registerTabBtn" class="w-1/2 py-2.5 rounded-xl text-xs font-black transition text-slate-400">রেজিস্ট্রেশন</button>
-            </div>
-
-            <!-- Login Form -->
-            <form id="loginForm" onsubmit="handleLoginSubmit(event)" class="space-y-4">
-                <div class="text-center mb-2">
-                    <h3 class="text-lg font-black text-white">একাউন্টে লগইন করুন</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">আপনার ইউজার আইডি ও পাসওয়ার্ড দিয়ে প্রবেশ করুন</p>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1.5">ইউজার আইডি / মোবাইল নম্বর</label>
-                    <input type="text" id="loginId" placeholder="যেমন: 017XXXXXXXX" required class="w-full px-3.5 py-3.5 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-white focus:outline-none focus:border-emerald-500 transition shadow-inner">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1.5">পাসওয়ার্ড</label>
-                    <input type="password" id="loginPass" placeholder="••••••••" required class="w-full px-3.5 py-3.5 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-white focus:outline-none focus:border-emerald-500 transition shadow-inner">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black py-3.5 rounded-2xl text-xs transition shadow-lg shadow-emerald-500/25 active:scale-95">
-                    লগইন করুন
-                </button>
-            </form>
-
-            <!-- Register Form -->
-            <form id="registerForm" onsubmit="handleRegisterSubmit(event)" class="space-y-3.5 hidden">
-                <div class="text-center mb-1">
-                    <h3 class="text-lg font-black text-white">নতুন অ্যাকাউন্ট তৈরি করুন</h3>
-                    <p class="text-[11px] text-emerald-400 font-medium mt-0.5">রেজিস্ট্রেশনের পর সরাসরি টেলিগ্রাম চ্যানেলে নিয়ে যাওয়া হবে!</p>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">আপনার পুরো নাম</label>
-                    <input type="text" id="regName" placeholder="যেমন: আব্দুর রহমান" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-white focus:outline-none focus:border-emerald-500 transition shadow-inner">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">মোবাইল নম্বর</label>
-                    <input type="text" id="regPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-white focus:outline-none focus:border-emerald-500 transition shadow-inner">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">পাসওয়ার্ড দিন</label>
-                    <input type="password" id="regPass" placeholder="••••••••" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-white focus:outline-none focus:border-emerald-500 transition shadow-inner">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">রেফারেল কোড (ঐচ্ছিক)</label>
-                    <input type="text" id="regReferCode" placeholder="রেফার কোড অটো বসবে" class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-2xl text-xs text-emerald-400 font-mono shadow-inner">
-                </div>
-                <button type="submit" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black py-3.5 rounded-2xl text-xs transition shadow-lg shadow-emerald-500/25 active:scale-95">
-                    রেজিস্ট্রেশন ও চ্যানেল জয়েন
-                </button>
-            </form>
-
-        </div>
-    </div>
-
-    <!-- উইথড্র মডাল -->
-    <div id="withdrawModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
-            <button onclick="closeModal('withdrawModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition"><i class="fa-solid fa-xmark"></i></button>
             <div class="text-center mb-4">
-                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/30"><i class="fa-solid fa-wallet text-xl"></i></div>
-                <h3 class="text-lg font-black text-white">টাকা উইথড্র করুন</h3>
-                <p class="text-xs text-slate-400 mt-1">আপনার ব্যালেন্স থেকে নিরাপদ পেমেন্ট নিন</p>
-            </div>
-            <form onsubmit="handleWithdrawSubmit(event)" class="space-y-3.5">
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">উইথড্র মাধ্যম</label>
-                    <select id="withdrawMethod" class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
-                        <option value="Nagad">নগদ (Nagad)</option>
-                        <option value="Bkash">বিকাশ (Bkash)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">একাউন্ট নম্বর</label>
-                    <input type="text" id="withdrawPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">টাকার পরিমাণ</label>
-                    <input type="number" id="withdrawAmount" placeholder="ন্যূনতম ৫০০ টাকা" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-xs shadow-lg shadow-emerald-500/20 active:scale-95 transition">
-                    উইথড্র রিকোয়েস্ট পাঠান
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- সাধারণ পপআপ মডাল -->
-    <div id="customPopupModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-xs shadow-2xl text-center space-y-4">
-            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-2xl flex items-center justify-center mx-auto text-xl">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-            </div>
-            <p id="customPopupText" class="text-xs text-slate-200 font-medium leading-relaxed"></p>
-            <button onclick="closeCustomPopup()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition active:scale-95">
-                ঠিক আছে
-            </button>
-        </div>
-    </div>
-
-    <!-- একাউন্ট একটিভেশন ফর্ম (Nagad Payment) -->
-    <div id="activationModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">
-            <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            <div class="text-center mb-4">
-                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/30"><i class="fa-solid fa-bolt text-xl"></i></div>
-                <h3 class="text-lg font-black text-white">একাউন্ট একটিভ করুন</h3>
-                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ ৫০ টাকা <b class="text-yellow-300 uppercase underline">সেন্ড মানি</b> করতে হবে!</p>
-            </div>
-            <div class="bg-slate-950 border border-slate-800 p-3.5 rounded-2xl mb-4 text-xs text-slate-300 space-y-1 text-center shadow-inner">
-                <p class="text-slate-400 text-[11px]">Nagad Send Money Number:</p>
-                <span class="font-mono bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800 font-black text-emerald-400 text-sm inline-block tracking-widest mt-1">01784087562</span>
-            </div>
-            <form onsubmit="handleActivationSubmit(event)" class="space-y-3">
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">আপনার নাম</label>
-                    <input type="text" id="senderName" readonly class="w-full px-3.5 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-xs text-slate-400 cursor-not-allowed">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">নগদ নম্বর</label>
-                    <input type="text" id="senderPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">TrxID</label>
-                    <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3.5 py-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
-                </div>
-                <button type="submit" id="submitBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black py-3 rounded-xl text-xs shadow-lg shadow-emerald-500/20 active:scale-95 transition">
-                    রিকোয়েস্ট পাঠান
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- প্রোফাইল মডাল -->
-    <div id="profileModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 z-50">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-md shadow-2xl relative text-center">
-            <button onclick="closeModal('profileModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="w-16 h-16 bg-gradient-to-tr from-emerald-500 to-teal-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-2 font-black text-2xl shadow-lg">
-                <i class="fa-solid fa-user-shield"></i>
-            </div>
-            <h3 class="text-base font-black text-white uppercase" id="profileNameDisplay">ব্যবহারকারী</h3>
-            <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>
-            <span id="profileStatusBadge" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2">Inactive User</span>
-            
-            <div class="bg-slate-950 border border-slate-800 p-3.5 rounded-2xl my-4 text-xs text-slate-300 flex justify-between items-center shadow-inner">
-                <span class="text-slate-400">আপনার রেফার কোড:</span>
-                <span class="font-bold text-emerald-400 font-mono tracking-wider" id="profileReferCode">USER123</span>
+                <div class="w-14 h-14 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 text-2xl font-bold border border-emerald-500/30"><i class="fa-solid fa-user-shield"></i></div>  
+                <h3 class="text-base font-bold text-white uppercase" id="profileNameDisplay">ব্যবহারকারী</h3>  
+                <p class="text-xs text-slate-400 font-mono mt-0.5" id="profileUserIdText">ID: #HI-98402</p>  
             </div>
 
-            <button onclick="closeModal('profileModal')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold py-2.5 rounded-xl text-xs transition border border-slate-700">
-                বন্ধ করুন
-            </button>
-        </div>
-    </div>
+            <!-- ১ থেকে ১০ লেবেল ইনকাম চার্ট -->
+            <div class="mb-4">
+                <h4 class="text-xs font-bold text-emerald-400 mb-2 flex items-center gap-1.5">
+                    <i class="fa-solid fa-chart-line"></i> লেবেলভিত্তিক রেফার কমিশন (১ - ১০ লেবেল)
+                </h4>
+                <div class="bg-slate-950 border border-slate-800 rounded-2xl p-2.5 space-y-1.5 max-h-48 overflow-y-auto text-[11px] text-slate-300">
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ১ (সরাসরি):</span> <strong class="text-emerald-400">৫০ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ২:</span> <strong class="text-emerald-400">২০ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৩:</span> <strong class="text-emerald-400">১০ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৪:</span> <strong class="text-emerald-400">৫ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৫:</span> <strong class="text-emerald-400">৩ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৬:</span> <strong class="text-emerald-400">২ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৭:</span> <strong class="text-emerald-400">১ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৮:</span> <strong class="text-emerald-400">১ টাকা</strong></div>
+                    <div class="flex justify-between border-b border-slate-800/60 pb-1"><span>লেবেল ৯:</span> <strong class="text-emerald-400">১ টাকা</strong></div>
+                    <div class="flex justify-between"><span>লেবেল ১০:</span> <strong class="text-emerald-400">১ টাকা</strong></div>
+                </div>
+            </div>
 
-    <!-- JavaScript কোড -->
-    <script>
-        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';
-        const CHAT_ID = '6733473116';
-        const TELEGRAM_CHANNEL_URL = 'https://t.me/YOUR_CHANNEL';
+            <div class="bg-slate-950 border border-slate-800 p-3 rounded-2xl mb-4 text-xs text-slate-300 flex justify-between items-center">  
+                <span class="text-slate-400">রেফার কোড:</span>  
+                <span class="font-bold text-emerald-400 font-mono" id="profileReferCode">HI-1234</span>  
+            </div>  
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const refCode = urlParams.get('ref');
-            if (refCode) {
-                localStorage.setItem('hi_temp_ref', refCode);
-                document.getElementById('regReferCode').value = refCode;
-                switchTab('register');
-            }
+            <button onclick="logoutUser()" class="w-full bg-rose-600/20 text-rose-400 hover:bg-rose-600/30 border border-rose-500/30 font-bold py-2.5 rounded-xl text-xs transition">  
+                লগআউট করুন  
+            </button>  
+        </div>  
+    </div>  
 
-            const loggedInUser = localStorage.getItem('hi_logged_user');
-            if (loggedInUser) {
-                loadDashboard(JSON.parse(loggedInUser));
-            } else {
-                document.getElementById('loginRegisterContainer').classList.remove('hidden');
-                document.getElementById('authContainer').classList.add('hidden');
-            }
-        });
+    <!-- একাউন্ট একটিভেশন ফর্ম (Nagad Payment) -->  
+    <div id="activationModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">  
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative">  
+            <button onclick="closeModal('activationModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>  
+            <div class="text-center mb-4">  
+                <div class="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-2xl flex items-center justify-center mx-auto mb-2 border border-emerald-500/30"><i class="fa-solid fa-bolt text-xl"></i></div>  
+                <h3 class="text-lg font-bold text-white">একাউন্ট একটিভ করুন</h3>  
+                <p class="text-xs text-rose-400 font-medium mt-1">⚠️ ৫০ টাকা <b class="text-yellow-300 uppercase underline">সেন্ড মানি</b> করতে হবে!</p>  
+            </div>  
+            <div class="bg-slate-950 border border-slate-800 p-3.5 rounded-2xl mb-4 text-xs text-slate-300 space-y-1 text-center">  
+                <p class="text-slate-400 text-[11px]">Nagad Send Money Number:</p>  
+                <span class="font-mono bg-slate-900 px-3 py-1.5 rounded-xl border border-slate-800 font-bold text-emerald-400 text-sm inline-block tracking-wider mt-1">01784087562</span>  
+            </div>  
+            <form onsubmit="handleActivationSubmit(event)" class="space-y-3">  
+                <div>  
+                    <label class="block text-xs font-bold text-slate-300 mb-1">নগদ নম্বর</label>  
+                    <input type="text" id="senderPhone" placeholder="017XXXXXXXX" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">  
+                </div>  
+                <div>  
+                    <label class="block text-xs font-bold text-slate-300 mb-1">TrxID</label>  
+                    <input type="text" id="senderTrxid" placeholder="যেমন: 7K89X10L" required class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">  
+                </div>  
+                <button type="submit" id="submitBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">  
+                    রিকোয়েস্ট পাঠান  
+                </button>  
+            </form>  
+        </div>  
+    </div>  
 
-        function switchTab(tab) {
-            const loginTab = document.getElementById('loginTabBtn');
-            const regTab = document.getElementById('registerTabBtn');
-            const loginForm = document.getElementById('loginForm');
-            const regForm = document.getElementById('registerForm');
+    <!-- জাভাস্ক্রিপ্ট লজিক -->  
+    <script>  
+        const BOT_TOKEN = '8726008499:AAFIajdSOavCs8lB8Yh2IlODwEqsmyr9-2c';  
+        const CHAT_ID = '6733473116';  
 
-            if (tab === 'login') {
-                loginTab.className = "w-1/2 py-2.5 rounded-xl text-xs font-black transition bg-emerald-500 text-slate-950 shadow-md";
-                regTab.className = "w-1/2 py-2.5 rounded-xl text-xs font-black transition text-slate-400";
-                loginForm.classList.remove('hidden');
-                regForm.classList.add('hidden');
-            } else {
-                regTab.className = "w-1/2 py-2.5 rounded-xl text-xs font-black transition bg-emerald-500 text-slate-950 shadow-md";
-                loginTab.className = "w-1/2 py-2.5 rounded-xl text-xs font-black transition text-slate-400";
-                regForm.classList.remove('hidden');
-                loginForm.classList.add('hidden');
-            }
-        }
+        window.addEventListener('DOMContentLoaded', () => {  
+            const urlParams = new URLSearchParams(window.location.search);  
+            const refCode = urlParams.get('ref');  
+            if(refCode) localStorage.setItem('hi_temp_ref', refCode);  
 
-        function handleRegisterSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('regName').value.trim();
-            const phone = document.getElementById('regPhone').value.trim();
-            const password = document.getElementById('regPass').value.trim();
-            
-            const urlParams = new URLSearchParams(window.location.search);
-            const refer = document.getElementById('regReferCode').value.trim() || urlParams.get('ref') || localStorage.getItem('hi_temp_ref') || 'None';
+            const currentUser = localStorage.getItem('hi_logged_user');  
+            if (!currentUser) {  
+                document.getElementById('registerModal').classList.remove('hidden');  
+            } else {  
+                loadDashboard(JSON.parse(currentUser));  
+            }  
+        });  
 
-            let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
-            
-            let existing = users.find(u => u.phone === phone);
-            if (existing) {
-                showCustomPopup('⚠️ এই নম্বর দিয়ে আগেই অ্যাকাউন্ট করা হয়েছে। দয়া করে লগইন করুন।');
-                switchTab('login');
-                return;
-            }
+        function handleRegistrationSubmit(event) {  
+            event.preventDefault();  
+            const name = document.getElementById('newUserNameInput').value.trim();  
+            const userId = 'HI-' + Math.floor(1000 + Math.random() * 9000);  
+            const referCode = 'REF-' + Math.floor(10000 + Math.random() * 90000);  
 
-            const myReferCode = 'HI-' + Math.floor(1000 + Math.random() * 9000);
-            
-            const newUser = {
-                name: name,
-                phone: phone,
-                password: password,
-                referCode: myReferCode,
-                usedRefer: refer,
-                balance: 0.00,
-                active: false
-            };
+            const newUser = {  
+                name: name,  
+                userId: userId,  
+                referCode: referCode,  
+                balance: 50.00, // প্রোফাইলে ৫০ টাকা বোনাস
+                active: false  
+            };  
 
-            users.push(newUser);
-            localStorage.setItem('hi_all_users', JSON.stringify(users));
-            localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
-            localStorage.removeItem('hi_temp_ref');
+            localStorage.setItem('hi_logged_user', JSON.stringify(newUser));  
+            document.getElementById('registerModal').classList.add('hidden');  
+            loadDashboard(newUser);  
+        }  
 
-            showCustomPopup('অভিনন্দন! অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে। এখন আপনাকে আমাদের টেলিগ্রাম চ্যানেলে নিয়ে যাওয়া হচ্ছে...');
+        function loadDashboard(user) {  
+            document.getElementById('authContainer').classList.remove('hidden');  
+            document.getElementById('userNameDisplay').innerText = user.name;  
+            document.getElementById('profileNameDisplay').innerText = user.name;  
+            document.getElementById('userIdDisplay').innerText = 'ID: #' + user.userId;  
+            document.getElementById('profileUserIdText').innerText = 'ID: #' + user.userId;  
+            document.getElementById('mainBalanceDisplay').innerText = '৳' + (user.balance || 50.00).toFixed(2);  
+            document.getElementById('profileReferCode').innerText = user.referCode;  
 
-            setTimeout(() => {
-                window.location.href = TELEGRAM_CHANNEL_URL;
-            }, 2000);
-        }
+            const link = window.location.origin + window.location.pathname + '?ref=' + user.referCode;  
+            document.getElementById('referLinkInput').value = link;  
 
-        function handleLoginSubmit(event) {
-            event.preventDefault();
-            const loginId = document.getElementById('loginId').value.trim();
-            const loginPass = document.getElementById('loginPass').value.trim();
+            if(user.active) {  
+                document.getElementById('statusText').innerText = 'Active';  
+                document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";  
+                document.getElementById('inactiveAlertCard').style.display = 'none';  
+            }  
+        }  
 
-            let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
-            let user = users.find(u => u.phone === loginId && u.password === loginPass);
+        function logoutUser() {  
+            localStorage.removeItem('hi_logged_user');  
+            location.reload();  
+        }  
 
-            if (user) {
-                localStorage.setItem('hi_logged_user', JSON.stringify(user));
-                loadDashboard(user);
-            } else {
-                showCustomPopup('❌ ভুল ইউজার আইডি অথবা পাসওয়ার্ড!');
-            }
-        }
+        function checkTaskAccess(taskName) {  
+            let user = JSON.parse(localStorage.getItem('hi_logged_user'));  
+            if(!user.active) {  
+                showCustomPopup('⚠️ কাজ শুরু করতে আগে ৫০ টাকা দিয়ে একাউন্ট Active করুন!');  
+                return;  
+            }  
+            showCustomPopup(taskName + ' সেকশনে আপনাকে স্বাগতম!');  
+        }  
 
-        function logoutUser() {
-            localStorage.removeItem('hi_logged_user');
-            location.reload();
-        }
+        function copyReferLink() {  
+            const copyText = document.getElementById("referLinkInput");  
+            navigator.clipboard.writeText(copyText.value);  
+            showCustomPopup("রেফারেল লিঙ্ক সফলভাবে কপি করা হয়েছে!");  
+        }  
 
-        function loadDashboard(user) {
-            document.getElementById('loginRegisterContainer').classList.add('hidden');
-            document.getElementById('authContainer').classList.remove('hidden');
+        function openActivationModal() { document.getElementById('activationModal').classList.remove('hidden'); }  
+        function openProfileModal() { document.getElementById('profileModal').classList.remove('hidden'); }  
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }  
+        function showCustomPopup(msg) {  
+            document.getElementById('customPopupText').innerText = msg;  
+            document.getElementById('customPopupModal').classList.remove('hidden');  
+        }  
+        function closeCustomPopup() { document.getElementById('customPopupModal').classList.add('hidden'); }  
 
-            document.getElementById('userNameDisplay').innerText = user.name;
-            document.getElementById('profileNameDisplay').innerText = user.name;
-            document.getElementById('senderName').value = user.name;
-            document.getElementById('userIdDisplay').innerText = 'ID: #' + user.phone;
-            document.getElementById('profileUserIdText').innerText = 'ID: #' + user.phone;
-            document.getElementById('mainBalanceDisplay').innerText = '৳' + (user.balance || 0).toFixed(2);
-            document.getElementById('profileReferCode').innerText = user.referCode;
+        function handleActivationSubmit(event) {  
+            event.preventDefault();  
+            const phone = document.getElementById('senderPhone').value;  
+            const trxid = document.getElementById('senderTrxid').value;  
+            const btn = document.getElementById('submitBtn');  
 
-            // রেফার কাউন্ট হিসাব করা
-            let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
-            let referCount = users.filter(u => u.usedRefer === user.referCode).length;
-            document.getElementById('referCountDisplay').innerText = referCount;
+            btn.innerText = 'পাঠানো হচ্ছে...';  
+            btn.disabled = true;  
 
-            const currentLink = window.location.origin + window.location.pathname + '?ref=' + user.referCode;
-            document.getElementById('referLinkInput').value = currentLink;
-
-            if (user.active) {
-                document.getElementById('statusText').innerText = 'Active';
-                document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold flex items-center gap-1.5 shadow-sm";
-                document.getElementById('profileStatusBadge').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-3 py-1 rounded-full font-bold inline-block mt-2";
-                document.getElementById('profileStatusBadge').innerText = "Active User";
-                document.getElementById('inactiveAlertCard').style.display = 'none';
-            }
-        }
-
-        function openWithdrawModal() {
-            let user = JSON.parse(localStorage.getItem('hi_logged_user'));
-            if (!user || !user.active) {
-                showCustomPopup('⚠️ উইথড্র করতে আগে একাউন্ট Active করুন!');
-                return;
-            }
-
-            // ইউজারের মোট সফল রেফার গণনা করা
-            let users = JSON.parse(localStorage.getItem('hi_all_users')) || [];
-            let referCount = users.filter(u => u.usedRefer === user.referCode).length;
-
-            // শর্ত চেক: কমপক্ষে ১০টি সফল রেফার থাকতে হবে
-            if (referCount < 10) {
-                showCustomPopup(`⚠️ উইথড্র করতে হলে আপনার কমপক্ষে ১০টি সফল রেফার সম্পন্ন হতে হবে! আপনার বর্তমান সফল রেফার রয়েছে ${referCount}টি।`);
-                return;
-            }
-
-            // শর্ত পূরণ হলে উইথড্র মডাল ওপেন হবে
-            document.getElementById('withdrawModal').classList.remove('hidden');
-        }
-
-        function handleWithdrawSubmit(event) {
-            event.preventDefault();
-            const method = document.getElementById('withdrawMethod').value;
-            const phone = document.getElementById('withdrawPhone').value;
-            const amount = document.getElementById('withdrawAmount').value;
-
-            closeModal('withdrawModal');
-            showCustomPopup(`✅ আপনার ${amount} টাকার উইথড্র রিকোয়েস্ট (${method}: ${phone}) সফলভাবে সাবমিট হয়েছে!`);
-        }
-
-        function showCustomPopup(message) {
-            document.getElementById('customPopupText').innerText = message;
-            document.getElementById('customPopupModal').classList.remove('hidden');
-        }
-
-        function closeCustomPopup() {
-            document.getElementById('customPopupModal').classList.add('hidden');
-        }
-
-        function checkTaskAccess(taskName) {
-            let user = JSON.parse(localStorage.getItem('hi_logged_user'));
-            if (!user || !user.active) {
-                showCustomPopup('⚠️ কাজ শুরু করতে আগে ৫০ টাকা দিয়ে একাউন্ট Active করুন!');
-                return;
-            }
-            showCustomPopup(taskName + ' সেকশনে আপনাকে স্বাগতম!');
-        }
-
-        function openActivationModal() { document.getElementById('activationModal').classList.remove('hidden'); }
-        function openProfileModal() { document.getElementById('profileModal').classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        function copyReferLink() {
-            let user = JSON.parse(localStorage.getItem('hi_logged_user'));
-            if (!user || !user.active) {
-                showCustomPopup('⚠️ একাউন্ট একটিভ না করলে রেফার লিংক কাজ করবে না!');
-                return;
-            }
-            const copyText = document.getElementById("referLinkInput");
-            navigator.clipboard.writeText(copyText.value);
-            showCustomPopup("রেফারেল লিঙ্ক সফলভাবে কপি করা হয়েছে!");
-        }
-
-        function handleActivationSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('senderName').value;
-            const phone = document.getElementById('senderPhone').value;
-            const trxid = document.getElementById('senderTrxid').value;
-            const submitBtn = document.getElementById('submitBtn');
-
-            submitBtn.innerText = 'পাঠানো হচ্ছে...';
-            submitBtn.disabled = true;
-
-            const message = `🔔 *নতুন একটিভেশন রিকোয়েস্ট!* %0A👤 *নাম:* ${name}%0A📱 *নম্বর:* ${phone}%0A🆔 *TrxID:* ${trxid}`;
-            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
-
-            fetch(url)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.ok) {
-                        closeModal('activationModal');
-                        showCustomPopup('পেমেন্ট রিকোয়েস্ট সফলভাবে জমা হয়েছে!');
-                    } else {
-                        showCustomPopup('ত্রুটি হয়েছে, আবার চেষ্টা করুন।');
-                    }
-                })
-                .finally(() => {
-                    submitBtn.innerText = 'রিকোয়েস্ট পাঠান';
-                    submitBtn.disabled = false;
-                });
-        }
-    </script>
-</body>
+            const msg = `🔔 নতুন একটিভেশন রিকোয়েস্ট!\n📱 নম্বর: ${phone}\n🆔 TrxID: ${trxid}`;  
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)  
+            .then(res => res.json())  
+            .then(data => {  
+                closeModal('activationModal');  
+                showCustomPopup('পেমেন্ট রিকোয়েস্ট সফলভাবে জমা হয়েছে!');  
+            }).finally(() => {  
+                btn.innerText = 'রিকোয়েস্ট পাঠান';  
+                btn.disabled = false;  
+            });  
+        }  
+    </script>  
+</body>  
 </html>
