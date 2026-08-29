@@ -211,7 +211,7 @@
 
                 <div id="referFieldContainer" class="hidden">
                     <label class="block text-xs font-bold text-slate-300 mb-1">রেফার কোড (ঐচ্ছিক)</label>
-                    <input type="text" id="regReferCode" placeholder="যেমন: REF-12345" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
+                    <input type="text" id="regReferCode" placeholder="যেমন: HI-1234" class="w-full px-3.5 py-3 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-emerald-500">
                 </div>
 
                 <button type="submit" id="authSubmitBtn" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-3.5 rounded-xl text-xs transition shadow-lg shadow-emerald-500/25">
@@ -364,38 +364,35 @@
             document.getElementById('customPopupModal').classList.add('hidden');
         }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
         }
 
         function openActivationModal() {
-            document.getElementById('activationModal').classList.remove('hidden');
+            openModal('activationModal');
         }
 
         function openProfileModal() {
-            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
-            if(currentUser) {
-                document.getElementById('profileNameDisplay').innerText = currentUser.name || "ব্যবহারকারী";
-                document.getElementById('profileUserIdText').innerText = "ID: " + currentUser.userId;
-                document.getElementById('profileReferCode').innerText = currentUser.referCode;
-            }
-            document.getElementById('profileModal').classList.remove('hidden');
+            openModal('profileModal');
         }
 
         function checkTaskAccess(taskName) {
-            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
-            if(currentUser && currentUser.status === 'Active') {
-                showCustomPopup(taskName + ' সেকশনে স্বাগতম! এখানে আপনি কাজ করতে পারবেন।');
+            const user = JSON.parse(localStorage.getItem('hi_logged_user'));
+            if(user && user.status === 'Active') {
+                showCustomPopup(taskName + ' সেকশনে স্বাগতম!');
             } else {
-                showCustomPopup('আপনার একাউন্টটি ইনঅ্যাক্টিভ! কাজ করতে হলে আগে ৫০ টাকা দিয়ে একাউন্ট একটিভ করুন।');
+                showCustomPopup('এই টাস্কটি সম্পন্ন করতে প্রথমে আপনার অ্যাকাউন্টটি ৫০ টাকা দিয়ে একটিভ করুন!');
             }
         }
 
         function copyReferLink() {
-            const referInput = document.getElementById('referLinkInput');
-            referInput.select();
-            referInput.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(referInput.value);
+            const input = document.getElementById('referLinkInput');
+            input.select();
+            document.execCommand('copy');
             showCustomPopup('রেফার লিংক সফলভাবে কপি হয়েছে!');
         }
 
@@ -409,116 +406,95 @@
             const phone = document.getElementById('authPhone').value.trim();
             const password = document.getElementById('authPassword').value.trim();
 
+            let users = JSON.parse(localStorage.getItem('hi_all_users') || '[]');
+
             if(isRegisterMode) {
                 const name = document.getElementById('regName').value.trim();
-                const referCodeInput = document.getElementById('regReferCode').value.trim();
-                
+                const referCode = document.getElementById('regReferCode').value.trim();
+
                 if(!name) {
-                    showCustomPopup('দয়া করে আপনার পুরো নাম লিখুন।');
+                    showCustomPopup('দয়া করে আপনার নাম লিখুন');
                     return;
                 }
 
-                const randomId = '#HI-' + Math.floor(10000 + Math.random() * 90000);
-                const uniqueReferCode = 'HI-' + Math.floor(1000 + Math.random() * 9000);
+                const existingUser = users.find(u => u.phone === phone);
+                if(existingUser) {
+                    showCustomPopup('এই নম্বর দিয়ে আগেই অ্যাকাউন্ট খোলা হয়েছে!');
+                    return;
+                }
 
+                const newUserId = 'HI-' + Math.floor(10000 + Math.random() * 90000);
                 const newUser = {
                     name: name,
                     phone: phone,
                     password: password,
-                    userId: randomId,
-                    referCode: uniqueReferCode,
-                    balance: 50.00,
+                    id: newUserId,
+                    balance: 50, // সাইন আপ বোনাস ৫০ টাকা
                     status: 'Inactive',
-                    invitedBy: referCodeInput || 'None'
+                    referredBy: referCode || 'None'
                 };
 
+                users.push(newUser);
+                localStorage.setItem('hi_all_users', JSON.stringify(users));
                 localStorage.setItem('hi_logged_user', JSON.stringify(newUser));
-                
-                const message = `✨ নতুন রেজিস্ট্রেশন!\nনাম: ${name}\nফোন: ${phone}\nইউজার আইডি: ${randomId}\nরেফার কোড: ${referCodeInput || 'কেউ না'}`;
-                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
-                .catch(err => console.log(err));
 
-                showCustomPopup('রেজিস্ট্রেশন সফল হয়েছে! আপনি ৫০ টাকা বোনাস পেয়েছেন।');
-                setTimeout(() => { location.reload(); }, 1500);
+                // টেলিগ্রামে নতুন রেজিস্ট্রেশনের নোটিফিকেশন পাঠানোর কোড
+                const msg = `👤 নতুন একাউন্ট রেজিস্ট্রেশন!\nনাম: ${name}\nনম্বর: ${phone}\nআইডি: ${newUserId}\nরেফার কোড: ${referCode || 'নাই'}`;
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`);
+
+                showCustomPopup('রেজিস্ট্রেশন সফল হয়েছে! স্বাগতম।');
+                setTimeout(() => location.reload(), 1500);
 
             } else {
-                const savedUser = JSON.parse(localStorage.getItem('hi_logged_user'));
-                if(savedUser && savedUser.phone === phone && savedUser.password === password) {
+                const user = users.find(u => u.phone === phone && u.password === password);
+                if(user) {
+                    localStorage.setItem('hi_logged_user', JSON.stringify(user));
                     showCustomPopup('লগইন সফল হয়েছে!');
-                    setTimeout(() => { location.reload(); }, 1000);
+                    setTimeout(() => location.reload(), 1000);
                 } else {
-                    const dummyUser = {
-                        name: "আব্দুর রহমান",
-                        phone: phone,
-                        password: password,
-                        userId: "#HI-98402",
-                        referCode: "HI-1234",
-                        balance: 50.00,
-                        status: 'Inactive'
-                    };
-                    localStorage.setItem('hi_logged_user', JSON.stringify(dummyUser));
-                    showCustomPopup('লগইন সফল হয়েছে!');
-                    setTimeout(() => { location.reload(); }, 1000);
+                    showCustomPopup('ভুল নম্বর অথবা পাসওয়ার্ড!');
                 }
+            }
+        }
+
+        function loadDashboard(user) {
+            document.getElementById('dashboardContainer').classList.remove('hidden');
+            document.getElementById('userNameDisplay').innerText = user.name;
+            document.getElementById('userIdDisplay').innerText = 'ID: #' + user.id;
+            document.getElementById('profileNameDisplay').innerText = user.name;
+            document.getElementById('profileUserIdText').innerText = 'ID: #' + user.id;
+            document.getElementById('profileReferCode').innerText = user.id;
+            document.getElementById('mainBalanceDisplay').innerText = '৳' + (user.balance || 50).toFixed(2);
+
+            const refLink = window.location.origin + window.location.pathname + '?ref=' + user.id;
+            document.getElementById('referLinkInput').value = refLink;
+
+            if(user.status === 'Active') {
+                document.getElementById('badgeStatus').className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                document.getElementById('statusText').innerText = "Active";
+                document.getElementById('inactiveAlertCard').classList.add('hidden');
+            } else {
+                document.getElementById('badgeStatus').className = "bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
+                document.getElementById('statusText').innerText = "Inactive";
+                document.getElementById('inactiveAlertCard').classList.remove('hidden');
             }
         }
 
         function handleActivationSubmit(event) {
             event.preventDefault();
-            const senderPhone = document.getElementById('senderPhone').value.trim();
-            const senderTrxid = document.getElementById('senderTrxid').value.trim();
-            const currentUser = JSON.parse(localStorage.getItem('hi_logged_user'));
+            const senderPhone = document.getElementById('senderPhone').value;
+            const trxid = document.getElementById('senderTrxid').value;
+            const user = JSON.parse(localStorage.getItem('hi_logged_user'));
 
-            if(!currentUser) {
-                showCustomPopup('আগে লগইন করুন!');
-                return;
-            }
-
-            const message = `⚡ একাউন্ট অ্যাক্টিভেশন রিকোয়েস্ট!\nনাম: ${currentUser.name}\nইউজার আইডি: ${currentUser.userId}\nনম্বর: ${senderPhone}\nTrxID: ${senderTrxid}`;
-            
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(message)}`)
-            .then(response => {
-                if(response.ok) {
-                    currentUser.status = 'Active';
-                    localStorage.setItem('hi_logged_user', JSON.stringify(currentUser));
-                    closeModal('activationModal');
-                    showCustomPopup('অ্যাক্টিভেশন রিকোয়েস্ট সফলভাবে পাঠানো হয়েছে!');
-                    setTimeout(() => { location.reload(); }, 1500);
-                } else {
-                    showCustomPopup('টেলিগ্রামে বার্তা পাঠাতে সমস্যা হয়েছে। আবার চেষ্টা করুন।');
-                }
+            const msg = `⚡ একাউন্ট একটিভেশন রিকোয়েস্ট!\nনাম: ${user.name}\nআইডি: ${user.id}\nনগদ নম্বর: ${senderPhone}\nTrxID: ${trxid}`;
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(msg)}`)
+            .then(() => {
+                showCustomPopup('রিকোয়েস্ট সফলভাবে সাবমিট হয়েছে! Admin চেক করে শীঘ্রই একটিভ করে দিবে।');
+                closeModal('activationModal');
             })
-            .catch(error => {
-                console.error('Error:', error);
-                showCustomPopup('নেটওয়ার্ক ত্রুটি! দয়া করে আবার চেষ্টা করুন।');
+            .catch(() => {
+                showCustomPopup('দুঃখিত, কোনো সমস্যা হয়েছে। আবার চেষ্টা করুন।');
             });
-        }
-
-        function loadDashboard(user) {
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('dashboardContainer').classList.remove('hidden');
-
-            document.getElementById('userNameDisplay').innerText = user.name;
-            document.getElementById('userIdDisplay').innerText = "ID: " + user.userId;
-            document.getElementById('mainBalanceDisplay').innerText = "৳" + user.balance.toFixed(2);
-            document.getElementById('profileReferCode').innerText = user.referCode;
-            
-            const currentURL = window.location.origin + window.location.pathname;
-            document.getElementById('referLinkInput').value = currentURL + "?ref=" + user.referCode;
-
-            const badgeStatus = document.getElementById('badgeStatus');
-            const statusText = document.getElementById('statusText');
-            const inactiveAlertCard = document.getElementById('inactiveAlertCard');
-
-            if (user.status === 'Active') {
-                badgeStatus.className = "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
-                statusText.innerText = "Active";
-                inactiveAlertCard.classList.add('hidden');
-            } else {
-                badgeStatus.className = "bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px] px-2.5 py-1 rounded-full font-bold flex items-center gap-1";
-                statusText.innerText = "Inactive";
-                inactiveAlertCard.classList.remove('hidden');
-            }
         }
     </script>
 </body>
